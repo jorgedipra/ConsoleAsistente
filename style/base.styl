@@ -19,33 +19,26 @@ li{
 a {
   text-decoration: none;
 }
-code{
-  color: #19d264
-  width 300px;
-  height 300px
-  position absolute
-  background: #000
-  border: solid 1px #000
-  font-size: 25px
-}
-#actividad{
-  position absolute
-  z-index 1
-  margin: 280px 300px
-  width 200px;
-}
-#historial{
-  margin: 80px 300px
-  width 200px;
-  height 200px
-  position absolute
-  background: #ffffff
-  border: solid 1px #000
-  overflow: auto
-  #msginicial{
-    height: 200px;
-    display: -webkit-box;
+.bordertable{
+  padding-left: 30px
+  th{
+    color: #ccc
+    border: dashed 1px consola
+    padding-left: 10px
+    padding-right: 10px
+    text-align: center
   }
+  td{
+     border: dashed 1px consola
+     padding-left: 10px
+  }
+}
+#app{
+  display               : grid;
+  grid-template-columns : auto;
+  grid-template-rows    : 50px auto;
+  height                : 100%;
+  width                 : 100%;
 }
 .Alis{
   color #000
@@ -55,7 +48,6 @@ code{
     background: rgba(247, 11, 117, 0.369)
     padding: 2px 5px
     border-radius: 5px
-    position: absolute;
   }
 }
 .User{
@@ -63,9 +55,8 @@ code{
   margin-left -30px
   width 100%
   .message{
-    background: #2c90395e
-    padding: 2px 5px
-    border-radius: 5px
-    position: absolute;
+    background    : #2c90395e
+    padding       : 2px 5px
+    border-radius : 5px
   }
 }

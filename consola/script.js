@@ -2,7 +2,7 @@ const app = new Vue({
     el: '#app',
     a: false,
     data:{ 
-      mensaje: ["w"],
+      mensaje: [],
       actividad: '',
       actividades: [],
       consola: [],
@@ -90,9 +90,9 @@ const hola =()=>{
 const adios =()=>{
 
     data2 = {
-        user:"Alis", 
-        message: "Adios,"+localStorage.getItem("user"),
-        rol: "Alis"
+        user    :"Alis",
+        message : "Adios,"+localStorage.getItem("user"),
+        rol     : "Alis"
     };
     localStorage.removeItem("user");
     localStorage.clear();
