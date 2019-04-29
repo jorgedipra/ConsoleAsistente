@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ConsoleAsisitent</title>
+    <link rel="stylesheet" href="csse/main.css">
+</head>
+<body>
+    <section  id="app">
+            <code v-for="(item, index) in mensaje">
+                {{ item.consola }}
+            </code>
+            <div ref='messageDisplay'  id="historial">
+                <span id="msginicial"><br></span>
+                <ul id="User" v-for="(item, index) in actividades">
+                    <li v-bind:class="[item.rol]">
+                        <span class="nombre">{{ item.user }}:</span>
+                        <span class="message">{{ item.message }}</span>
+                    </li>
+                </ul>
+            </div>
+            <input type="text" v-on:keyup.enter="actualizarLista" v-model="actividad" name="entrada" id="actividad" placeholder="Enter para confirmar">
+   </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="consola/script.js"></script>
+</body>
+</html>
