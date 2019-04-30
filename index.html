@@ -42,7 +42,10 @@
 
                 </div>
                 <div ref='messageDisplay' id="historial" CnsA="2.2.2">
-                    <span id="msginicial"><br></span>
+                    <span id="msginicial">
+                        mensaje inicial o foto
+                        <img src="img/ico.ico" height="100%">
+                    </span>
                     <ul id="User" v-for="(item, index) in actividades">
                         <li v-bind:class="[item.rol]">
                             <span class="nombre">{{ item.user }}:</span>
@@ -51,9 +54,9 @@
                     </ul>
                 </div>
                 <div id="get" CnsA="2.2.3">
-                    <input type="text" v-on:keyup.enter="actualizarLista" v-model="actividad" name="entrada"
+                    <input type="text" v-on:keyup.enter="actualizarChat" v-model="actividad" name="entrada"
                         id="actividad" placeholder="Enter para confirmar">
-                    <button> > / O</button>
+                    <button v-on:click="actualizarChat"> > / O</button>
                 </div>
             </article>
         </main>
