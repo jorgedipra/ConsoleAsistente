@@ -87,9 +87,8 @@ function comandosOff(){
 }
 
 function comandosOn(){
-    
+    app.estado="Estoy escuchando comandos";
             if (annyang) {
-
             // Let's define a command.
             var commands = {
             'hola': function() { alert('hola'); },
