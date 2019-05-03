@@ -36,6 +36,12 @@
                         <td>80</td>
                     </tr>
                 </table>
+                <button onclick="Escuchar();">Escuchar</button>
+                <button onclick="NoEscuchar();">dejar de escuchat</button>
+                <textarea id="actividad2"></textarea>
+                <button onclick="comandosOn()">comandos por voz</button>
+                <button onclick="comandosOff()">apagar comandos por voz</button>
+		
             </code>
             <article id="section2" CnsA="2.2">
                 <div id="descrip" CnsA="2.2.1">
@@ -55,14 +61,38 @@
                 </div>
                 <div id="get" CnsA="2.2.3">
                     <input type="text" v-on:keyup.enter="actualizarChat" v-model="actividad" name="entrada"
-                        id="actividad" placeholder="Enter para confirmar">
-                    <button v-on:click="actualizarChat"> > / O</button>
+                        id="actividad"  placeholder="Enter para confirmar">
+                    <button id="enviar" v-on:click="actualizarChat"> > / O</button>
                 </div>
             </article>
         </main>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script>
+        function comandosOn(){
+            if (annyang) {
+
+            // Let's define a command.
+            var commands = {
+            'hola': function() { alert('hola'); }
+            };
+            // Add our commands to annyang
+            annyang.addCommands(commands);
+            //lenguaje
+            annyang.setLanguage("es-MX");
+
+            // Start listening.
+            annyang.start();
+            }
+        }
+        function comandosOff(){
+            annyang.abort();
+        }
+    </script>
     <script src="consola/script.js"></script>
+    <script src="consola/neuronas.js"></script>
+</html>
 </body>
 
 </html>
