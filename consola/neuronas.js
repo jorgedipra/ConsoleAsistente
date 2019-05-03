@@ -39,32 +39,32 @@ function Escuchar() {
         recognizer.interimResults = true;
         recognizer.onstart = function () {
             hablar("Estoy escuchando");
-            app.estado="Estoy escuchando";
+            app.estado = "Estoy escuchando";
         }
-        
+
         //disparado cada vez que el usuario deja de hablar.
-        recognizer.onresult = function (event) {          
-            for (var count = event.resultIndex; count < event.results.length; count++) { 
+        recognizer.onresult = function (event) {
+            for (var count = event.resultIndex; count < event.results.length; count++) {
                 document.getElementById("actividad2").innerHTML += event.results[count][0].transcript;
                 document.getElementById("actividad").value = event.results[count][0].transcript;
-            } 
+            }
             // espera 3 segundos y envia enter
-            var i=0;
+            var i = 0;
             clearInterval(h);
             var h = setInterval(() => {
                 i++;
-                if(i==3){
+                if (i == 3) {
                     enviar();
                     clearInterval(h);
-                }      
-             }, 1000);          
+                }
+            }, 1000);
         }
         //Se dispara cuando el reconocimiento se detiene manual o automáticamente.
         recognizer.onend = function () {
             recognizer = null;
             enviar();
             // hablar("No Estoy escuchando");
-            app.estado="No estoy escuchando";
+            app.estado = "No estoy escuchando";
             comandosOn()
         }
         recognizer.start();
@@ -76,40 +76,46 @@ function NoEscuchar() {
         recognizer.stop();
         enviar();
         // hablar("No Estoy escuchando");
-        app.estado="No estoy escuchando";
+        app.estado = "No estoy escuchando";
         comandosOn()
     }
 }
 
-function comandosOff(){
+function comandosOff() {
     annyang.abort();
-    app.estado="No estoy escuchando comandos";
+    app.estado = "No estoy escuchando comandos";
 }
 
-function comandosOn(){
-    app.estado="Estoy escuchando comandos";
-            if (annyang) {
-            // Let's define a command.
-            var commands = {
-            'hola': function() { alert('hola'); },
-            'escuchar': function() { Escuchar() },
-            'enviar': function() { enviar() },
-            };
-            // Add our commands to annyang
-            annyang.addCommands(commands);
-            //lenguaje
-            annyang.setLanguage("es-MX");
+function comandosOn() {
+    if (annyang) {
+        // Let's define a command.
+        var commands = {
+            'hola': function () {
+                alert('hola');
+            },
+            'escuchar': function () {
+                Escuchar()
+            },
+            'enviar': function () {
+                enviar()
+            },
+        };
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+        //lenguaje
+        annyang.setLanguage("es-MX");
 
-            // Start listening.
-            annyang.start();
-            }
+        // Start listening.
+        annyang.start();
+        app.estado="Estoy escuchando comandos";
+    }
 }
 
-function enviar(){
+function enviar() {
     cadena = document.getElementById("actividad").value;
-        if(cadena=="" || cadena==null)
-            return false;
+    if (cadena == "" || cadena == null)
+        return false;
     document.getElementById("enviar").click();
-    app.actividad="";
-    document.getElementById("actividad").value="";
+    app.actividad = "";
+    document.getElementById("actividad").value = "";
 }
