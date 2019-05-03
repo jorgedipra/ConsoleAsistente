@@ -62,6 +62,7 @@ function Escuchar() {
         //Se dispara cuando el reconocimiento se detiene manual o automáticamente.
         recognizer.onend = function () {
             recognizer = null;
+            enviar();
             // hablar("No Estoy escuchando");
             app.estado="No estoy escuchando";
             comandosOn()
