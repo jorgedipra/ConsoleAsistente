@@ -39,6 +39,7 @@ function Escuchar() {
         recognizer.interimResults = true;
         recognizer.onstart = function () {
             hablar("Estoy escuchando");
+            app.estado="Estoy escuchando";
         }
         //disparado cada vez que el usuario deja de hablar.
         recognizer.onresult = function (event) {          
@@ -53,7 +54,8 @@ function Escuchar() {
         //Se dispara cuando el reconocimiento se detiene manual o automáticamente.
         recognizer.onend = function () {
             recognizer = null;
-            hablar("No Estoy escuchando");
+            // hablar("No Estoy escuchando");
+            app.estado="No estoy escuchando";
             comandosOn()
         }
         recognizer.start();
@@ -64,16 +66,19 @@ function NoEscuchar() {
     if (recognizer != null) {
         recognizer.stop();
         enviar();
-        hablar("No Estoy escuchando");
+        // hablar("No Estoy escuchando");
+        app.estado="No estoy escuchando";
         comandosOn()
     }
 }
 
 function comandosOff(){
     annyang.abort();
+    app.estado="No estoy escuchando comandos";
 }
 
 function comandosOn(){
+    
             if (annyang) {
 
             // Let's define a command.

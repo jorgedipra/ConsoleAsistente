@@ -6,7 +6,8 @@ const app = new Vue({
         actividad: '',
         actividades: [],
         consola: [],
-        messages: []
+        messages: [],
+        estado: "Estoy escuchando Comandos"
     },
     mounted() {
         dataconsolaInicio = {
