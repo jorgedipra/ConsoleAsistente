@@ -24,28 +24,40 @@
                 </table>
                 <table class="bordertable">
                     <tr>
-                        <th>nombre</th>
-                        <th>edad</th>
+                        <th>comando</th>
+                        <th>entrada</th>
                     </tr>
                     <tr>
-                        <td>jorge</td>
-                        <td>25</td>
+                        <td>hola</td>
+                        <td>voz/comando</td>
                     </tr>
                     <tr>
-                        <td>luis</td>
-                        <td>80</td>
+                        <td>pedir la edad</td>
+                        <td>voz</td>
                     </tr>
+                    <tr>
+                            <td>escuchar</td>
+                            <td>voz</td>
+                        </tr>
+                        <tr>
+                                <td>adiós</td>
+                                <td>voz/comando</td>
+                            </tr>
                 </table>
                 <button onclick="Escuchar();">Escuchar</button>
-                <button onclick="NoEscuchar();">dejar de escuchat</button>
-                <textarea id="actividad2"></textarea>
+                <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
                 <button onclick="comandosOn()">comandos por voz</button>
                 <button onclick="comandosOff()">apagar comandos por voz</button>
+                <textarea id="actividad2">Entrada</textarea>
+
 		
             </code>
             <article id="section2" CnsA="2.2">
                 <div id="descrip" CnsA="2.2.1">
-                       {{ estado }} 
+                    <h2>Estado:</h2>      
+                    <ul>
+                        <li>{{ estado }}</li>
+                    </ul>                
                 </div>
                 <div ref='messageDisplay' id="historial" CnsA="2.2.2">
                     <span id="msginicial">

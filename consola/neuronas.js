@@ -41,15 +41,23 @@ function Escuchar() {
             hablar("Estoy escuchando");
             app.estado="Estoy escuchando";
         }
+        
         //disparado cada vez que el usuario deja de hablar.
         recognizer.onresult = function (event) {          
             for (var count = event.resultIndex; count < event.results.length; count++) { 
                 document.getElementById("actividad2").innerHTML += event.results[count][0].transcript;
                 document.getElementById("actividad").value = event.results[count][0].transcript;
             } 
-            setTimeout(() => {
-                enviar()
-            }, 3000*event.results.length);
+            // espera 3 segundos y envia enter
+            var i=0;
+            clearInterval(h);
+            var h = setInterval(() => {
+                i++;
+                if(i==3){
+                    enviar();
+                    clearInterval(h);
+                }      
+             }, 1000);          
         }
         //Se dispara cuando el reconocimiento se detiene manual o automáticamente.
         recognizer.onend = function () {
@@ -102,4 +110,6 @@ function enviar(){
         if(cadena=="" || cadena==null)
             return false;
     document.getElementById("enviar").click();
+    app.actividad="";
+    document.getElementById("actividad").value="";
 }
