@@ -1,11 +1,11 @@
 //respuesta automatica
 const message = (msg = "") => {
-    data2 = {
-        user: "Al",
-        message: msg,
-        rol: "Alis"
-    };
     setTimeout(() => {
+        data2 = {
+            user: "Al",
+            message: msg,
+            rol: "Alis"
+        };
         app.actividades.push(data2);
         hablar(msg);
     }, 1000);
@@ -41,16 +41,20 @@ function Escuchar() {
             hablar("Estoy escuchando");
         }
         //disparado cada vez que el usuario deja de hablar.
-        recognizer.onresult = function (event) {           
+        recognizer.onresult = function (event) {          
             for (var count = event.resultIndex; count < event.results.length; count++) { 
                 document.getElementById("actividad2").innerHTML += event.results[count][0].transcript;
                 document.getElementById("actividad").value = event.results[count][0].transcript;
-            }
+            } 
+            setTimeout(() => {
+                enviar()
+            }, 3000*event.results.length);
         }
         //Se dispara cuando el reconocimiento se detiene manual o automáticamente.
         recognizer.onend = function () {
             recognizer = null;
             hablar("No Estoy escuchando");
+            comandosOn()
         }
         recognizer.start();
     }
@@ -59,7 +63,38 @@ function Escuchar() {
 function NoEscuchar() {
     if (recognizer != null) {
         recognizer.stop();
-        document.getElementById("enviar").click();
+        enviar();
         hablar("No Estoy escuchando");
+        comandosOn()
     }
+}
+
+function comandosOff(){
+    annyang.abort();
+}
+
+function comandosOn(){
+            if (annyang) {
+
+            // Let's define a command.
+            var commands = {
+            'hola': function() { alert('hola'); },
+            'escuchar': function() { Escuchar() },
+            'enviar': function() { enviar() },
+            };
+            // Add our commands to annyang
+            annyang.addCommands(commands);
+            //lenguaje
+            annyang.setLanguage("es-MX");
+
+            // Start listening.
+            annyang.start();
+            }
+}
+
+function enviar(){
+    cadena = document.getElementById("actividad").value;
+        if(cadena=="" || cadena==null)
+            return false;
+    document.getElementById("enviar").click();
 }

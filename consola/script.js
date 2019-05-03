@@ -13,6 +13,7 @@ const app = new Vue({
             consola: "- Console Asisitent"
         }
         this.mensaje.push(dataconsolaInicio);
+        this.montajeInicial();
     },
     updated() {
         var messageDisplay = app.$refs.messageDisplay;
@@ -25,8 +26,12 @@ const app = new Vue({
             if (localStorage.getItem("user"))
                 User = localStorage.getItem("user");
             cadena = this.actividad
-            if(this.actividad=="" || this.actividad==null)
+            if(this.actividad=="" || this.actividad==null){
                 cadena = document.getElementById("actividad").value;
+                if(cadena=="" || cadena==null)
+                 return false;
+            }
+                
 
             data = {
                 user: User,
@@ -46,17 +51,18 @@ const app = new Vue({
             
             know = {
                 "HOLA"       : "hola",
-                "ADIOS"      : "exit",
+                "ADIÓS"      : "exit",
                 "QUE HACES"  : "Aprender",
                 "SALIR"      : "adios!"
             };
-          
             if (cadena in know) {
+
                 switch (cadena) {
                     case "HOLA":
                         hola();
                         break;
-                    case "ADIOS":
+                    case "ADIÓS":
+
                         adios();
                         break;
                     default:
@@ -86,6 +92,9 @@ const app = new Vue({
                 this.actividades.push(data);
             }, 500);
             this.actividad = null;
+        },
+        montajeInicial: function(){
+            comandosOn();
         }
     }
 })
@@ -93,13 +102,8 @@ const app = new Vue({
 
 const hola = () => {
     if (localStorage.getItem("user")) {
-        data2 = {
-            user: "Al",
-            message: "Dime " + localStorage.getItem("user") + ", en que te puedo ayudar?",
-            rol: "Alis"
-        };
         setTimeout(() => {
-            app.actividades.push(data2);
+            message("Dime " + localStorage.getItem("user") + ", en que te puedo ayudar?")
         }, 1000);
         return false;
     }
@@ -107,37 +111,30 @@ const hola = () => {
         consola: "XD"
     }
     app.mensaje.push(dataconsola);
-    newuser = window.prompt('hola, como te llamas?')
+    msg="hola, como te llamas?";
+    hablar(msg);
+    newuser = window.prompt(msg)
     localStorage.setItem("user", newuser);
-    data2 = {
-        user: "Al",
-        message: "hola," + newuser,
-        rol: "Alis"
-    };
     setTimeout(() => {
-        app.actividades.push(data2);
-        data2 = {
-            user: "Al",
-            message: "En que te puedo ayudar",
-            rol: "Alis"
-        };
+        message("hola," + newuser)
         setTimeout(() => {
-            app.actividades.push(data2);
+            message("En que te puedo ayudar")
         }, 500);
     }, 1000);
 
 }
 const adios = () => {
-
-    data2 = {
-        user: "Al",
-        message: "Adios," + localStorage.getItem("user"),
-        rol: "Alis"
-    };
+    msg="Adiós," + localStorage.getItem("user");
     localStorage.removeItem("user");
     localStorage.clear();
     setTimeout(() => {
-        app.actividades.push(data2);
+        message(msg);
+        setTimeout(() => {
+            NoEscuchar()
+            setTimeout(() => {
+                comandosOff()
+            }, 1000);
+        }, 1000);
     }, 1000);
 
 }

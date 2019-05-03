@@ -69,29 +69,8 @@
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
-    <script>
-        function comandosOn(){
-            if (annyang) {
-
-            // Let's define a command.
-            var commands = {
-            'hola': function() { alert('hola'); }
-            };
-            // Add our commands to annyang
-            annyang.addCommands(commands);
-            //lenguaje
-            annyang.setLanguage("es-MX");
-
-            // Start listening.
-            annyang.start();
-            }
-        }
-        function comandosOff(){
-            annyang.abort();
-        }
-    </script>
-    <script src="consola/script.js"></script>
     <script src="consola/neuronas.js"></script>
+    <script src="consola/script.js"></script>
 </html>
 </body>
 
