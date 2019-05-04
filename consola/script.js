@@ -47,7 +47,7 @@ const app = new Vue({
             }
             var saludar = RegExp("(QUE TAL|CÓMO VA|COMO VA|CÓMO VAS|COMO VAS)");
 
-            var tener = RegExp("(TIENE|TIENES|TENGO|TENÉS|TENES|CUANDO)");
+            var tener = RegExp("(TIENE|TIENES|TENGO|TENÉS|TENES|CUANDO|CUAL)");
             var edad = RegExp("(AÑOS|EDAD|NACISTE)");
             
             know = {
