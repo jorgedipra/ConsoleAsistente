@@ -1,90 +1,23 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ConsoleAsisitent</title>
-    <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon">
-    <link rel="stylesheet" href="csse/main.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jorgedipra</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+	iframe{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border: none;
+		top: 0;
+		left: 0;
+	}
+</style>
 </head>
-
 <body>
-    <section id="app">
-        <footer id="footer" CnsA="1.0">
-
-        </footer>
-        <main id="body" CnsA="2.0">
-            <code CnsA="2.1">
-                <table>
-                        <tr v-for="(item, index) in mensaje">
-                            <td>{{ item.consola }}</td>
-                        </tr>
-                </table>
-                <table class="bordertable">
-                    <tr>
-                        <th>comando</th>
-                        <th>entrada</th>
-                    </tr>
-                    <tr>
-                        <td>hola</td>
-                        <td>voz/comando</td>
-                    </tr>
-                    <tr>
-                        <td>pedir la edad</td>
-                        <td>voz</td>
-                    </tr>
-                    <tr>
-                            <td>escuchar</td>
-                            <td>voz</td>
-                        </tr>
-                        <tr>
-                                <td>adiós</td>
-                                <td>voz/comando</td>
-                            </tr>
-                </table>
-                <button onclick="Escuchar();">Escuchar</button>
-                <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
-                <button onclick="comandosOn()">comandos por voz</button>
-                <button onclick="comandosOff()">apagar comandos por voz</button>
-                <textarea id="actividad2">Entrada</textarea>
-            		
-            </code>
-            <article id="section2" CnsA="2.2">
-                <div id="descrip" CnsA="2.2.1">
-                    <h2>Estado:</h2>      
-                    <ul>
-                        <li>{{ estado }}</li>
-                    </ul>                
-                </div>
-                <div ref='messageDisplay' id="historial" CnsA="2.2.2">
-                    <span id="msginicial">
-                        Alis - te habla
-                        <img src="img/ico.ico" height="100%">
-                    </span>
-                    <ul id="User" v-for="(item, index) in actividades">
-                        <li v-bind:class="[item.rol]">
-                            <span class="nombre">{{ item.user }}</span>
-                            <span class="message">{{ item.message }}</span>
-                        </li>
-                    </ul>
-                </div>
-                <div id="get" CnsA="2.2.3">
-                    <input type="text" v-on:keyup.enter="actualizarChat" v-model="actividad" name="entrada"
-                        id="actividad"  placeholder="Enter para confirmar">
-                    <button id="enviar" v-on:click="actualizarChat"> > / O</button>
-                </div>
-            </article>
-        </main>
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
-    <script src="consola/main.js"></script>
-    <script src="consola/inputs.js"></script>
-    <script src="consola/neuronas.js"></script>
-    <script src="consola/output.js"></script>
-</html>
+	<iframe src="v3/"></iframe>
 </body>
-
 </html>

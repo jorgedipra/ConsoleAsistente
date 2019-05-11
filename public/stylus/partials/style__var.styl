@@ -1,0 +1,51 @@
+//::variables globales
+//$roboto =  'roboto_regular',sans-serif
+
+
+
+//[-- 
+//	  Defina los puntos de corte en los  
+//    que cambiará su diseño, adaptándose  
+//    a diferentes tamaños de pantalla.
+//--]
+
+//@Media consulta puntos de interrupción
+	// Extra small screen / phone-min
+	$screen-ms =320px
+	
+	// Extra small screen / phone
+	$screen-xs =480px
+	
+	// Small screen / tablet
+	$screen-sm =768px
+	
+	// Medium screen / desktop
+	$screen-md =992px
+	
+	// Large screen / wide desktop
+	$screen-lg =1200px
+	
+	// Large screen / wide TV
+	$screen-xl =1600px
+//@END Media consulta puntos de interrupción
+
+
+
+
+//[-- No pueden haber guiones en los nombres --]
+//@MEDIA QUERY screen options
+
+	$mss    = "max-width:" + $screen-ms
+	$xs     = "max-width:" + $screen-xs
+	$sm     = "max-width:" + $screen-sm + ") and (min-width: " + $screen-xs
+	$smdesc = "max-width:" + $screen-sm
+	$smasc  = "min-width:" + $screen-sm
+	$md     = "max-width:" + $screen-md + ") and (min-width: " + $screen-sm
+	$mddesc = "max-width:" + $screen-md
+	$mdasc  = "min-width:" + $screen-md
+	$lg     = "min-width:" + $screen-lg
+	$lgdesc = "max-width:" + $screen-lg
+
+//@END MEDIA QUERY screen options
+
+
