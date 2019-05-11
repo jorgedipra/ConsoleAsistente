@@ -8,8 +8,7 @@
 	<title><?=Titulo?></title>
 	<link rel="shortcut icon" href="storage/logo/ico.ico" />
 	<link rel="apple-touch-icon" href="storage/logo/ico.jpg" />
-	<link rel="<?=url('public/css/'.$match["name"].'.css?v1=1')?>">
-	<link rel="stylesheet" href="/codigos/framework/public/css/home.css">
+	<link rel="stylesheet" href="<?=url('public/css/'.$match["name"].'.css')?>">
 	
 </head>
 <body>
