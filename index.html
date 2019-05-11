@@ -49,8 +49,7 @@
                 <button onclick="comandosOn()">comandos por voz</button>
                 <button onclick="comandosOff()">apagar comandos por voz</button>
                 <textarea id="actividad2">Entrada</textarea>
-
-		
+            		
             </code>
             <article id="section2" CnsA="2.2">
                 <div id="descrip" CnsA="2.2.1">
@@ -61,12 +60,12 @@
                 </div>
                 <div ref='messageDisplay' id="historial" CnsA="2.2.2">
                     <span id="msginicial">
-                        mensaje inicial o foto
+                        Alis - te habla
                         <img src="img/ico.ico" height="100%">
                     </span>
                     <ul id="User" v-for="(item, index) in actividades">
                         <li v-bind:class="[item.rol]">
-                            <span class="nombre">{{ item.user }}:</span>
+                            <span class="nombre">{{ item.user }}</span>
                             <span class="message">{{ item.message }}</span>
                         </li>
                     </ul>
@@ -81,8 +80,10 @@
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="consola/main.js"></script>
+    <script src="consola/inputs.js"></script>
     <script src="consola/neuronas.js"></script>
-    <script src="consola/script.js"></script>
+    <script src="consola/output.js"></script>
 </html>
 </body>
 

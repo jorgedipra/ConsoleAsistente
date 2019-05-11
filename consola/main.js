@@ -24,6 +24,7 @@ const app = new Vue({
         actualizarChat: function () {
             User = "Us"
             let cadena;
+            //validación par auq no entre en blanco
             if (localStorage.getItem("user"))
                 User = localStorage.getItem("user");
             cadena = this.actividad
@@ -32,7 +33,12 @@ const app = new Vue({
                 if(cadena=="" || cadena==null)
                  return false;
             }
-                
+            /** */
+            mensaje= Nlenguaje(cadena);
+            message(mensaje)
+            return false;
+            /** */
+
 
             data = {
                 user: User,
@@ -40,6 +46,8 @@ const app = new Vue({
                 rol: "User"
             };
             
+
+    
             if(this.actividad=="" || this.actividad==null){
                  cadena = document.getElementById("actividad").value.toUpperCase();
             }else{
@@ -93,9 +101,13 @@ const app = new Vue({
                 this.actividades.push(data);
             }, 500);
             this.actividad = null;
+
         },
         montajeInicial: function(){
-            comandosOn();
+            msg="voz por comandos No soportada";
+            if (annyang) 
+                msg="Comandos por voz soportada";         
+            this.estado=msg;
         }
     }
 })
