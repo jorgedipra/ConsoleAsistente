@@ -7,7 +7,10 @@ const app = new Vue({
         actividades: [],
         consola: [],
         messages: [],
-        estado: "Estoy escuchando Comandos"
+        estado: "Estoy escuchando Comandos",
+        classMicro: 'micro-in',
+        classMicroIco: 'fas fa-microphone',
+        classEnviar: 'enviar-on'
     },
     mounted() {
         dataconsolaInicio = {
@@ -21,7 +24,21 @@ const app = new Vue({
         messageDisplay.scrollTop = messageDisplay.scrollHeight;
     },
     methods: {
-        actualizarChat: function () {
+        micro: function(){
+                Escuchar()
+        },
+        keymonitor: function() {
+            setTimeout(() => {
+                if(this.actividad=="" ||this.actividad==null){
+                    this.classMicro = 'micro-in';
+                    this.classEnviar = 'enviar-on';
+                }else{
+                    this.classMicro = 'micro-on';
+                    this.classEnviar = 'enviar-in';
+                }    
+            }, 100);  
+       },
+        actualizarChat: function () {         
             User = "Us"
             let cadena;
             //validación par auq no entre en blanco
@@ -103,9 +120,9 @@ const metodostatico =(cadena,data)=>{
    }else {
        message("No te entiendo ó estas Jugando?");
    }
-   setTimeout(() => {
-       app.actividades.push(data);
-   }, 500);
+
+   messageUser(data);
+
    app.actividad = null;
 }
 const hola = () => {

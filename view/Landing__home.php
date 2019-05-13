@@ -4,15 +4,12 @@ define("Titulo", "Console Asisitent");
 include 'partials/header_partials.php'; 
 #@END::header
 
-#@header-html
-include 'partials/Landing__header_partials.php';
 #@END::header
 echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor']],'log',$debug);
-?>				
-<section id="app">
-        <footer id="footer" CnsA="1.0">
 
-        </footer>
+#@header-html
+include 'partials/Landing__header_partials.php';
+?>				
         <main id="body" CnsA="2.0">
             <code CnsA="2.1">
                 <table>
@@ -53,7 +50,10 @@ echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor
 					<?=$datos["dato"]?>
 					<?=$datos["valor"]?><BR>  
 				<?php endforeach?>
-            		
+                togle-on
+                togle-off
+                <i class="fas fa-microphone-slash"></i>
+
             </code>
             <article id="section2" CnsA="2.2">
                 <div id="descrip" CnsA="2.2.1">
@@ -75,13 +75,17 @@ echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor
                     </ul>
                 </div>
                 <div id="get" CnsA="2.2.3">
-                    <input type="text" v-on:keyup.enter="actualizarChat" v-model="actividad" name="entrada"
+                    <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor" v-model="actividad" name="entrada"
                         id="actividad"  placeholder="Enter para confirmar">
-                    <button id="enviar" v-on:click="actualizarChat"> > / O</button>
+                    <button id="micro" :class="classMicro" v-on:click="micro">
+                        <i :class="classMicroIco"></i>
+                    </button>
+                    <button id="enviar" :class="classEnviar" v-on:click="actualizarChat">
+                        <i class="fas fa-play"></i>
+                    </button>
                 </div>
             </article>
         </main>
-    </section>
 <?php 
 #@footer-html
 include 'partials/Landing__footer_partials.php';

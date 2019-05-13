@@ -11,8 +11,13 @@ const message = (msg = "") => {
         app.actividad = null;
     }, 1000);
 }
+const messageUser =(data)=> {
+    setTimeout(() => {
+        app.actividades.push(data);
+    }, 500);
+}
 //Salida de chat en voz
-function hablar(message) {
+const hablar =(message)=> {
     var speech = new SpeechSynthesisUtterance();
     // Establecer los atributos de texto y voz.
     speech.text = message;

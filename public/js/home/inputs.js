@@ -14,8 +14,9 @@ function Escuchar() {
         //se establece en verdadero y luego se activa la devolución de llamada de un resultado después de cada palabra hablada por el usuario. De lo contrario, después del final de la oración.
         recognizer.interimResults = true;
         recognizer.onstart = function () {
-            hablar("Estoy escuchando");
+            // hablar("Estoy escuchando");
             app.estado = "Estoy escuchando";
+            app.classMicroIco="fas fa-microphone";//cambio de icono
         }
 
         //disparado cada vez que el usuario deja de hablar.
@@ -29,9 +30,12 @@ function Escuchar() {
             clearInterval(h);
             var h = setInterval(() => {
                 i++;
-                if (i == 3) {
-                    enviar();
+                if (i == 4) {
+                    NoEscuchar()
                     clearInterval(h);
+                    setTimeout(() => {
+                        Escuchar()
+                    }, 500);
                 }
             }, 1000);
         }
@@ -41,6 +45,7 @@ function Escuchar() {
             enviar();
             // hablar("No Estoy escuchando");
             app.estado = "No estoy escuchando";
+            app.classMicroIco="fas fa-microphone-slash";//cambio de icono
             comandosOn()
         }
         recognizer.start();
@@ -53,6 +58,7 @@ function NoEscuchar() {
         enviar();
         // hablar("No Estoy escuchando");
         app.estado = "No estoy escuchando";
+        app.classMicroIco="fas fa-microphone-slash";//cambio de icono
         comandosOn()
     }
 }
@@ -60,6 +66,7 @@ function NoEscuchar() {
 function comandosOff() {
     annyang.abort();
     app.estado = "No estoy escuchando comandos";
+    app.classMicroIco="fas fa-microphone-slash";//cambio de icono
 }
 
 function comandosOn() {
@@ -84,14 +91,19 @@ function comandosOn() {
         // Start listening.
         annyang.start();
         app.estado="Estoy escuchando comandos";
+        app.classMicroIco="fas fa-microphone-slash";//cambio de icono
     }
 }
-
+var cache=""
 function enviar() {
     cadena = document.getElementById("actividad").value;
+    if(cache == cadena)
+     return false
     if (cadena == "" || cadena == null)
         return false;
+        cache = cadena;
     document.getElementById("enviar").click();
     app.actividad = "";
+    app.actividad = null;
     document.getElementById("actividad").value = "";
 }

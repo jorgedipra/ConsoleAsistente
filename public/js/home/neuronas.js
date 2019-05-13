@@ -22,11 +22,9 @@ const Memoria = (fragmento, tipo, cadena, data) => {
                 for (var i in json) {
                     j++;
                     if(r==j){// se responde con una respuesta de la BD
-                        message(json[i]); 
                         estatico=false;
-                        setTimeout(() => {
-                            app.actividades.push(data);
-                        }, 500);
+                        messageUser(data);//se envia lo que dijo el usuario al historial
+                        message(json[i]);//se envia el mensaje respuesta al historial
                     }     
                 }
                 if(estatico==true){
@@ -56,7 +54,7 @@ const Nlenguaje = (input,data) => {
 } //::END=Nlenguaje
 
 const Npalabras = (input) => {
-    input = input.replace(/[-"',.;*+¿?¡!^${}()|[\]\\]/g, ' '); //se quitan los signos
+    input = input.replace(/[-"',.;*+¿?¡!^${}=()|[\]\\]/g, ' '); //se quitan los signos
     input = input.split(' '); //se crea un array de cada palabra 
     input = input.filter(e => e !== ""); //se elimina los espacios excesivos 
     
