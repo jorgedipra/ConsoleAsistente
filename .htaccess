@@ -1,9 +1,9 @@
-#options -indexes
-#RewriteEngine on
+options -indexes
+RewriteEngine on
 
-#ErrorDocument 404 /404
+ErrorDocument 404 /404
 
 
-#RewriteEngine on
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule . /index.php [L]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]

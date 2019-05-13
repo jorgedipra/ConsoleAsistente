@@ -7,7 +7,7 @@ include 'partials/header_partials.php';
 #@header-html
 include 'partials/Landing__header_partials.php';
 #@END::header
-echo Console::log('_variable', ['Landing_home'=>$Landing_home["perfil"][0]['Nombre']],'log',$debug);
+echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor']],'log',$debug);
 ?>				
 <section id="app">
         <footer id="footer" CnsA="1.0">
@@ -48,10 +48,10 @@ echo Console::log('_variable', ['Landing_home'=>$Landing_home["perfil"][0]['Nomb
                 <button onclick="comandosOff()">apagar comandos por voz</button>
 				<textarea id="actividad2">Entrada</textarea>
 				
-				<h4 class="card-title "><?=$Landing_home["perfil"][0]['Nombre'].' '.$Landing_home["perfil"][0]['Apellido']?></h4>	
-				<?php foreach($Landing_home["perfil"] AS $perfil):?>
-					<?=$perfil["Nombre"]?>
-					<?=$perfil["Apellido"]?>
+				<h4 class="card-title "><?=$Landing_home["datos"][0]['dato'].' '.$Landing_home["datos"][0]['valor']?></h4>	
+				<?php foreach($Landing_home["datos"] AS $datos):?>
+					<?=$datos["dato"]?>
+					<?=$datos["valor"]?><BR>  
 				<?php endforeach?>
             		
             </code>

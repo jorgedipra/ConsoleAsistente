@@ -36,3 +36,13 @@ class Console
         return false;
     }
 }
+class  DIR_{
+    function url($url){
+        if($url=="/"){
+            $cad = substr ($_SERVER['REQUEST_URI'], 0, strlen($_SERVER['REQUEST_URI']) - 1);
+            return $cad.$url;
+        }
+        $cad=str_replace($url, "", $_SERVER['REQUEST_URI']);
+        return $cad.$url;
+    }
+}

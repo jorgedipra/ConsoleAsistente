@@ -8,6 +8,7 @@ const message = (msg = "") => {
         };
         app.actividades.push(data2);
         hablar(msg);
+        app.actividad = null;
     }, 1000);
 }
 //Salida de chat en voz

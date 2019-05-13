@@ -33,75 +33,13 @@ const app = new Vue({
                 if(cadena=="" || cadena==null)
                  return false;
             }
-            /** */
-            //mensaje= Nlenguaje(cadena);
-            //message(mensaje)
-            //return false;
-            /** */
-
-
             data = {
                 user: User,
                 message: cadena,
                 rol: "User"
             };
-            
 
-    
-            if(this.actividad=="" || this.actividad==null){
-                 cadena = document.getElementById("actividad").value.toUpperCase();
-            }else{
-                 cadena = this.actividad.toUpperCase();
-            }
-            var saludar = RegExp("(QUE TAL|CÓMO VA|COMO VA|CÓMO VAS|COMO VAS)");
-
-            var tener = RegExp("(TIENE|TIENES|TENGO|TENÉS|TENES|CUANDO|CUAL)");
-            var edad = RegExp("(AÑOS|EDAD|NACISTE)");
-            
-            know = {
-                "HOLA"       : "hola",
-                "ADIÓS"      : "exit",
-                "QUE HACES"  : "Aprender",
-                "SALIR"      : "adios!"
-            };
-            if (cadena in know) {
-
-                switch (cadena) {
-                    case "HOLA":
-                        hola();
-                        break;
-                    case "ADIÓS":
-
-                        adios();
-                        break;
-                    default:
-                        message(know[cadena]);
-                        break;
-                }
-            } else if(saludar.test(cadena)){
-                message("Bien, aprendiendo");
-            }else if(tener.test(cadena)==true && edad.test(cadena)==true){
-                var r = Math.floor((Math.random() * 3) + 1);
-                switch (r) {
-                    case 1:
-                        mensaje = "Aun no tengo años";
-                    break
-                    case 2:
-                        mensaje = "No se contar, para saber mi edad";
-                    break
-                    case 3:
-                        mensaje = "¿por que quieres saber mi edad?";
-                    break
-                }
-                message(mensaje);                         
-            }else {
-                message("No te entiendo ó estas Jugando?");
-            }
-            setTimeout(() => {
-                this.actividades.push(data);
-            }, 500);
-            this.actividad = null;
-
+            Nlenguaje(cadena,data);
         },
         montajeInicial: function(){
             msg="voz por comandos No soportada";
@@ -112,7 +50,64 @@ const app = new Vue({
     }
 })
 
+const metodostatico =(cadena,data)=>{
+    if(app.actividad=="" || app.actividad==null){
+        cadena = document.getElementById("actividad").value.toUpperCase();
+   }else{
+        cadena = app.actividad.toUpperCase();
+   }
+   var saludar = RegExp("(QUE TAL|CÓMO VA|COMO VA|CÓMO VAS|COMO VAS)");
 
+   var tener = RegExp("(TIENE|TIENES|TENGO|TENÉS|TENES|CUANDO|CUAL)");
+   var edad = RegExp("(AÑOS|EDAD|NACISTE)");
+   
+   know = {
+       "HOLA"       : "hola",
+       "ADIÓS"      : "exit",
+       "ADIOS"      : "exit",
+       "QUE HACES"  : "Aprender",
+       "SALIR"      : "adios!"
+   };
+   if (cadena in know) {
+
+       switch (cadena) {
+           case "HOLA":
+               hola();
+               break;
+           case "ADIÓS":
+               adios();
+               break;
+           case "ADIOS":
+               adios();
+               break;
+           default:
+               message(know[cadena]);
+               break;
+       }
+   } else if(saludar.test(cadena)){
+       message("Bien, aprendiendo");
+   }else if(tener.test(cadena)==true && edad.test(cadena)==true){
+       var r = Math.floor((Math.random() * 3) + 1);
+       switch (r) {
+           case 1:
+               mensaje = "Aun no tengo años";
+           break
+           case 2:
+               mensaje = "No se contar, para saber mi edad";
+           break
+           case 3:
+               mensaje = "¿por que quieres saber mi edad?";
+           break
+       }
+       message(mensaje);                         
+   }else {
+       message("No te entiendo ó estas Jugando?");
+   }
+   setTimeout(() => {
+       app.actividades.push(data);
+   }, 500);
+   app.actividad = null;
+}
 const hola = () => {
     if (localStorage.getItem("user")) {
         setTimeout(() => {

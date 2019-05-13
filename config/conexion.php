@@ -1,5 +1,5 @@
 <?php
- 		$this->BaseDatos = "jorgedipra";
+ 		$this->BaseDatos = "Asisitent";
         $this->Servidor = "localhost";
         $this->Usuario = "root";
         $this->Clave = "toor";
