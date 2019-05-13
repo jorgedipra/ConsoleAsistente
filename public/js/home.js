@@ -10,7 +10,9 @@ const app = new Vue({
         estado: "Estoy escuchando Comandos",
         classMicro: 'micro-in',
         classMicroIco: 'fas fa-microphone',
-        classEnviar: 'enviar-on'
+        classEnviar: 'enviar-on',
+        classComanON: 'ComanOFF',
+        classComanOFF: 'ComanON'
     },
     mounted() {
         dataconsolaInicio = {
@@ -24,10 +26,19 @@ const app = new Vue({
         messageDisplay.scrollTop = messageDisplay.scrollHeight;
     },
     methods: {
+        ComanVoz: function(estado){//comomando por voz           
+            if(estado==1){
+                    this.classComanON="ComanON";                    
+                    this.classComanOFF="ComanOFF";                    
+            }else{
+                this.classComanON="ComanOFF";                    
+                this.classComanOFF="ComanON";
+            }
+        },
         micro: function(){
                 Escuchar()
         },
-        keymonitor: function() {
+        keymonitor: function() {//microfono se alterna con enviar por teclado segun lo elija el usuario
             setTimeout(() => {
                 if(this.actividad=="" ||this.actividad==null){
                     this.classMicro = 'micro-in';
