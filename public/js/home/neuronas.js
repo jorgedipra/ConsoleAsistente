@@ -90,7 +90,7 @@ const NtransPalabras = () => {
 //quitar tildes
 var normalize = (function () {
     var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
-        to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+        to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuuNnCc",
         mapping = {};
 
     for (var i = 0, j = from.length; i < j; i++)

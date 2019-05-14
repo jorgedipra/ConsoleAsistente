@@ -27,7 +27,11 @@ class  Landing__Controller extends Controller{
 		->where('pregunta','like',$data->pregunta )
 		->run( );
 		if(!isset($pregunta[0])):
-			$respuesta = "{ 'respuesta0': :'no te entiendo' }";
+			$qb->table( 'preguntas' )
+				->insert( array( 'pregunta' => $data->pregunta ) ) 
+				->run( );
+			$respuestas = "{ 'respuesta0': :'no te entiendo' }";
+			$Nrespuestas = 0;
 			$nose=1;
 		else:	
 			
