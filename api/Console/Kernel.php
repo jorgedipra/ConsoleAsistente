@@ -46,6 +46,6 @@ class  DIR_{
             $cad=str_replace($url, "", $_SERVER['REQUEST_URI']);
             return $cad.$url;
         }
-        return $url;
+        return $_SERVER['HTTP_HOST'].$url;
     }
 }
