@@ -30,34 +30,18 @@ class  Landing__Controller extends Controller{
 			$respuesta = "{ 'respuesta0': :'no te entiendo' }";
 			$nose=1;
 		else:	
-			/*
-			SELECT respuesta FROM respuestas WHERE id = (
-			SELECT t.respuesta1
-			FROM `tipo_respuesta_peso` AS t 
-			INNER JOIN respuestas as r
-			ON r.id = t.id_pregunta
-			WHERE t.id_pregunta = 2)
-			*/
+			
 			$respuestas=$qb->table( 'tipo_respuesta_peso' )
-			->select([
-				'tipo_respuesta_peso.respuesta1',
-				'tipo_respuesta_peso.respuesta2',
-				'tipo_respuesta_peso.respuesta3'
-			])
-			->join( 'respuestas' , 'respuestas.id' , '=' ,  'tipo_respuesta_peso.id_pregunta' )
+			->select(['respuestas.respuesta'])
+			->join( 'respuestas' , 'respuestas.id' , '=' ,  'tipo_respuesta_peso.respuesta' )
 			->where('tipo_respuesta_peso.id_pregunta','=',$pregunta[0]['id'] )
 			->run( );	
-			$respuesta=$qb->table( 'respuestas' )
-			->select(["respuesta"])
-			->where('id','=',$respuestas[0]['respuesta1'])
-			->or_where('id','=',$respuestas[0]['respuesta2'])
-			->or_where('id','=',$respuestas[0]['respuesta3'])
-			->run();
-
+			$Nrespuestas=$qb->countRows(  );
 		endif;
 		return $view = [
-			'respuesta'   => $respuesta,
-			'nose'   => $nose
+			'respuesta'   => $respuestas,
+			'nose'   => $nose,
+			'Nrespuestas'   => $Nrespuestas
 		];
 	}##->END funtion pregunta
 

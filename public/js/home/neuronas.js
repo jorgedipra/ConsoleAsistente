@@ -17,15 +17,15 @@ const Memoria = (fragmento, tipo, cadena, data) => {
             .then(function (response) {
                var json = response.data;
                 // console.log(json);//temp
-                var r = Math.floor((Math.random() * 3) + 1);
+                var r = Math.floor((Math.random() * parseInt(json['Nrespuestas'])) + 1);
                 j=0;estatico=true;
                 for (var i in json) {
-                    j++;
                     if(r==j){// se responde con una respuesta de la BD
                         estatico=false;
                         messageUser(data);//se envia lo que dijo el usuario al historial
                         message(json[i]);//se envia el mensaje respuesta al historial
-                    }     
+                    } 
+                    j++;
                 }
                 if(estatico==true){
                     metodostatico(cadena,data); //se llama las respuestas estaticas
