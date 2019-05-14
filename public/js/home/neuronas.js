@@ -1,6 +1,6 @@
 const Memoria = (fragmento, tipo, cadena, data) => {
     if (tipo == "palabra") {
-        axios.post(location.pathname + '/palabras', {
+        axios.post('palabras', {
                 palabra: fragmento
             })
             .then(function (response) {
@@ -11,7 +11,7 @@ const Memoria = (fragmento, tipo, cadena, data) => {
             });
         return false
     } else if (tipo == "pregunta") {
-        axios.post(location.pathname + '/pregunta', {
+        axios.post('pregunta', {
                 pregunta: fragmento
             })
             .then(function (response) {

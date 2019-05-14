@@ -13,10 +13,10 @@ $Classes=[
 		];
 
 #			  @metodo	@ruta  							@target        	  @name		
-$router->map('GET|POST',"/",   				$Classes['1'],    'home');
-$router->map('POST',	"/pregunta",   		$Classes['1'],    'pregunta');
-$router->map('POST',	"/palabras",   		$Classes['1'],    'palabras');
-$router->map('GET',		"/404",   	    	$Classes['1'],    '_404');
+$router->map('GET|POST',"/",   							$Classes['1'],    'home');
+$router->map('POST',	"/pregunta",   					$Classes['1'],    'pregunta');
+$router->map('POST',	"/palabras",   					$Classes['1'],    'palabras');
+$router->map('GET',		"/404", 			  	    	$Classes['1'],    '_404');
 
 // match current requestc
 $match = $router->match();

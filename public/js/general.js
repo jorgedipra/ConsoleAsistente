@@ -8,7 +8,7 @@ function loadScript(url, callback){
         script.onload = callback;
         head.appendChild(script);
 }//::END->loadScript
-loadScript("/codigos/framework/public/js/consola.js", load_img);
+loadScript("public/js/consola.js", load_img);
 
 function load_img(){
     
