@@ -38,11 +38,14 @@ class Console
 }
 class  DIR_{
     function url($url){
-        if($url=="/"){
-            $cad = substr ($_SERVER['REQUEST_URI'], 0, strlen($_SERVER['REQUEST_URI']) - 1);
+        if($_SERVER['SERVER_NAME']=='localhost'){
+            if($url=="/"){
+                $cad = substr ($_SERVER['REQUEST_URI'], 0, strlen($_SERVER['REQUEST_URI']) - 1);
+                return $cad.$url;
+            }
+            $cad=str_replace($url, "", $_SERVER['REQUEST_URI']);
             return $cad.$url;
         }
-        $cad=str_replace($url, "", $_SERVER['REQUEST_URI']);
-        return $cad.$url;
+        return $url;
     }
 }
