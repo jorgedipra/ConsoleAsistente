@@ -53,8 +53,11 @@ const app = new Vue({
             User = "Us"
             let cadena;
             //validación par auq no entre en blanco
-            if (localStorage.getItem("user"))
+            if (localStorage.getItem("user")){
                 User = localStorage.getItem("user");
+                User = User.substr(-20,2).toUpperCase();
+            }
+                
             cadena = this.actividad
             if(this.actividad=="" || this.actividad==null){
                 cadena = document.getElementById("actividad").value;

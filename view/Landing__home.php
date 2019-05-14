@@ -50,9 +50,6 @@ include 'partials/Landing__header_partials.php';
 					<?=$datos["dato"]?>
 					<?=$datos["valor"]?><BR>  
 				<?php endforeach?>
-                togle-on
-                togle-off
-                <i class="fas fa-microphone-slash"></i>
 
             </code>
             <article id="section2" CnsA="2.2">
