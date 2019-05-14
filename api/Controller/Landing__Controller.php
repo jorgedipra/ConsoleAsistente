@@ -23,9 +23,10 @@ class  Landing__Controller extends Controller{
 		$data = json_decode(file_get_contents("php://input"));//captura de datos con Json
 		$nose=0;
 		$pregunta =$qb->table( 'preguntas' )
-		->select(array('id'))
+		->select(array('id','equivalente'))
 		->where('pregunta','like',$data->pregunta )
 		->run( );
+		
 		if(!isset($pregunta[0])):
 			$qb->table( 'preguntas' )
 				->insert( array( 'pregunta' => $data->pregunta ) ) 
@@ -34,12 +35,16 @@ class  Landing__Controller extends Controller{
 			$Nrespuestas = 0;
 			$nose=1;
 		else:	
-			
+			if($pregunta[0]['equivalente']==0){
+				$id_pregunta=$pregunta[0]['id'];
+			}else{
+				$id_pregunta=$pregunta[0]['equivalente'];
+			}	
 			$respuestas=$qb->table( 'tipo_respuesta_peso' )
-			->select(['respuestas.respuesta'])
-			->join( 'respuestas' , 'respuestas.id' , '=' ,  'tipo_respuesta_peso.respuesta' )
-			->where('tipo_respuesta_peso.id_pregunta','=',$pregunta[0]['id'] )
-			->run( );	
+							->select(['respuestas.respuesta'])
+							->join( 'respuestas' , 'respuestas.id' , '=' ,  'tipo_respuesta_peso.respuesta' )
+							->where('tipo_respuesta_peso.id_pregunta','=',$id_pregunta )
+							->run( );			
 			$Nrespuestas=$qb->countRows(  );
 		endif;
 		return $view = [
