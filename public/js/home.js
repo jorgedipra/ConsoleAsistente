@@ -52,6 +52,7 @@ const app = new Vue({
         actualizarChat: function () {         
             User = "Us"
             let cadena;
+            const aprender= RegExp("(-aprender:|-APRENDER:)");
             //validación par auq no entre en blanco
             if (localStorage.getItem("user")){
                 User = localStorage.getItem("user");
@@ -70,7 +71,11 @@ const app = new Vue({
                 rol: "User"
             };
 
-            Nlenguaje(cadena,data);
+            if(aprender.test(cadena)==true){
+                console.log("aprender");
+            }else{
+                Nlenguaje(cadena,data);
+            }        
         },
         montajeInicial: function(){
             msg="voz por comandos No soportada";

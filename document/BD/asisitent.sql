@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2019 a las 15:48:35
+-- Tiempo de generación: 14-05-2019 a las 21:59:13
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.39
 
@@ -104,7 +104,13 @@ INSERT INTO `palabras` (`id`, `palabras`) VALUES
 (76, 'HOL'),
 (77, 'SALIR'),
 (78, 'HABLAS'),
-(79, 'INGLES');
+(79, 'INGLES'),
+(80, 'ESPAÃ‘OL'),
+(81, 'PORTUGUÃ‰S'),
+(82, 'SABES'),
+(83, 'HABLA'),
+(84, 'APRENDER:'),
+(85, 'APRENDIENDO:');
 
 -- --------------------------------------------------------
 
@@ -134,16 +140,21 @@ INSERT INTO `personal` (`id`, `dato`, `valor`) VALUES
 
 CREATE TABLE `preguntas` (
   `id` int(11) NOT NULL,
-  `pregunta` varchar(100) COLLATE utf8_bin NOT NULL
+  `pregunta` varchar(100) COLLATE utf8_bin NOT NULL,
+  `equivalente` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `preguntas`
 --
 
-INSERT INTO `preguntas` (`id`, `pregunta`) VALUES
-(1, 'HABLAS INGLES'),
-(2, 'COMO ESTAS');
+INSERT INTO `preguntas` (`id`, `pregunta`, `equivalente`) VALUES
+(1, 'HABLAS INGLES', 0),
+(2, 'COMO ESTAS', 0),
+(4, 'HABLAS ESPANOL', 0),
+(5, 'HABLAS PORTUGUES', 0),
+(7, 'SABES ALGO DE INGLES', 1),
+(8, 'HABLA INGLES', 0);
 
 -- --------------------------------------------------------
 
@@ -236,7 +247,7 @@ ALTER TABLE `tipo_respuesta_peso`
 -- AUTO_INCREMENT de la tabla `palabras`
 --
 ALTER TABLE `palabras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -248,7 +259,7 @@ ALTER TABLE `personal`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas`
