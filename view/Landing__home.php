@@ -1,6 +1,6 @@
 <?php 
 #@header
-define("Titulo", "Console Asisitent");
+define("Titulo", "Console Assistant");
 include 'partials/header_partials.php'; 
 #@END::header
 
