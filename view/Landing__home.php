@@ -9,7 +9,16 @@ echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor
 
 #@header-html
 include 'partials/Landing__header_partials.php';
-?>				
+?>		
+<section id="app">
+        <footer id="footer" CnsA="1.0">
+                <div id="comand">
+                        <span>Comandos Voz</span>
+                        <button id="comandoON"  :class="classComanON" onclick="comandosOff()" v-on:click="ComanVoz(0)">ON</button>
+                        <button id="comandoOFF" :class="classComanOFF" onclick="comandosOn()" v-on:click="ComanVoz(1)">OFF</button>
+                </div>
+
+        </footer>		
         <main id="body" CnsA="2.0">
             <code CnsA="2.1">
                 <table>
@@ -83,6 +92,7 @@ include 'partials/Landing__header_partials.php';
                 </div>
             </article>
         </main>
+</section>
 <?php 
 #@footer-html
 include 'partials/Landing__footer_partials.php';
