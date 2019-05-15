@@ -11,14 +11,17 @@ echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor
 include 'partials/Landing__header_partials.php';
 ?>		
 <section id="app">
-        <footer id="footer" CnsA="1.0">
+        <header id="header" CnsA="1.0">
                 <div id="comand">
                         <span>Comandos Voz</span>
-                        <button id="comandoON"  :class="classComanON" onclick="comandosOff()" v-on:click="ComanVoz(0)">ON</button>
-                        <button id="comandoOFF" :class="classComanOFF" onclick="comandosOn()" v-on:click="ComanVoz(1)">OFF</button>
+                        <button id="comandoON"  :class="classComanON" onclick="comandosOff()" v-on:click="ComanVoz(0)">
+                            <span>ON</span>
+                        </button>
+                        <button id="comandoOFF" :class="classComanOFF" onclick="comandosOn()" v-on:click="ComanVoz(1)">
+                            <span>OFF</span>
+                        </button>
                 </div>
-
-        </footer>		
+        </header>		
         <main id="body" CnsA="2.0">
             <code CnsA="2.1">
                 <table>
@@ -59,7 +62,35 @@ include 'partials/Landing__header_partials.php';
 					<?=$datos["dato"]?>
 					<?=$datos["valor"]?><BR>  
 				<?php endforeach?>
-
+<center style="
+position: fixed;
+background: linear-gradient(45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px), linear-gradient(-45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px);
+padding: 20px; 
+opacity: 0.8;
+transform: rotateY(-25deg) rotateX(0deg) translateY(100%);
+">
+            <span style="
+                color: #00bebe;
+                font-size: 25px;
+                font-family: 'Orbitron', sans-serif;
+                text-shadow:1px 1px 13px rgba(25, 210, 100, 0.6)
+            ">
+            This is a test message!
+            </span>
+                <button style="
+                border: 1px solid rgb(0, 190, 190);
+    background:#212121;;
+    color: rgb(0, 190, 190);
+    tex-shadow: 0 0 5px #00dcdc, 0 0 5px #00dcdc inset;
+    font-size: 25px;
+    box-shadow: 0 0 5px #00dcdc, 0 0 5px #00dcdc inset;
+                ">boton</button>
+                <a class="techyButton" href="#">
+                    <span>
+                        ok
+                    </span>
+                </a>
+</center>
             </code>
             <article id="section2" CnsA="2.2">
                 <div id="descrip" CnsA="2.2.1">
@@ -82,7 +113,7 @@ include 'partials/Landing__header_partials.php';
                 </div>
                 <div id="get" CnsA="2.2.3">
                     <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor" v-model="actividad" name="entrada"
-                        id="actividad"  placeholder="Enter para confirmar">
+                        id="actividad"  placeholder="Escribe un mensaje aquí">
                     <button id="micro" :class="classMicro" v-on:click="micro">
                         <i :class="classMicroIco"></i>
                     </button>

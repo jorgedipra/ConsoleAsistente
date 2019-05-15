@@ -34,7 +34,7 @@ function Escuchar() {
                     NoEscuchar()
                     clearInterval(h);
                     setTimeout(() => {
-                        Escuchar()
+                        comandosOn()
                     }, 500);
                 }
             }, 1000);
@@ -67,6 +67,8 @@ function comandosOff() {
     annyang.abort();
     app.estado = "No estoy escuchando comandos";
     app.classMicroIco="fas fa-microphone-slash";//cambio de icono
+    app.classComanON="ComanOFF";                    
+    app.classComanOFF="ComanON";
 }
 
 function comandosOn() {
@@ -92,6 +94,8 @@ function comandosOn() {
         annyang.start();
         app.estado="Estoy escuchando comandos";
         app.classMicroIco="fas fa-microphone-slash";//cambio de icono
+        app.classComanON="ComanON";                    
+        app.classComanOFF="ComanOFF";
     }
 }
 var cache=""

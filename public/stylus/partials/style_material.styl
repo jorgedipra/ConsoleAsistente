@@ -41,4 +41,61 @@
 	}
 		
 }
+.techyButton {
+  display: inline-block;
+  padding: 0 30px;
+  height: 30px;
+  width  100px
+  line-height: 30px;
+  margin-left: 20px;
+  border: solid 2px rgba(247, 11, 117, 1) 
+  border-style: solid none;
+  color: #fff;
 
+  transform: skewX(-30deg);
+  text-decoration: none;
+  text-transform: uppercase;
+  outline: none;
+  transition-duration: 0.1s;
+  transition-property: color, text-shadow;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px
+}
+
+.techyButton > span {
+  display: inline-block;
+  transform: skewX(30deg);
+}
+
+.techyButton:after, .techyButton:before {
+  content: ' ';
+  display: inline-block;
+  position: absolute;
+  width: 19px;
+  height: 54%;
+  border: solid 3px rgba(247, 11, 117, 1)
+  border-style: none solid solid none;
+  border-bottom-width: 1.5px;
+  top: 6px;
+  right: -10px;
+  transition-property: border-color;
+}
+
+.techyButton:after {
+  transform: skewX(30deg) skewY(-37deg);
+  right: -10px;
+}
+
+.techyButton:before {
+  transform: skewX(30deg) skewY(-37deg) rotate(180deg);
+  left: -10px;
+}
+
+.techyButton, .techyButton:before, .techyButton:after {
+  transition-duration: 0.1s;
+}
+
+.techyButton:hover, .techyButton:hover:before, .techyButton:hover:after {
+  color: #dcf5ff;
+  text-shadow: 0 0 10px white;
+}

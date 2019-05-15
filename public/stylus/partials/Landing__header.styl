@@ -34,64 +34,117 @@ a {
   }
 }
 //header
+#header{
+  background      : color_primario;
+  border-bottom   : solid 0.5px rgba(255, 255, 255, 0.8)
+  grid-row-start  : 1;
+  grid-row-end    : 2;
+  font-family: 'Orbitron', sans-serif;
+  text-align: right;
+}
 #comand{
   color: paper
   display: grid
   float: right 
   height 50px
   grid-template-columns: 150px  auto 
-  width 250px
+  width 260px
   span{
     margin-top: 10px
-    font-size: 18px
+    font-size: 17px
   }
 }
 #comandoOFF{
-  border: solid 3px red !important
+  background: rgba(247, 11, 117, 0.5)
+  border: solid 2px rgba(247, 11, 117, 1) 
 }
 #comandoON{
-  border: solid 3px consola
+  background    : rgba(44,144,57,0.5)
+  border: solid 2px rgba(44,144,57, 1) 
 }
 #comandoOFF,
 #comandoON{
   background: color_primario
-  border-radius: 2px
-  color: paper 
-  display: none
   float: right;
-  margin: 10px
+  display: none
+  padding: 0 30px;
+  height: 30px;
+  width 70px
+  line-height: 0px;
+  margin-top: 10px;
+  margin-left: 20px;
+  border-style: solid none;
+  color: paper 
+  transform: skewX(-30deg);
+  text-decoration: none;
+  text-transform: uppercase;
+  outline: none;
+  transition-duration: 0.1s;
+  transition-property: color, text-shadow;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px
 }
 .ComanON{
-  display: block !important
+  display: inline-block !important
 }
 .ComanOFF{
   display: none
 }
+
+#comandoON:after, #comandoON:before {
+  border: solid 3px rgba(44,144,57, 1)
+}
+#comandoOFF:after, #comandoOFF:before {
+  border: solid 3px rgba(247, 11, 117, 1)
+}
+#comandoON:after, #comandoON:before ,
+#comandoOFF:after, #comandoOFF:before {
+  content: ' ';
+  display: inline-block;
+  position: absolute;
+  width: 19px;
+  height: 54%;
+  border-style: none solid solid none;
+  border-bottom-width: 1.5px;
+  top: 6px;
+  right: -10px;
+  transition-property: border-color;
+}
+
+#comandoOFF > span ,
+#comandoON > span {
+  display: inline-block;
+  transform: skewX(30deg);
+  margin 0 0 1px -12px
+}
+#comandoON:after,
+#comandoOFF:after {
+  transform: skewX(30deg) skewY(-37deg);
+  right: -10px;
+}
+
+#comandoON:before,
+#comandoOFF:before {
+  transform: skewX(30deg) skewY(-37deg) rotate(180deg);
+  left: -10px;
+}
+
+#comandoON, 
+#comandoON:before, 
+#comandoON:after,
+#comandoOFF, 
+#comandoOFF:before, 
+#comandoOFF:after {
+  transition-duration: 0.1s;
+}
+
+#comandoON:hover, 
+#comandoON:hover:before, 
+#comandoON:hover:after,
+#comandoOFF:hover, 
+#comandoOFF:hover:before, 
+#comandoOFF:hover:after {
+  color: #dcf5ff;
+  text-shadow: 0 0 10px white;
+}
 //::END fin de HEAD
-#app{
-  display               : grid;
-  grid-template-columns : auto;
-  grid-template-rows    : 50px auto;
-  height                : 100%;
-  width                 : 100%;
-}
-.Alis{
-  color #000
-  margin-left: -5px
-  width 100%
-  .message{
-    background: rgba(247, 11, 117, 0.369)
-    padding: 2px 5px
-    border-radius: 5px
-  }
-}
-.User{
-  color #000 
-  margin-left -30px
-  width 100%
-  .message{
-    background    : #2c90395e
-    padding       : 2px 5px
-    border-radius : 5px
-  }
-}
