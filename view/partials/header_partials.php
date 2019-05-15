@@ -8,7 +8,7 @@
 	<title><?=Titulo?></title>
 	<link rel="shortcut icon" href="storage/logo/ico.ico" />
 	<link rel="apple-touch-icon" href="storage/logo/ico.ico" />
-	<link rel="stylesheet" href="<?=url('public/css/'.$match["name"].'.css')?>">
+	<link rel="stylesheet" href="public/css/<?=$match["name"]?>.css">
 	<link rel="stylesheet" href="public/files/bootstrap-4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/css/font/awesome5/css/fontawesome-all.min.css">
 	
