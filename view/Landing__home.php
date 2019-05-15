@@ -102,7 +102,7 @@ transform: rotateY(-25deg) rotateX(0deg) translateY(100%);
                 <div ref='messageDisplay' id="historial" CnsA="2.2.2">
                     <span id="msginicial">
                         Alis - te habla
-                        <img src="storage/logo/ico.ico" height="100%">
+                        <img src="storage/public/home/interface4.gif" height="100%">
                     </span>
                     <ul id="User" v-for="(item, index) in actividades">
                         <li v-bind:class="[item.rol]">
