@@ -12,7 +12,7 @@ include 'partials/Landing__header_partials.php';
 	<p>
 		<h2>PÁGINA NO ENCONTRADA</h2>
 	</p>
-	<img id="error404__img" src="/storage/public/404/404_1.gif" alt="404" title="404">
+	<img id="error404__img" src="storage/public/404/404_1.gif" alt="404" title="404">
 	<p>
 		<h2>	
 			Vaya, parece que esa página no existe.
@@ -35,6 +35,6 @@ include 'partials/Landing__footer_partials.php';
 #@END::footer
 #
 #footer/Scripts
-include 'partials/footer_partials.php'; 
+// include 'partials/footer_partials.php'; 
 #@END::footer
 ?>

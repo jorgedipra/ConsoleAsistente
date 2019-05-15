@@ -42,10 +42,7 @@ class  DIR_{
             $cad = substr ($_SERVER['REQUEST_URI'], 0, strlen($_SERVER['REQUEST_URI']) - 1);
             return $cad.$url;
         }
-        if($_SERVER['SERVER_NAME']=='localhost'){
-            $cad=str_replace($url, "", $_SERVER['REQUEST_URI']);
-            return $cad.$url;
-        }
-        return $_SERVER['HTTP_HOST'].$url;
+        $cad=str_replace ($url, "",$_SERVER['REQUEST_URI']).$url;
+            return $cad;
     }
 }
