@@ -24,6 +24,10 @@ include 'partials/Landing__header_partials.php';
         </header>		
         <main id="body" CnsA="2.0">
             <code CnsA="2.1">
+                <div id="estado">
+                    <span id="title">Estado:</span>
+                    <span>{{ estado }}</span>
+                </div>
                 <table>
                         <tr v-for="(item, index) in mensaje">
                             <td>{{ item.consola }}</td>
@@ -63,6 +67,7 @@ include 'partials/Landing__header_partials.php';
 					<?=$datos["valor"]?><BR>  
 				<?php endforeach?>
 <center style="
+display:none;
 position: fixed;
 background: linear-gradient(45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px), linear-gradient(-45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px);
 padding: 20px; 

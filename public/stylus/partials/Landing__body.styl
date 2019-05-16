@@ -1,3 +1,11 @@
+#app{
+  display               : grid;
+  grid-template-columns : auto;
+  grid-template-rows    : 50px auto;
+  height                : 100%;
+  width                 : 100%;
+}
+//2
 #body{
     background            :paper;
     display               : grid;
@@ -10,13 +18,10 @@
     @media ({$lgdesc}) {
       grid-template-columns : auto 260px
     }
-}
-#app{
-  display               : grid;
-  grid-template-columns : auto;
-  grid-template-rows    : 50px auto;
-  height                : 100%;
-  width                 : 100%;
+    @media ({$xs}) {
+      grid-template-columns : auto
+      grid-template-rows    : auto 250px
+    }
 }
 //2.1
 code{
@@ -27,6 +32,36 @@ code{
   height 100%
   background: #000
   font-size: 25px
+  #estado{
+    background: linear-gradient(45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px), linear-gradient(-45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px);
+    display: none;
+    float right
+    grid-template-columns : 60px auto 
+    height 40px
+    padding-top: 2px
+    padding-left: 15px   
+    opacity: 0.8;
+    width 50%
+    -webkit-clip-path: polygon(0 0, 100% 1%, 100% 100%, 16% 100%, 0% 50%); 
+    #title{
+      color consola;
+      }
+    span{
+      color: #00bebe;
+      font-size: 12px;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow:1px 1px 13px rgba(25, 210, 100, 0.6)
+    }
+    @media ({$xs}) {
+      display: grid;
+    }
+  }
+  @media ({$xs}) {
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 1
+    grid-row-end: 2
+  }
 }
 //2.2
 #section2{
@@ -37,6 +72,13 @@ code{
     grid-column-start: 2
     grid-column-end: 3
     height: -webkit-fill-available;
+    @media ({$xs}) {
+      grid-column-start: 1
+      grid-column-end: 2
+      grid-row-start: 2
+      grid-row-end: 3
+      grid-template-rows: 210px 40px
+    }
 }
 //2.2.1
 #descrip{
@@ -48,6 +90,9 @@ code{
     }
     li{
       color: paper
+    }
+    @media ({$xs}) {
+      display: none;
     }
 }
 //2.2.2
