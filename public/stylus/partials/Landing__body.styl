@@ -45,16 +45,22 @@ code{
     -webkit-clip-path: polygon(0 0, 100% 1%, 100% 100%, 16% 100%, 0% 50%); 
     #title{
       color consola;
+      font-size: 12px;
       }
     span{
       color: #00bebe;
-      font-size: 12px;
+      font-size: x-small;
       font-family: 'Orbitron', sans-serif;
       text-shadow:1px 1px 13px rgba(25, 210, 100, 0.6)
     }
     @media ({$xs}) {
       display: grid;
     }
+    @media ({$mss}) {
+      height 20px
+      width 100%;
+      -webkit-clip-path: inset(0 0 0 0);
+    } 
   }
   @media ({$xs}) {
     grid-column-start: 1
