@@ -84,12 +84,9 @@ transform: rotateY(-25deg) rotateX(0deg) translateY(100%);
     tex-shadow: 0 0 5px #00dcdc, 0 0 5px #00dcdc inset;
     font-size: 25px;
     box-shadow: 0 0 5px #00dcdc, 0 0 5px #00dcdc inset;
+    -webkit-clip-path: polygon(0 20%, 20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
                 ">boton</button>
-                <a class="techyButton" href="#">
-                    <span>
-                        ok
-                    </span>
-                </a>
+                <button style="-webkit-clip-path: polygon(0 20%, 20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%);">dialogo</button>
 </center>
             </code>
             <article id="section2" CnsA="2.2">

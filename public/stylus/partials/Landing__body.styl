@@ -101,9 +101,11 @@ code{
   .message{
     background: rgba(247, 11, 117, 0.5)
     box-shadow: rgb(247, 11, 117) 0px 0px 5px, rgb(247, 11, 117) 0px 0px 5px inset
-    padding: 2px 5px
-    border-radius: 5px
-    
+    padding       : 10px 5px 
+    padding-left  : 10px
+    padding-right : 5px
+    border-radius : 0px
+    -webkit-clip-path: polygon(0 25%, 10% 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
   }
 }
 .User{
@@ -114,8 +116,11 @@ code{
   .message{
     background    : rgba(44,144,57,0.5)
     box-shadow    : rgb(44,144,57) 0px 0px 5px, rgb(44,144,57) 0px 0px 5px inset
-    padding       : 2px 5px
-    border-radius : 5px
+    padding       : 10px 5px 
+    padding-left  : 10px
+    padding-right : 5px
+    border-radius : 0px
+    -webkit-clip-path: polygon(0 25%, 10% 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
   }
 }
 //2.2.3
@@ -139,6 +144,7 @@ code{
   color: #009898
   display none 
   opacity 0.8
+  -webkit-clip-path: polygon(0% 0%, 85% 0, 100% 50%, 85% 100%, 0% 100%);
 }
 .micro-in{
   display block !important
