@@ -10,6 +10,7 @@
 //--]
 
 //@Media consulta puntos de interrupción
+//---------------[width]----------------
 	// Extra small screen / phone-min
 	$screen-ms =320px
 	
@@ -27,6 +28,15 @@
 	
 	// Large screen / wide TV
 	$screen-xl =1600px
+//---------------[height]----------------
+	// Extra small screen / phone-mediano*
+	$Hscreen-s =640px	
+
+	// Extra small screen / phone
+	$Hscreen-xs =720px
+
+	// Small screen / tablet
+	$Hscreen-sm =800px
 //@END Media consulta puntos de interrupción
 
 
@@ -34,7 +44,7 @@
 
 //[-- No pueden haber guiones en los nombres --]
 //@MEDIA QUERY screen options
-
+//---------------[width]----------------
 	$mss    = "max-width:" + $screen-ms
 	$xs     = "max-width:" + $screen-xs
 	$sm     = "max-width:" + $screen-sm + ") and (min-width: " + $screen-xs
@@ -45,6 +55,8 @@
 	$mdasc  = "min-width:" + $screen-md
 	$lg     = "min-width:" + $screen-lg
 	$lgdesc = "max-width:" + $screen-lg
+//---------------[height]----------------
+	$Hms =	"max-height:" + $Hscreen-s
 
 //@END MEDIA QUERY screen options
 
