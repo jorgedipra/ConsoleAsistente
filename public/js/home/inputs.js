@@ -81,6 +81,12 @@ function comandosOn() {
             'escuchar': function () {
                 Escuchar()
             },
+            'alice': function () {
+                Escuchar()
+            },
+            'alis': function () {
+                Escuchar()
+            },
             'enviar': function () {
                 enviar()
             },
@@ -96,6 +102,8 @@ function comandosOn() {
         app.classMicroIco="fas fa-microphone-slash";//cambio de icono
         app.classComanON="ComanON";                    
         app.classComanOFF="ComanOFF";
+        app.classMicro = 'micro-in';
+        app.classEnviar = 'enviar-on';
     }
 }
 var cache=""
