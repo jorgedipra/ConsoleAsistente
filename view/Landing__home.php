@@ -28,8 +28,16 @@ include 'partials/Landing__header_partials.php';
                     <span id="title">Estado:</span>
                     <span>{{ estado }}</span>
                 </div>
+                <!--  -->
+
+                <h4 class="card-title "><?=$Landing_home["datos"][0]['dato'].' '.$Landing_home["datos"][0]['valor']?></h4>	
+				<?php foreach($Landing_home["datos"] AS $datos):?>
+					<?=$datos["dato"]?>
+					<?=$datos["valor"]?><BR>  
+				<?php endforeach?>
+
                 <div id="container" class="container">
-                <!-- <table>
+                <table>
                         <tr v-for="(item, index) in mensaje">
                             <td>{{ item.consola }}</td>
                         </tr>
@@ -59,20 +67,9 @@ include 'partials/Landing__header_partials.php';
                 <button onclick="Escuchar();">Escuchar</button>
                 <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
                 <button onclick="comandosOn()">comandos por voz</button>
-                <button onclick="comandosOff()">apagar comandos por voz</button>
-				<textarea id="actividad2">Entrada</textarea>   <button onclick="Escuchar();">Escuchar</button>
-                <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
-                <button onclick="comandosOn()">comandos por voz</button>
-                <button onclick="comandosOff()">apagar comandos por voz</button>
-                -->
-              	<textarea id="actividad2">Entrada</textarea>
-    
-
-				<h4 class="card-title "><?=$Landing_home["datos"][0]['dato'].' '.$Landing_home["datos"][0]['valor']?></h4>	
-				<?php foreach($Landing_home["datos"] AS $datos):?>
-					<?=$datos["dato"]?>
-					<?=$datos["valor"]?><BR>  
-				<?php endforeach?>
+                <button onclick="comandosOff()">apagar comandos por voz</button><br>
+				<textarea id="actividad2">Entrada</textarea>   
+            
 <center style="
 display:none;
 position: fixed;
@@ -109,18 +106,18 @@ transform: rotateY(-25deg) rotateX(0deg) translateY(100%);
                     <li>{{ estado }}</li>
                 </ul>
             </div>
-            <div ref='messageDisplay' id="historial" CnsA="2.2.2">
-                <span id="msginicial">
-                    Alis - te habla
-                    <img src="storage/public/home/interface4.gif" height="100%">
-                </span>
-                <ul id="User" v-for="(item, index) in actividades">
-                    <li v-bind:class="[item.rol]">
-                        <span class="nombre">{{ item.user }}</span>
-                        <span class="message">{{ item.message }}</span>
-                    </li>
-                </ul>
-            </div>
+                <div ref='messageDisplay' id="historial" CnsA="2.2.2">
+                    <span id="msginicial">
+                        Alis - te habla
+                        <img src="storage/public/home/interface4.gif" height="100%">
+                    </span>
+                    <ul id="User" v-for="(item, index) in actividades">
+                        <li v-bind:class="[item.rol]">
+                            <span class="nombre">{{ item.user }}</span>
+                            <span class="message">{{ item.message }}</span>
+                        </li>
+                    </ul>
+                </div>
             <div id="get" CnsA="2.2.3">
                 <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor" v-model="actividad"
                     name="entrada" id="actividad" placeholder="Escribe un mensaje aquí">

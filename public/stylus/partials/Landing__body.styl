@@ -7,10 +7,13 @@
   @media({$Hms}){
     grid-template-rows    : 30px auto;
   }
+  @media({$Hmss}){
+    height 400px;
+  }
 }
 //2
 #body{
-    background            :paper;
+    background            :linear-gradient(45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px), linear-gradient(-45deg, #212121 15px, rgba(255, 255, 255, 0.08) 15px, #212121 16px);
     display               : grid;
     grid-template-columns : 80% auto
     grid-template-rows    : auto
@@ -31,6 +34,9 @@
   overflow: auto
   #container{
     height 100%
+  }
+  @media({$Hmss}){
+        height 369px
   }
 }
 code{
@@ -97,12 +103,14 @@ code{
       grid-template-rows: 210px 40px
     }
     @media({$Hmss}){
-      grid-template-rows: calc(100% - 40px) 40px
+      grid-template-rows: calc(100% - 40px) 40px 
+      height: 370px;
     }
     
 }
 //2.2.1
 #descrip{
+    background: color_primario
     grid-row-start  : 1;
     grid-row-end    : 2;
     padding: 5%;
@@ -115,11 +123,22 @@ code{
     @media ({$xs}) {
       display: none;
     }
+    ul,
+    h2{
+      @media({$Hmss}){
+        display: none
+      }
+    }
     @media({$Hmss}){
-      display: none;
+      grid-row-start  : 3;
+      grid-row-end    : 4;
+      display: none
     }
 }
 //2.2.2
+.histial222{
+  height:100%
+}
 #historial{
     background: rgb(16, 16, 24)
     border: solid 1px #000
@@ -161,6 +180,9 @@ code{
         }
       }   
     }
+     @media({$Hmss}){
+        // height 210px
+      }
 }
 .Alis{
   color #fff
