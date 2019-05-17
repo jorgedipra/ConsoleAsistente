@@ -72,9 +72,9 @@ const NClasificaFrase = (input,cadena,data) => {
     input = input.join(' ');// se une el array con solo un espacio
     var pregunta = RegExp("(QUE|QUIEN|COMO|CUANDO|CUANTO|CUANTA|DONDE|POR QUE|DONDE)");
     var numeros = RegExp("(1|2|3|4|5|6|7|8|9|0)");
+    var signosp = RegExp("(POR|DIVIDIDO)");
     var signos = /[*+-/]/g;
-    
-    if(numeros.test(input) == true && input.search(signos)>=0){
+    if(numeros.test(input) == true && (input.search(signos)>=0 || signosp.test(input))){
         Noperaciones(input,data)
         return false    
     }
@@ -88,7 +88,9 @@ const NClasificaFrase = (input,cadena,data) => {
     return respuesta;
 } //::END=NClasificaFrase
 
-const Noperaciones =(input,data) =>{//falta gararquias de signo () *o/ +o-
+const Noperaciones =(input,data) =>{//falta  jerarquía de signo () *o/ +o-
+    input= input.replace("POR","*");
+    input=input.replace("DIVIDIDO","/");
     var signo = /[*+-/]/g;
     var regex = /(\d+)/g;
     var signos = input.match(signo);
