@@ -60,7 +60,12 @@ include 'partials/Landing__header_partials.php';
                 <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
                 <button onclick="comandosOn()">comandos por voz</button>
                 <button onclick="comandosOff()">apagar comandos por voz</button>
-				<textarea id="actividad2">Entrada</textarea> -->
+				<textarea id="actividad2">Entrada</textarea>   <button onclick="Escuchar();">Escuchar</button>
+                <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
+                <button onclick="comandosOn()">comandos por voz</button>
+                <button onclick="comandosOff()">apagar comandos por voz</button>
+                -->
+              	<textarea id="actividad2">Entrada</textarea>
 				
 				<h4 class="card-title "><?=$Landing_home["datos"][0]['dato'].' '.$Landing_home["datos"][0]['valor']?></h4>	
 				<?php foreach($Landing_home["datos"] AS $datos):?>
