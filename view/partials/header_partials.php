@@ -10,7 +10,7 @@
 	<link rel="apple-touch-icon" href="storage/logo/ico.ico" />
 	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="public/css/<?=$match["name"]?>.css?v=1.0">
+	<link rel="stylesheet" href="public/css/<?=$match["name"]?>.css?v=1.1">
 	<link rel="stylesheet" href="public/files/bootstrap-4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/css/font/awesome5/css/fontawesome-all.min.css">
 	
