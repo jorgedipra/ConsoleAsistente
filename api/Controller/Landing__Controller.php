@@ -27,14 +27,15 @@ class  Landing__Controller extends Controller{
 		->where('pregunta','like',$data->pregunta )
 		->run( );
 		
-		if(!isset($pregunta[0])):
+		if(!isset($pregunta[0]))://No sabe la respuesta
 			$qb->table( 'preguntas' )
 				->insert( array( 'pregunta' => $data->pregunta ) ) 
 				->run( );
 			$respuestas = "{ 'respuesta0': :'no te entiendo' }";
 			$Nrespuestas = 0;
 			$nose=1;
-		else:	
+
+		else:
 			if($pregunta[0]['equivalente']==0){
 				$id_pregunta=$pregunta[0]['id'];
 			}else{
