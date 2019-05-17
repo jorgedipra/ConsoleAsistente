@@ -23,12 +23,13 @@ include 'partials/Landing__header_partials.php';
                 </div>
         </header>		
         <main id="body" CnsA="2.0">
-            <code CnsA="2.1">
+            <code id="code" CnsA="2.1">
                 <div id="estado">
                     <span id="title">Estado:</span>
                     <span>{{ estado }}</span>
                 </div>
-                <table>
+                <div id="container" class="container">
+                <!-- <table>
                         <tr v-for="(item, index) in mensaje">
                             <td>{{ item.consola }}</td>
                         </tr>
@@ -59,7 +60,7 @@ include 'partials/Landing__header_partials.php';
                 <button onclick="NoEscuchar();">dejar de escuchat</button> <br>
                 <button onclick="comandosOn()">comandos por voz</button>
                 <button onclick="comandosOff()">apagar comandos por voz</button>
-				<textarea id="actividad2">Entrada</textarea>
+				<textarea id="actividad2">Entrada</textarea> -->
 				
 				<h4 class="card-title "><?=$Landing_home["datos"][0]['dato'].' '.$Landing_home["datos"][0]['valor']?></h4>	
 				<?php foreach($Landing_home["datos"] AS $datos):?>
@@ -93,6 +94,7 @@ transform: rotateY(-25deg) rotateX(0deg) translateY(100%);
                 ">boton</button>
                 <button style="-webkit-clip-path: polygon(0 20%, 20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%);">dialogo</button>
 </center>
+                </div>
             </code>
             <article id="section2" CnsA="2.2">
                 <div id="descrip" CnsA="2.2.1">

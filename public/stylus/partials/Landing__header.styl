@@ -54,7 +54,11 @@ a {
     font-size: 17px
     @media({$Hms}){
       font-size: 15px
+      margin-top: 0px
     }
+  }
+  @media({$Hms}){
+      height 20px
   }
 }
 #comandoOFF{
@@ -68,6 +72,7 @@ a {
 #comandoOFF,
 #comandoON{
   background: color_primario
+  cursor: pointer
   float: right;
   display: none
   padding: 0 30px;
@@ -87,6 +92,7 @@ a {
   font-family: 'Orbitron', sans-serif;
   font-size: 15px
   @media({$Hms}){
+    height: 20px;
     margin-top: 0px;
   }
 }
