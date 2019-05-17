@@ -9,21 +9,21 @@ echo Console::log('_variable', ['Landing_home'=>$Landing_home["datos"][1]['valor
 
 #@header-html
 include 'partials/Landing__header_partials.php';
-?>		
+?>
 <section id="app">
-        <header id="header" CnsA="1.0">
-                <div id="comand">
-                        <span>Comandos Voz</span>
-                        <button id="comandoON"  :class="classComanON" onclick="comandosOff()" v-on:click="ComanVoz(0)">
-                            <span>ON</span>
-                        </button>
-                        <button id="comandoOFF" :class="classComanOFF" onclick="comandosOn()" v-on:click="ComanVoz(1)">
-                            <span>OFF</span>
-                        </button>
-                </div>
-        </header>		
-        <main id="body" CnsA="2.0">
-            <code id="code" CnsA="2.1">
+    <header id="header" CnsA="1.0">
+        <div id="comand">
+            <span>Comandos Voz</span>
+            <button id="comandoON" :class="classComanON" onclick="comandosOff()" v-on:click="ComanVoz(0)">
+                <span>ON</span>
+            </button>
+            <button id="comandoOFF" :class="classComanOFF" onclick="comandosOn()" v-on:click="ComanVoz(1)">
+                <span>OFF</span>
+            </button>
+        </div>
+    </header>
+    <main id="body" CnsA="2.0">
+        <code id="code" CnsA="2.1">
                 <div id="estado">
                     <span id="title">Estado:</span>
                     <span>{{ estado }}</span>
@@ -66,7 +66,8 @@ include 'partials/Landing__header_partials.php';
                 <button onclick="comandosOff()">apagar comandos por voz</button>
                 -->
               	<textarea id="actividad2">Entrada</textarea>
-				
+    
+
 				<h4 class="card-title "><?=$Landing_home["datos"][0]['dato'].' '.$Landing_home["datos"][0]['valor']?></h4>	
 				<?php foreach($Landing_home["datos"] AS $datos):?>
 					<?=$datos["dato"]?>
@@ -101,37 +102,37 @@ transform: rotateY(-25deg) rotateX(0deg) translateY(100%);
 </center>
                 </div>
             </code>
-            <article id="section2" CnsA="2.2">
-                <div id="descrip" CnsA="2.2.1">
-                    <h2>Estado:</h2>      
-                    <ul>
-                        <li>{{ estado }}</li>
-                    </ul>                
-                </div>
-                <div ref='messageDisplay' id="historial" CnsA="2.2.2">
-                    <span id="msginicial">
-                        Alis - te habla
-                        <img src="storage/public/home/interface4.gif" height="100%">
-                    </span>
-                    <ul id="User" v-for="(item, index) in actividades">
-                        <li v-bind:class="[item.rol]">
-                            <span class="nombre">{{ item.user }}</span>
-                            <span class="message">{{ item.message }}</span>
-                        </li>
-                    </ul>
-                </div>
-                <div id="get" CnsA="2.2.3">
-                    <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor" v-model="actividad" name="entrada"
-                        id="actividad"  placeholder="Escribe un mensaje aquí">
-                    <button id="micro" :class="classMicro" v-on:click="micro">
-                        <i :class="classMicroIco"></i>
-                    </button>
-                    <button id="enviar" :class="classEnviar" v-on:click="actualizarChat">
-                        <i class="fas fa-play"></i>
-                    </button>
-                </div>
-            </article>
-        </main>
+        <article id="section2" CnsA="2.2">
+            <div id="descrip" CnsA="2.2.1">
+                <h2>Estado:</h2>
+                <ul>
+                    <li>{{ estado }}</li>
+                </ul>
+            </div>
+            <div ref='messageDisplay' id="historial" CnsA="2.2.2">
+                <span id="msginicial">
+                    Alis - te habla
+                    <img src="storage/public/home/interface4.gif" height="100%">
+                </span>
+                <ul id="User" v-for="(item, index) in actividades">
+                    <li v-bind:class="[item.rol]">
+                        <span class="nombre">{{ item.user }}</span>
+                        <span class="message">{{ item.message }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="get" CnsA="2.2.3">
+                <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor" v-model="actividad"
+                    name="entrada" id="actividad" placeholder="Escribe un mensaje aquí">
+                <button id="micro" :class="classMicro" v-on:click="micro">
+                    <i :class="classMicroIco"></i>
+                </button>
+                <button id="enviar" :class="classEnviar" v-on:click="actualizarChat">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </article>
+    </main>
 </section>
 <?php 
 #@footer-html
