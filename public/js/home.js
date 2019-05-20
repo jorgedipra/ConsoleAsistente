@@ -54,7 +54,8 @@ const app = new Vue({
     actualizarChat: function() {
       User = "Us";
       let cadena;
-      const aprender = RegExp("(-aprender:|-APRENDER:)");
+      const aprender = RegExp("(-aprender:|-APRENDER:|que te han preguntado|que te preguntaron)");
+      const aprenderSalir = RegExp("(-salir|-terminar|-SALIR|-TERMINAR)");
       //validación par auq no entre en blanco
       if (localStorage.getItem("user")) {
         User = localStorage.getItem("user");
@@ -72,9 +73,29 @@ const app = new Vue({
         rol: "User"
       };
 
-      if (aprender.test(cadena) == true) {
-        console.log("aprender");
-      } else {
+      if(aprenderSalir.test(cadena)){
+          messageUser(data); //se envia lo que dijo el usuario al historial
+          var r = Math.floor(Math.random() * 3 + 1);
+          switch (r) {
+            case 1:
+              mensaje = "Gracias por enseñarme";
+              localStorage.setItem("aprender","normal");
+              localStorage.removeItem("respuestaId");
+              break;
+            case 2:
+              mensaje = "Hoy estuvo aburrido, espero aprender mas mañana";
+              localStorage.setItem("aprender","normal");
+              localStorage.removeItem("respuestaId");
+              break;
+            case 3:
+              mensaje = "Quiero saber más, por favor";
+              break;
+          }
+          message(mensaje);
+      }else if (aprender.test(cadena) == true || localStorage.getItem("aprender")=='aprender') {
+        localStorage.setItem("aprender","aprender")
+        Nlenguaje(cadena, data,'aprender');
+      }else {
         Nlenguaje(cadena, data);
       }
     },

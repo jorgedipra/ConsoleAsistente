@@ -16,6 +16,7 @@ $Classes=[
 $router->map('GET|POST',	$DIR->url("/"),   				$Classes['1'],    'home');
 $router->map('POST',		$DIR->url("/pregunta"),   		$Classes['1'],    'pregunta');
 $router->map('POST',		$DIR->url("/palabras"),   		$Classes['1'],    'palabras');
+$router->map('GET|POST',		$DIR->url("/respuesta"),   		$Classes['1'],    'respuesta');
 $router->map('GET',			$DIR->url("/404"), 			  	$Classes['1'],    '_404');
 
 // match current requestc

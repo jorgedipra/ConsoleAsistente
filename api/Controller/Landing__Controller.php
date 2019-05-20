@@ -29,7 +29,7 @@ class  Landing__Controller extends Controller{
 		
 		if(!isset($pregunta[0]))://No sabe la respuesta
 			$qb->table( 'preguntas' )
-				->insert( array( 'pregunta' => $data->pregunta ) ) 
+				->insert( array( 'pregunta' => $data->pregunta, 'pregunta_original' => $data->original ) ) 
 				->run( );
 			$respuestas = "{ 'respuesta0': :'no te entiendo' }";
 			$Nrespuestas = 0;
@@ -68,10 +68,46 @@ class  Landing__Controller extends Controller{
 			$qb->table( 'palabras' )
 				->insert( array( 'palabras' => $data->palabra ) ) 
 				->run( );
-		endif;
-		//echo $data->palabra;	
+		endif;	
 	}##->END funtion palabras
+	function respuesta($id='',$var=''){
+		$qb 	= new PtcQueryBuilder( $this->pdo() ); 
+		$data 	= json_decode(file_get_contents("php://input"));
+		if($data->id!=0):
+			$qb->table( 'respuestas' )
+				->insert(['respuesta' => $data->pregunta,'id_pregunta' => $data->id]) 
+				->run( );
+			$respuesta = $qb->table( 'respuestas' )
+				->select(['MAX(id)',])
+				->where('id_pregunta','=',$data->id )
+				->run( );
+			$qb->table( 'tipo_respuesta_peso' )
+				->insert(['respuesta' => $respuesta[0][0],'id_pregunta' => $data->id]) 
+				->run( );
 
+			$qb->table( 'preguntas' )
+				->where( 'id' , '=' , $data->id)
+				->update( array( 'Nrespuestas' => $data->Nrespuestas ) )
+				->run( );
+		endif;
+		$pregunta = $qb->table( 'preguntas' )
+				->select(['preguntas.id', 'preguntas.pregunta_original', 'preguntas.Nrespuestas'])
+				->join( 'tipo_respuesta_peso' , 'preguntas.id' , '!=' ,  'tipo_respuesta_peso.id_pregunta' )
+				->order( 'preguntas.Nrespuestas' , 'ASC' )
+				->limit( 3 )
+				->run( );
+		$r = (int)rand(0, 2);	
+		$id = $pregunta[$r][0];
+		$Nrespuestas = $pregunta[$r][2];
+		$pregunta = "¿".ucfirst(strtolower($pregunta[$r]['pregunta_original']))."?";
+
+		return $view = [
+			'id'			=> $id,
+			'pregunta'   	=> $pregunta,	
+			'Nrespuestas'	=> $id
+		];
+
+	}##->END funtion respuesta
 	function _404($id='',$var=''){
 		if($id==true):
 			echo "id [".$id."]";
