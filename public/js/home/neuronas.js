@@ -1,89 +1,10 @@
-const Memoria = (fragmento, tipo, cadena, data) => {
- let id = 0; 
- let Nrespuestas = 0;   
-  switch (tipo) {
-    case "palabra":
-      axios
-        .post("palabras", {
-          palabra: fragmento
-        })
-        .then(function(response) {
-          //console.log(response.data);//temp
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      return false;
-      break;
-    case "pregunta":
-      axios
-        .post("pregunta", {
-          pregunta: fragmento,
-          original: cadena.replace(/[¿?]/g, "")
-        })
-        .then(function(response) {
-          var json = response.data;
-          // console.log(json);//temp
-          var r = Math.floor(Math.random() * parseInt(json["Nrespuestas"]) + 1);
-          j = 0;
-          estatico = true;
-          for (var i in json) {
-            if (r == j) {
-              // se responde con una respuesta de la BD
-              estatico = false;
-              messageUser(data); //se envia lo que dijo el usuario al historial
-              message(json[i]); //se envia el mensaje respuesta al historial
-            }
-            j++;
-          }
-          if (estatico == true) {
-            metodostatico(cadena, data); //se llama las respuestas estaticas
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      return true;
-      break;
-    case "aprender": 
-        if(localStorage.getItem("respuestaId")){//solo una entrada
-            id = localStorage.getItem("respuestaId");
-            Nrespuestas = localStorage.getItem("Nrespuestas");
-        }  
-      axios
-        .post("respuesta", {
-            id: id,
-            pregunta: fragmento,
-            Nrespuestas: Nrespuestas
-        })
-        .then(function(response) {
-            messageUser(data); //se envia lo que dijo el usuario al historial
-            message(response.data['pregunta']);
-            localStorage.setItem("respuestaId",response.data['id']);//id de pregunta
-            localStorage.setItem("Nrespuestas",response.data['Nrespuestas']);//No de respuestas
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-      return true;
-      break;
-    default:
-      metodostatico(cadena, data);
-      break;
-  } //::switch
-
-  var saludo = RegExp("(HOLA|ALO)");
-  let eureka = saludo.test(fragmento);
-
-  return eureka ? "Saludo" : "falso";
-}; //::END=Memoria
-
 const Nlenguaje = (input, data, estado) => {
   cadena = input;
   input = input.toUpperCase(); //mayuscula
 
   if (estado == "aprender"){
-    Memoria(input, "aprender", cadena, data); //se envia la petición a la memoria de enviar las respuestas
+    let NMemoria = new Memoria(input, "aprender", cadena, data); //se envia la petición a la memoria de enviar las respuestas
+    NMemoria.remember
     return false;
   }
 
@@ -97,7 +18,8 @@ const Npalabras = input => {
   input = input.filter(e => e !== ""); //se elimina los espacios excesivos
 
   input.forEach(element => {
-    Memoria(element, "palabra"); //enviar a la memoria
+    let NMemoria = new Memoria(element, "palabra"); //enviar a la memoria
+    NMemoria.remember
   });
   return input;
 }; //::END=Npalabras
@@ -122,11 +44,11 @@ const NClasificaFrase = (input, cadena, data) => {
   }
 
   if (pregunta.test(input) == true || input.lastIndexOf("?") > 0) {
-    //es pregunta
-    respuesta = Memoria(input.replace(/[¿?]/g, ""), "pregunta", cadena, data);
+    let NMemoria = new  Memoria(input.replace(/[¿?]/g, ""), "pregunta", cadena, data);//es pregunta
+    respuesta = NMemoria.remember
   } else {
-    //frase o palabras
-    respuesta = Memoria(input, "otro", cadena, data);
+    let NMemoria = new  Memoria(input, "otro", cadena, data);//frase o palabras
+    respuesta = NMemoria.remember
   }
   return respuesta;
 }; //::END=NClasificaFrase

@@ -4,7 +4,8 @@
 <script src="public/js/<?=$js_general?>"></script>
 <script src="public/js/<?=$match["name"]?>.js?v=0.1"></script>
 <script src="public/js/<?=$match["name"]?>/inputs.js"></script>
-<script src="public/js/<?=$match["name"]?>/neuronas.js"></script>
 <script src="public/js/<?=$match["name"]?>/output.js"></script>	
+<script src="public/js/<?=$match["name"]?>/memoria.js"></script>
+<script src="public/js/<?=$match["name"]?>/neuronas.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2019 a las 02:39:53
+-- Tiempo de generación: 20-05-2019 a las 03:33:01
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.39
 
@@ -167,7 +167,19 @@ INSERT INTO `palabras` (`id`, `palabras`) VALUES
 (139, 'HAN'),
 (140, 'PREGUNTADO'),
 (141, 'TAN'),
-(142, 'PREGUNTARON');
+(142, 'PREGUNTARON'),
+(143, 'APRENDIDO'),
+(144, 'HAS'),
+(145, 'AHORA'),
+(146, 'POCO'),
+(147, 'APRENDER'),
+(148, 'MUCHO'),
+(149, 'PERO'),
+(150, 'ESPERO'),
+(151, 'MAS'),
+(152, 'MUCHAS'),
+(153, 'COSAS'),
+(154, 'AAAA');
 
 -- --------------------------------------------------------
 
@@ -208,15 +220,14 @@ CREATE TABLE `preguntas` (
 --
 
 INSERT INTO `preguntas` (`id`, `pregunta`, `pregunta_original`, `equivalente`, `Nrespuestas`) VALUES
-(1, 'HABLAS INGLES', 'Hablas ingles', 0, 1),
+(1, 'HABLAS INGLES', 'Hablas ingles', 0, 2),
 (2, 'COMO ESTAS', 'Como estas', 0, 3),
-(5, 'HABLAS PORTUGUES', 'Hablas portugues', 0, 1),
+(5, 'HABLAS PORTUGUES', 'Hablas portugues', 0, 2),
 (7, 'SABES ALGO DE INGLES', 'Sabes algo de ingles', 1, 1),
 (8, 'HABLA INGLES', 'Habla ingles', 1, 1),
-(9, 'COMO ESTA', 'Como esta', 2, 1),
-(19, 'COMO TE LLAMAS', 'Como te llamas', 0, 1),
-(24, 'CUANTOS ANOS TIENES', 'cuantos aÃ±os tienes', 0, 0),
-(25, 'QUE TE PREGUNTARON', 'que te preguntaron', 0, 25);
+(9, 'COMO ESTA', 'Como esta', 2, 2),
+(19, 'COMO TE LLAMAS', 'Como te llamas', 0, 2),
+(25, 'QUE TE PREGUNTARON', 'que te preguntaron', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +254,11 @@ INSERT INTO `respuestas` (`id`, `respuesta`, `id_pregunta`, `V_emocional`, `expe
 (3, 'APRENDIENDO DE TI', 2, 0, 0, 0),
 (4, 'NO', 1, 0, 0, 0),
 (14, 'ALIS', 19, 0, 0, 0),
-(15, 'MUCHAS COSAS', 25, 0, 0, 0);
+(15, 'MUCHAS COSAS', 25, 0, 0, 0),
+(17, 'NO, TAL VEZ MÃS ADELANTE', 5, 0, 0, 0),
+(18, 'ALIS!', 19, 0, 0, 0),
+(19, 'NO, TAL VEZ MAS ADELANTE ', 1, 0, 0, 0),
+(20, 'COMO ESTA, ¿QUE?, ME PODRÃAS FORMULAR MEJOR LA PREGUNTA', 9, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -268,7 +283,11 @@ INSERT INTO `tipo_respuesta_peso` (`id`, `id_pregunta`, `respuesta`, `peso`) VAL
 (3, 2, 3, 36),
 (4, 1, 4, 100),
 (9, 19, 14, 0),
-(10, 25, 15, 0);
+(10, 25, 15, 0),
+(11, 5, 17, 0),
+(12, 19, 18, 0),
+(13, 1, 19, 0),
+(14, 9, 20, 0);
 
 --
 -- Índices para tablas volcadas
@@ -315,7 +334,7 @@ ALTER TABLE `tipo_respuesta_peso`
 -- AUTO_INCREMENT de la tabla `palabras`
 --
 ALTER TABLE `palabras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -327,19 +346,19 @@ ALTER TABLE `personal`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_respuesta_peso`
 --
 ALTER TABLE `tipo_respuesta_peso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
