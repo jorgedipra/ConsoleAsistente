@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2019 a las 21:59:13
+-- Tiempo de generación: 20-05-2019 a las 02:39:53
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.39
 
@@ -110,7 +110,64 @@ INSERT INTO `palabras` (`id`, `palabras`) VALUES
 (82, 'SABES'),
 (83, 'HABLA'),
 (84, 'APRENDER:'),
-(85, 'APRENDIENDO:');
+(85, 'APRENDIENDO:'),
+(86, 'ESTA'),
+(87, 'PASA'),
+(88, 'SI'),
+(89, 'AQUÃ'),
+(90, 'A'),
+(91, 'QQQ'),
+(92, 'MEJORAR'),
+(93, 'JORGE'),
+(94, 'EN'),
+(95, 'PUEDO'),
+(96, 'TE'),
+(97, 'AYUDAR'),
+(98, '1234'),
+(99, '123'),
+(100, '4'),
+(101, 'Z'),
+(102, 'K'),
+(103, 'UN'),
+(104, 'TRES'),
+(105, 'DOS'),
+(106, 'ESCUCHAR'),
+(107, 'ALICE'),
+(108, 'NOSE'),
+(109, 'SÃ'),
+(110, 'TU'),
+(111, 'Q'),
+(112, 'EDAD'),
+(113, '1'),
+(114, 'CUANTO'),
+(115, 'ES'),
+(116, 'D1'),
+(117, 'D2'),
+(118, '5555555'),
+(119, '5'),
+(120, '11'),
+(121, '5/3'),
+(122, '1/3'),
+(123, 'E'),
+(124, '2'),
+(125, '3'),
+(126, '50'),
+(127, '6'),
+(128, '9'),
+(129, '8'),
+(130, '5/5'),
+(131, '5/2'),
+(132, '15'),
+(133, '18'),
+(134, '10'),
+(135, '/4'),
+(136, 'LLAMAS'),
+(137, 'DIVIDIDO'),
+(138, 'SUMA'),
+(139, 'HAN'),
+(140, 'PREGUNTADO'),
+(141, 'TAN'),
+(142, 'PREGUNTARON');
 
 -- --------------------------------------------------------
 
@@ -141,20 +198,25 @@ INSERT INTO `personal` (`id`, `dato`, `valor`) VALUES
 CREATE TABLE `preguntas` (
   `id` int(11) NOT NULL,
   `pregunta` varchar(100) COLLATE utf8_bin NOT NULL,
-  `equivalente` int(11) NOT NULL DEFAULT '0'
+  `pregunta_original` varchar(100) COLLATE utf8_bin NOT NULL,
+  `equivalente` int(11) NOT NULL DEFAULT '0',
+  `Nrespuestas` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `preguntas`
 --
 
-INSERT INTO `preguntas` (`id`, `pregunta`, `equivalente`) VALUES
-(1, 'HABLAS INGLES', 0),
-(2, 'COMO ESTAS', 0),
-(4, 'HABLAS ESPANOL', 0),
-(5, 'HABLAS PORTUGUES', 0),
-(7, 'SABES ALGO DE INGLES', 1),
-(8, 'HABLA INGLES', 0);
+INSERT INTO `preguntas` (`id`, `pregunta`, `pregunta_original`, `equivalente`, `Nrespuestas`) VALUES
+(1, 'HABLAS INGLES', 'Hablas ingles', 0, 1),
+(2, 'COMO ESTAS', 'Como estas', 0, 3),
+(5, 'HABLAS PORTUGUES', 'Hablas portugues', 0, 1),
+(7, 'SABES ALGO DE INGLES', 'Sabes algo de ingles', 1, 1),
+(8, 'HABLA INGLES', 'Habla ingles', 1, 1),
+(9, 'COMO ESTA', 'Como esta', 2, 1),
+(19, 'COMO TE LLAMAS', 'Como te llamas', 0, 1),
+(24, 'CUANTOS ANOS TIENES', 'cuantos aÃ±os tienes', 0, 0),
+(25, 'QUE TE PREGUNTARON', 'que te preguntaron', 0, 25);
 
 -- --------------------------------------------------------
 
@@ -165,20 +227,23 @@ INSERT INTO `preguntas` (`id`, `pregunta`, `equivalente`) VALUES
 CREATE TABLE `respuestas` (
   `id` int(11) NOT NULL,
   `respuesta` varchar(100) COLLATE utf8_bin NOT NULL,
-  `V_emocional` int(11) NOT NULL,
-  `experiencia` int(11) NOT NULL,
-  `importancia` int(11) NOT NULL
+  `id_pregunta` int(11) NOT NULL,
+  `V_emocional` int(11) NOT NULL DEFAULT '0',
+  `experiencia` int(11) NOT NULL DEFAULT '0',
+  `importancia` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `respuestas`
 --
 
-INSERT INTO `respuestas` (`id`, `respuesta`, `V_emocional`, `experiencia`, `importancia`) VALUES
-(1, 'BIEN, APRENDIENDO', 0, 0, 0),
-(2, 'BIEN,GRACIAS', 0, 0, 0),
-(3, 'APRENDIENDO DE TI', 0, 0, 0),
-(4, 'NO', 0, 0, 0);
+INSERT INTO `respuestas` (`id`, `respuesta`, `id_pregunta`, `V_emocional`, `experiencia`, `importancia`) VALUES
+(1, 'BIEN, APRENDIENDO', 2, 0, 0, 0),
+(2, 'BIEN,GRACIAS', 2, 0, 0, 0),
+(3, 'APRENDIENDO DE TI', 2, 0, 0, 0),
+(4, 'NO', 1, 0, 0, 0),
+(14, 'ALIS', 19, 0, 0, 0),
+(15, 'MUCHAS COSAS', 25, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -201,7 +266,9 @@ INSERT INTO `tipo_respuesta_peso` (`id`, `id_pregunta`, `respuesta`, `peso`) VAL
 (1, 2, 1, 34),
 (2, 2, 2, 30),
 (3, 2, 3, 36),
-(4, 1, 4, 100);
+(4, 1, 4, 100),
+(9, 19, 14, 0),
+(10, 25, 15, 0);
 
 --
 -- Índices para tablas volcadas
@@ -229,7 +296,8 @@ ALTER TABLE `preguntas`
 -- Indices de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pregunta` (`id_pregunta`);
 
 --
 -- Indices de la tabla `tipo_respuesta_peso`
@@ -247,7 +315,7 @@ ALTER TABLE `tipo_respuesta_peso`
 -- AUTO_INCREMENT de la tabla `palabras`
 --
 ALTER TABLE `palabras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -259,23 +327,29 @@ ALTER TABLE `personal`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_respuesta_peso`
 --
 ALTER TABLE `tipo_respuesta_peso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`id_pregunta`) REFERENCES `preguntas` (`id`);
 
 --
 -- Filtros para la tabla `tipo_respuesta_peso`

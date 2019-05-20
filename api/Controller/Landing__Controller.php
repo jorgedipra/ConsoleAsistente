@@ -84,10 +84,10 @@ class  Landing__Controller extends Controller{
 			$qb->table( 'tipo_respuesta_peso' )
 				->insert(['respuesta' => $respuesta[0][0],'id_pregunta' => $data->id]) 
 				->run( );
-
+				$Nrespuestas=(int)$data->Nrespuestas+1;
 			$qb->table( 'preguntas' )
 				->where( 'id' , '=' , $data->id)
-				->update( array( 'Nrespuestas' => $data->Nrespuestas ) )
+				->update( array( 'Nrespuestas' => $Nrespuestas ) )
 				->run( );
 		endif;
 		$pregunta = $qb->table( 'preguntas' )
@@ -98,13 +98,13 @@ class  Landing__Controller extends Controller{
 				->run( );
 		$r = (int)rand(0, 2);	
 		$id = $pregunta[$r][0];
-		$Nrespuestas = $pregunta[$r][2];
+		$Nrespuestas = $pregunta[$r]['Nrespuestas'];
 		$pregunta = "¿".ucfirst(strtolower($pregunta[$r]['pregunta_original']))."?";
 
 		return $view = [
 			'id'			=> $id,
 			'pregunta'   	=> $pregunta,	
-			'Nrespuestas'	=> $id
+			'Nrespuestas'	=> $Nrespuestas
 		];
 
 	}##->END funtion respuesta

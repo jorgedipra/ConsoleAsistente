@@ -46,7 +46,7 @@ const Memoria = (fragmento, tipo, cadena, data) => {
       return true;
       break;
     case "aprender": 
-        if(localStorage.getItem("respuestaId")){
+        if(localStorage.getItem("respuestaId")){//solo una entrada
             id = localStorage.getItem("respuestaId");
             Nrespuestas = localStorage.getItem("Nrespuestas");
         }  
@@ -57,7 +57,6 @@ const Memoria = (fragmento, tipo, cadena, data) => {
             Nrespuestas: Nrespuestas
         })
         .then(function(response) {
-            var json = response.data;
             messageUser(data); //se envia lo que dijo el usuario al historial
             message(response.data['pregunta']);
             localStorage.setItem("respuestaId",response.data['id']);//id de pregunta

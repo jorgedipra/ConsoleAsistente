@@ -54,7 +54,8 @@ const app = new Vue({
     actualizarChat: function() {
       User = "Us";
       let cadena;
-      const aprender = RegExp("(-aprender:|-APRENDER:|que te han preguntado|que te preguntaron)");
+      const aprender = RegExp("(-aprender|-APRENDER|que te han preguntado|que te preguntaron)");
+      const aprenderturno1 = RegExp("(que te han preguntado|que te preguntaron)");
       const aprenderSalir = RegExp("(-salir|-terminar|-SALIR|-TERMINAR)");
       //validación par auq no entre en blanco
       if (localStorage.getItem("user")) {
@@ -94,7 +95,11 @@ const app = new Vue({
           message(mensaje);
       }else if (aprender.test(cadena) == true || localStorage.getItem("aprender")=='aprender') {
         localStorage.setItem("aprender","aprender")
-        Nlenguaje(cadena, data,'aprender');
+        if(aprenderturno1.test(cadena)){
+          localStorage.setItem("aprender","normal");
+          localStorage.removeItem("respuestaId");
+        }
+          Nlenguaje(cadena, data,'aprender');
       }else {
         Nlenguaje(cadena, data);
       }
