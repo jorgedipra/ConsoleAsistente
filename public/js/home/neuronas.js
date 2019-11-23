@@ -1,4 +1,6 @@
 const Nlenguaje = (input, data, estado) => {
+  // console.info("Estado:["+estado+"]");
+  
   cadena = input;
   input = input.toUpperCase(); //mayuscula
 
@@ -42,7 +44,6 @@ const NClasificaFrase = (input, cadena, data) => {
     Noperaciones(input, data);
     return false;
   }
-
   if (pregunta.test(input) == true || input.lastIndexOf("?") > 0) {
     let NMemoria = new  Memoria(input.replace(/[¿?]/g, ""), "pregunta", cadena, data);//es pregunta
     respuesta = NMemoria.remember

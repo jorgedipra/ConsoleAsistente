@@ -12,14 +12,17 @@ const app = new Vue({
     classMicroIco: "fas fa-microphone",
     classEnviar: "enviar-on",
     classComanON: "ComanOFF",
-    classComanOFF: "ComanON"
+    classComanOFF: "ComanON",
+    hora: "",
+    fecha: "",
   },
   mounted() {
     dataconsolaInicio = {
-      consola: "- Console Asisitent"
+      consola: ":: Console Asisitent ::"
     };
     this.mensaje.push(dataconsolaInicio);
     this.montajeInicial();
+    this.fehaHora();
   },
   updated() {
     var messageDisplay = app.$refs.messageDisplay;
@@ -54,8 +57,12 @@ const app = new Vue({
     actualizarChat: function() {
       User = "Us";
       let cadena;
-      const aprender = RegExp("(-aprender|-APRENDER|que te han preguntado|que te preguntaron)");
-      const aprenderturno1 = RegExp("(que te han preguntado|que te preguntaron)");
+      const aprender = RegExp(
+        "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
+      );
+      const aprenderturno1 = RegExp(
+        "(que te han preguntado|que te preguntaron)"
+      );
       const aprenderSalir = RegExp("(-salir|-terminar|-SALIR|-TERMINAR)");
       //validación par auq no entre en blanco
       if (localStorage.getItem("user")) {
@@ -64,6 +71,7 @@ const app = new Vue({
       }
 
       cadena = this.actividad;
+            
       if (this.actividad == "" || this.actividad == null) {
         cadena = document.getElementById("actividad").value;
         if (cadena == "" || cadena == null) return false;
@@ -73,42 +81,53 @@ const app = new Vue({
         message: cadena,
         rol: "User"
       };
+      // console.log(data);
+      
 
-      if(aprenderSalir.test(cadena)){
-          messageUser(data); //se envia lo que dijo el usuario al historial
-          var r = Math.floor(Math.random() * 3 + 1);
-          switch (r) {
-            case 1:
-              mensaje = "Gracias por enseñarme";
-              localStorage.setItem("aprender","normal");
-              localStorage.removeItem("respuestaId");
-              break;
-            case 2:
-              mensaje = "Hoy estuvo aburrido, espero aprender mas mañana";
-              localStorage.setItem("aprender","normal");
-              localStorage.removeItem("respuestaId");
-              break;
-            case 3:
-              mensaje = "Quiero saber más, por favor";
-              break;
-          }
-          message(mensaje);
-      }else if (aprender.test(cadena) == true || localStorage.getItem("aprender")=='aprender') {
-        localStorage.setItem("aprender","aprender")
-        if(aprenderturno1.test(cadena)){
-          localStorage.setItem("aprender","normal");
+      if (aprenderSalir.test(cadena)) { 
+      
+        messageUser(data); //se envia lo que dijo el usuario al historial
+        var r = Math.floor(Math.random() * 3 + 1);
+        switch (r) {
+          case 1:
+            mensaje = "Gracias por enseñarme";
+            localStorage.setItem("aprender", "normal");
+            localStorage.removeItem("respuestaId");
+            break;
+          case 2:
+            mensaje = "Hoy estuvo aburrido, espero aprender mas mañana";
+            localStorage.setItem("aprender", "normal");
+            localStorage.removeItem("respuestaId");
+            break;
+          case 3:
+            mensaje = "Quiero saber más, por favor";
+            break;
+        }
+        message(mensaje);
+      } else if (
+        aprender.test(cadena) == true ||
+        localStorage.getItem("aprender") == "aprender"
+      ) {
+        localStorage.setItem("aprender", "aprender");
+        if (aprenderturno1.test(cadena)) {
+          localStorage.setItem("aprender", "normal");
           localStorage.removeItem("respuestaId");
         }
-          Nlenguaje(cadena, data,'aprender');
-      }else {
-        Nlenguaje(cadena, data);
+        Nlenguaje(cadena, data, "aprender"); 
+      } else {
+        Nlenguaje(cadena, data); 
+        
       }
     },
     montajeInicial: function() {
       msg = "voz por comandos No soportada";
       if (annyang) msg = "Comandos por voz soportada";
       this.estado = msg;
-    }
+    },
+    fehaHora: function(){
+      // this.hora=Time.hora();
+      // this.fecha=Time.fechaDescriptiva_min();
+    },
   }
 });
 

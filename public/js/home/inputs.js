@@ -1,6 +1,6 @@
 var recognizer = null;
 
-function Escuchar() {
+function Escuchar() {  
   comandosOff();
   //speechRecognization interface inicializando servicios
   window.speechRecognition =

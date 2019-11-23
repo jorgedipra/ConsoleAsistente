@@ -16,6 +16,8 @@ class Memoria {
 
   // Getter
   get remember() {
+    // console.log("Tipo:["+this.tipo+"]");
+    
     switch (this.tipo) {
       case "palabra":
         return this.palabra();
@@ -27,17 +29,17 @@ class Memoria {
         return this.aprender();
         break;
       default:
-            metodostatico(this.cadena, this.data);
+        metodostatico(this.cadena, this.data);
         break;
     }
   }
-  palabra() {
+  palabra() {//guarda las palabras  nuevas
     axios
       .post("palabras", {
         palabra: this.fragmento
       })
       .then(function(response) {
-        //   console.log(response.data);//temp
+          // console.log(response.data);//temp
       })
       .catch(function(error) {
         console.log(error);
@@ -46,6 +48,8 @@ class Memoria {
   }
 
   pregunta() {
+    // console.log("pregunta>> "+this.fragmento);
+    
     let cadena = this.cadena;
     let data = this.data;
     axios
@@ -55,7 +59,7 @@ class Memoria {
       })
       .then(function(response) {
         var json = response.data;
-        // console.log(json);//temp
+        // console.log("respuesta:"+json);//temp
         var r = Math.floor(Math.random() * parseInt(json["Nrespuestas"]) + 1);
         let j = 0;
         let estatico = true;
@@ -80,7 +84,7 @@ class Memoria {
   aprender() {
     let fragmento = this.fragmento;
     let data = this.data;
-    let id = 0; 
+    let id = 0;
     let Nrespuestas = 0;
     //solo una entrada
     if (localStorage.getItem("respuestaId")) {

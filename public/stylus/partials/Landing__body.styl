@@ -33,11 +33,16 @@
 #code{
   overflow: auto
   #container{
-    height 100%
+    height 1vh
   }
   @media({$Hmss}){
         height 369px
   }
+}
+#hora{
+  float: left;
+  padding: 5px;
+
 }
 code{
   color: consola !important
@@ -95,6 +100,7 @@ code{
     grid-column-start: 2
     grid-column-end: 3
     height: -webkit-fill-available;
+    max-height: 94vh;
     @media ({$xs}) {
       grid-column-start: 1
       grid-column-end: 2
@@ -144,6 +150,7 @@ code{
     border: solid 1px #000
     font-weight: bold
     height 100%
+    max-height: 500px;
     overflow: auto
     width 100%;
   #msginicial{
@@ -249,4 +256,8 @@ code{
 }
 .enviar-on{
   display none  
+}
+.titulo-lista{
+  color: #14a850;
+  background-color: #1a1a1a00 !important;
 }
