@@ -14,7 +14,7 @@ const app = new Vue({
     classComanON: "ComanOFF",
     classComanOFF: "ComanON",
     hora: "",
-    fecha: "",
+    fecha: ""
   },
   mounted() {
     dataconsolaInicio = {
@@ -71,7 +71,7 @@ const app = new Vue({
       }
 
       cadena = this.actividad;
-            
+
       if (this.actividad == "" || this.actividad == null) {
         cadena = document.getElementById("actividad").value;
         if (cadena == "" || cadena == null) return false;
@@ -82,10 +82,8 @@ const app = new Vue({
         rol: "User"
       };
       // console.log(data);
-      
 
-      if (aprenderSalir.test(cadena)) { 
-      
+      if (aprenderSalir.test(cadena)) {
         messageUser(data); //se envia lo que dijo el usuario al historial
         var r = Math.floor(Math.random() * 3 + 1);
         switch (r) {
@@ -113,10 +111,9 @@ const app = new Vue({
           localStorage.setItem("aprender", "normal");
           localStorage.removeItem("respuestaId");
         }
-        Nlenguaje(cadena, data, "aprender"); 
+        Nlenguaje(cadena, data, "aprender");
       } else {
-        Nlenguaje(cadena, data); 
-        
+        Nlenguaje(cadena, data);
       }
     },
     montajeInicial: function() {
@@ -124,10 +121,13 @@ const app = new Vue({
       if (annyang) msg = "Comandos por voz soportada";
       this.estado = msg;
     },
-    fehaHora: function(){
-      // this.hora=Time.hora();
-      // this.fecha=Time.fechaDescriptiva_min();
-    },
+    fehaHora: function() {
+      this.hora = Time.hora();
+      this.fecha = Time.fechaDescriptiva_min();
+      setInterval(function() {
+        app.hora = Time.hora();
+      }, 500);
+    }
   }
 });
 

@@ -12,7 +12,7 @@ include 'partials/Landing__header_partials.php';
 ?>
 <section id="app">
     <header id="header" CnsA="1.0">
-        <div id="hora" class="color-wh">
+        <div id="hora" class="color-wh text-left">
             {{ hora }} <br> {{ fecha }}
         </div>
         <div id="comand">
