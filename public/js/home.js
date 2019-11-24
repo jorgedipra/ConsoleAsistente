@@ -23,6 +23,7 @@ const app = new Vue({
     this.mensaje.push(dataconsolaInicio);
     this.montajeInicial();
     this.fehaHora();
+    this.extra();
   },
   updated() {
     var messageDisplay = app.$refs.messageDisplay;
@@ -127,6 +128,18 @@ const app = new Vue({
       setInterval(function() {
         app.hora = Time.hora();
       }, 500);
+    },
+    extra: function() {
+      include("public/js/home/tab.js");
+      
+      function include(archivo) {
+        var oHead = document.getElementsByTagName("head")[0];
+        var oScript = document.createElement("script");
+        oScript.type = "text/javascript";
+        oScript.charset = "utf-8";
+        oScript.src = archivo;
+        oHead.appendChild(oScript);
+      }
     }
   }
 });

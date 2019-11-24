@@ -7,19 +7,26 @@ class Time {
     Time.diaSemana();
   }
   static hora() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
+    let today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    let part = h > 12 ? 'pm' : 'am';
     m = checkTime(m);
     s = checkTime(s);
-    var horaDate = h+":"+m+":"+s;
+    h = checkAMPM(h);
+    var horaDate = h+":"+m+":"+s+" "+part;
     return horaDate;
     function checkTime(i) {
       if (i < 10) {
         i = "0" + i;
       }
       return i;
+    }
+    function checkAMPM(hour){
+      hour = hour > 12 ? hour - 12 : hour;
+      hour = (hour+'').length == 1 ? `0${hour}` : hour;
+      return hour;
     }
   }
   static fecha() {

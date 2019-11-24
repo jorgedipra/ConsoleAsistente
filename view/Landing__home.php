@@ -26,28 +26,35 @@ include 'partials/Landing__header_partials.php';
         </div>
     </header>
     <main id="body" CnsA="2.0">
-        <code id="code" CnsA="2.1">
+        <section id="tab">
             <!-- [Estado] -->
             <div id="estado">
                 <span id="title">Estado:</span>
                 <span>{{ estado }}</span>
             </div>
             <!-- [END::Estado] -->
+            <h4 class="card-title text-center font-robot top0">
+                <?=$Landing_home["datos"][0]['dato'] . ' ' . $Landing_home["datos"][0]['valor']?>
+            </h4>
+            <div id="pestanas" class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button" id="wComandos" class="btn btn-outline-success font-robot  movil"
+                    onclick="">comandos</button>
+                <button type="button" id="wAsistente" class="btn btn-outline-danger font-robot  movil"
+                    onclick="">Asistente</button>
+            </div>
+            <!-- <button type="button" class="btn btn-outline-info font-robot">Info</button>
+            <button type="button" class="btn btn-outline-light font-robot">Light</button> -->
+        </section>
+        <code id="code" CnsA="2.1">
+            <article >
 
-                <h4 class="card-title text-center font-robot top1">
-                    :: <?=$Landing_home["datos"][0]['dato'] . ' ' . $Landing_home["datos"][0]['valor']?> ::
-                </h4>
-                <button class="creadores font-robot button2 text-left top2">
-				<?php foreach ($Landing_home["datos"] as $datos): ?>
-					    [+] <?=$datos["dato"]?> ]:
-					        <?=$datos["valor"]?><BR>
-				<?php endforeach?>
-                </button>
+
+
+            </article>
 <!-- |||||||||||||||||||||<<[Tablero]>>||||||||||||||||||||| -->
                 <div id="container" class="container">
                 
-                
-                <div class="container bordertable card-style font-robot">
+                <div class="container bordertable card-style font-robot top2">
                     <div class="row">
                         <div class="col  text-center">
                             <ul class="list-group"  v-for="(item, index) in mensaje">
@@ -63,6 +70,10 @@ include 'partials/Landing__header_partials.php';
                                 <li class="list-group-item">pedir la edad = voz/comando</li>
                                 <li class="list-group-item">escuchar = voz/comando</li>
                                 <li class="list-group-item">adiós = voz/comando</li>
+                                <li class="list-group-item">que te han preguntado = comando</li>
+                                <li class="list-group-item">que te preguntaron = comando</li>
+                                <li class="list-group-item">-salir = comando</li>
+                                <li class="list-group-item">-terminar = comando</li>
                             </ul>
                         </div>
                         <div class="col-sm">
@@ -79,12 +90,18 @@ include 'partials/Landing__header_partials.php';
                     </div>
                 </div>
                 <textarea id="actividad2">Entrada</textarea>
-                 
+
+                <button class="creadores font-robot button2 text-left top2">
+				<?php foreach ($Landing_home["datos"] as $datos): ?>
+					    [+] <?=$datos["dato"]?> ]:
+					        <?=$datos["valor"]?><BR>
+				<?php endforeach?>
+                </button>
 
                 </div>
 <!-- |||||||||||||||||||||<<[END::Tablero]>>||||||||||||||||||||| -->
         </code>
-    <!-- [Estado-historial] -->
+        <!-- [Estado-historial] -->
         <article id="section2" CnsA="2.2">
             <div id="descrip" CnsA="2.2.1">
                 <h2>Estado:</h2>
@@ -116,7 +133,7 @@ include 'partials/Landing__header_partials.php';
                 </button>
             </div>
         </article>
-    <!-- [END::Estado-historial] -->
+        <!-- [END::Estado-historial] -->
     </main>
 </section>
 <?php
