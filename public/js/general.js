@@ -1,4 +1,15 @@
 //load js
+function include(archivo) {
+        const oHead = document.getElementsByTagName("head")[0];
+        const oScript = document.createElement("script");
+        const extention = '.js';
+        const origen = 'public/js/';
+        oScript.type = "text/javascript";
+        oScript.charset = "utf-8";
+        oScript.src = origen+archivo+extention;
+        oHead.appendChild(oScript);
+}
+
 function loadScript(url, callback){
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');

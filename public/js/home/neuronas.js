@@ -1,3 +1,4 @@
+
 const Nlenguaje = (input, data, estado) => {
   // console.info("Estado:["+estado+"]");
   

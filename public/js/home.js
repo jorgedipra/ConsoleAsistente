@@ -22,7 +22,6 @@ const app = new Vue({
     };
     this.mensaje.push(dataconsolaInicio);
     this.montajeInicial();
-    this.fehaHora();
     this.extra();
   },
   updated() {
@@ -58,14 +57,8 @@ const app = new Vue({
     actualizarChat: function() {
       User = "Us";
       let cadena;
-      const aprender = RegExp(
-        "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
-      );
-      const aprenderturno1 = RegExp(
-        "(que te han preguntado|que te preguntaron)"
-      );
-      const aprenderSalir = RegExp("(-salir|-terminar|-SALIR|-TERMINAR)");
-      //validación par auq no entre en blanco
+
+      //validación para que no entre en blanco
       if (localStorage.getItem("user")) {
         User = localStorage.getItem("user");
         User = User.substr(-20, 2).toUpperCase();
@@ -77,72 +70,85 @@ const app = new Vue({
         cadena = document.getElementById("actividad").value;
         if (cadena == "" || cadena == null) return false;
       }
+
       data = {
         user: User,
         message: cadena,
         rol: "User"
       };
-      // console.log(data);
+      var data = preparar.Nlenguaje(cadena,data);
+      console.info(data);
+      
 
-      if (aprenderSalir.test(cadena)) {
-        messageUser(data); //se envia lo que dijo el usuario al historial
-        var r = Math.floor(Math.random() * 3 + 1);
-        switch (r) {
-          case 1:
-            mensaje = "Gracias por enseñarme";
-            localStorage.setItem("aprender", "normal");
-            localStorage.removeItem("respuestaId");
-            break;
-          case 2:
-            mensaje = "Hoy estuvo aburrido, espero aprender mas mañana";
-            localStorage.setItem("aprender", "normal");
-            localStorage.removeItem("respuestaId");
-            break;
-          case 3:
-            mensaje = "Quiero saber más, por favor";
-            break;
-        }
-        message(mensaje);
-      } else if (
-        aprender.test(cadena) == true ||
-        localStorage.getItem("aprender") == "aprender"
-      ) {
-        localStorage.setItem("aprender", "aprender");
-        if (aprenderturno1.test(cadena)) {
-          localStorage.setItem("aprender", "normal");
-          localStorage.removeItem("respuestaId");
-        }
-        Nlenguaje(cadena, data, "aprender");
-      } else {
-        Nlenguaje(cadena, data);
-      }
+      output.messageUser(data);
+      output.messageIA("ok");
+
+      // const aprender = RegExp(
+      //   "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
+      // );
+      // const aprenderturno1 = RegExp(
+      //   "(que te han preguntado|que te preguntaron)"
+      // );
+      // const aprenderSalir = RegExp("(-salir|-terminar|-SALIR|-TERMINAR)");
+
+      // console.log(data);
+      // console.log(">>"+aprenderSalir.test(cadena));
+
+      // if (aprenderSalir.test(cadena)) {
+      //   messageUser(data); //se envia lo que dijo el usuario al historial
+      //   var r = Math.floor(Math.random() * 3 + 1);
+      //   switch (r) {
+      //     case 1:
+      //       mensaje = "Gracias por enseñarme";
+      //       localStorage.setItem("aprender", "normal");
+      //       localStorage.removeItem("respuestaId");
+      //       break;
+      //     case 2:
+      //       mensaje = "Hoy estuvo aburrido, espero aprender mas mañana";
+      //       localStorage.setItem("aprender", "normal");
+      //       localStorage.removeItem("respuestaId");
+      //       break;
+      //     case 3:
+      //       mensaje = "Quiero saber más, por favor";
+      //       break;
+      //   }
+      //   message(mensaje);
+      // } else if (
+        // aprender.test(cadena) == true ||
+      //   localStorage.getItem("aprender") == "aprender"
+      // ) {
+      //   localStorage.setItem("aprender", "aprender");
+      //   if (aprenderturno1.test(cadena)) {
+      //     localStorage.setItem("aprender", "normal");
+      //     localStorage.removeItem("respuestaId");
+      //   }
+      //   Nlenguaje(cadena, data, "aprender");
+      // } else {
+        // Nlenguaje(cadena, data);
+      // }
     },
     montajeInicial: function() {
       msg = "voz por comandos No soportada";
       if (annyang) msg = "Comandos por voz soportada";
       this.estado = msg;
     },
-    fehaHora: function() {
-      this.hora = Time.hora();
-      this.fecha = Time.fechaDescriptiva_min();
-      setInterval(function() {
-        app.hora = Time.hora();
-      }, 500);
-    },
-    extra: function() {
-      include("public/js/home/tab.js");
-      
-      function include(archivo) {
-        var oHead = document.getElementsByTagName("head")[0];
-        var oScript = document.createElement("script");
-        oScript.type = "text/javascript";
-        oScript.charset = "utf-8";
-        oScript.src = archivo;
-        oHead.appendChild(oScript);
-      }
+    extra: function() { 
+      include("home/time");
+      include("home/tab");        
+      include("home/N.clasificar");        
+      include("home/N.memoria");        
     }
   }
 });
+
+
+
+
+
+
+
+
+
 
 const metodostatico = (cadena, data) => {
   if (app.actividad == "" || app.actividad == null) {
@@ -201,6 +207,13 @@ const metodostatico = (cadena, data) => {
 
   app.actividad = null;
 };
+
+
+
+
+
+
+
 const hola = () => {
   if (localStorage.getItem("user")) {
     setTimeout(() => {
@@ -225,6 +238,12 @@ const hola = () => {
     }, 500);
   }, 1000);
 };
+
+
+
+
+
+
 const adios = () => {
   msg = "Adiós," + localStorage.getItem("user");
   localStorage.removeItem("user");

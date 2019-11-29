@@ -70,8 +70,7 @@ include 'partials/Landing__header_partials.php';
                                 <li class="list-group-item">pedir la edad = voz/comando</li>
                                 <li class="list-group-item">escuchar = voz/comando</li>
                                 <li class="list-group-item">adiós = voz/comando</li>
-                                <li class="list-group-item">que te han preguntado = comando</li>
-                                <li class="list-group-item">que te preguntaron = comando</li>
+                                <li class="list-group-item">-aprender = comando</li>
                                 <li class="list-group-item">-salir = comando</li>
                                 <li class="list-group-item">-terminar = comando</li>
                             </ul>
@@ -118,7 +117,7 @@ include 'partials/Landing__header_partials.php';
                 <ul id="User" v-for="(item, index) in actividades">
                     <li v-bind:class="[item.rol]">
                         <span class="nombre">{{ item.user }}</span>
-                        <span class="message">{{ item.message }}</span>
+                        <span class="message">{{ item.message }}<i>{{ item.time}}</i></span>
                     </li>
                 </ul>
             </div>

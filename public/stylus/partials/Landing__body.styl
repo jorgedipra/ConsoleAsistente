@@ -247,6 +247,7 @@ code{
   margin-left: -5px
   width 100%
   .message{
+    display: grid;
     background: rgba(247, 11, 117, 0.5)
     box-shadow: rgb(247, 11, 117) 0px 0px 5px, rgb(247, 11, 117) 0px 0px 5px inset
     padding       : 10px 5px 
@@ -262,6 +263,7 @@ code{
   margin-left -30px
   width 100%
   .message{
+    display: grid;
     background    : rgba(44,144,57,0.5)
     box-shadow    : rgb(44,144,57) 0px 0px 5px, rgb(44,144,57) 0px 0px 5px inset
     padding       : 10px 5px 
@@ -270,6 +272,10 @@ code{
     border-radius : 0px
     -webkit-clip-path: polygon(0 25%, 10% 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
   }
+}
+.message>i {
+    font-size: 10px;
+    text-align: right;
 }
 //2.2.3
 #get{

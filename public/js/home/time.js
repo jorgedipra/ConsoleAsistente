@@ -1,11 +1,18 @@
 class Time {
   constructor() {
-    Time.hora();
-    Time.fecha();
-    Time.fechaDescriptiva();
-    Time.fechaDescriptiva_min();
-    Time.diaSemana();
+    Time.view();
   }
+  static view(){
+    let data = '';
+    let hora = Time.hora();
+    let fecha = Time.fechaDescriptiva_min();
+    setInterval(function() {
+      hora = Time.hora();
+      data = hora+"<br>"+fecha;
+      document.getElementById("hora").innerHTML = data;
+    }, 500);
+  }
+
   static hora() {
     let today = new Date();
     let h = today.getHours();
@@ -29,6 +36,28 @@ class Time {
       return hour;
     }
   }
+  static horaSimple(){
+    let today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let part = h > 12 ? 'pm' : 'am';
+    m = checkTime(m);
+    h = checkAMPM(h);
+    var horaDate = h+":"+m+" "+part;
+    return horaDate;
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+    function checkAMPM(hour){
+      hour = hour > 12 ? hour - 12 : hour;
+      hour = (hour+'').length == 1 ? `0${hour}` : hour;
+      return hour;
+    }
+  }
+
   static fecha() {
     var date = new Date();
     var d = date.getDate();
