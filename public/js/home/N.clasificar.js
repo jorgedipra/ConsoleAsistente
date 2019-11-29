@@ -11,6 +11,8 @@ class preparar {
     data.limpia = limpia;
     data.palabras = palabras;
 
+    data = Memoria.buscar(data);
+
     return data;
   }
 

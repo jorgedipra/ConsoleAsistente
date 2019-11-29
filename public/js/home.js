@@ -76,6 +76,7 @@ const app = new Vue({
         message: cadena,
         rol: "User"
       };
+
       var data = preparar.Nlenguaje(cadena,data);
       console.info(data);
       

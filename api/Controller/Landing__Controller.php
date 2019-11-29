@@ -55,7 +55,7 @@ class  Landing__Controller extends Controller{
 		];
 	}##->END funtion pregunta
 
-	function palabras($id='',$var=''){
+	function palabras($id='',$var=''){ 
 		$qb 	= new PtcQueryBuilder( $this->pdo() ); 
 		$data 	= json_decode(file_get_contents("php://input"));
 		
@@ -69,6 +69,11 @@ class  Landing__Controller extends Controller{
 				->insert( array( 'palabras' => $data->palabra ) ) 
 				->run( );
 		endif;	
+
+		
+		return $view = [
+			'respuesta'   => "hola"
+		];
 	}##->END funtion palabras
 	function respuesta($id='',$var=''){
 		$qb 	= new PtcQueryBuilder( $this->pdo() ); 
