@@ -12,9 +12,21 @@ class preparar {
     data.palabras = palabras;
 
     data = Memoria.buscar(data);
-
     return data;
-  }
+    
+    // if(data.palabras.length >0){
+    //   for(let i in data.palabras){
+    //     console.log(data.palabras[i]);
+    //     // console.log(data.palabras[i].status);
+    //     if(i = i.length){
+          
+    //     }
+
+    //   }//::END=>for
+    // }//::END=>if
+
+   
+  }//::END=>Nlenguaje
 
   static limpia(original) {
     original = preparar.normalizar(original); //quitan tildes

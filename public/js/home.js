@@ -57,6 +57,8 @@ const app = new Vue({
     actualizarChat: function() {
       User = "Us";
       let cadena;
+      let cont = 0;
+      let status = "200";
 
       //validación para que no entre en blanco
       if (localStorage.getItem("user")) {
@@ -77,12 +79,39 @@ const app = new Vue({
         rol: "User"
       };
 
-      var data = preparar.Nlenguaje(cadena,data);
-      console.info(data);
-      
+      data = preparar.Nlenguaje(cadena, data);
 
-      output.messageUser(data);
-      output.messageIA("ok");
+      console.info(data);
+
+      setTimeout(() => {
+        for (let i in data.palabras) {
+          if (stack.one(i) != "true") {
+            cont++;
+            status = duda.palabraDesconocida(data.palabras[i],cont);//palabras desconocidas
+          }
+        }       
+      }, 200);
+      setTimeout(() => {
+        for (let i in data.palabras) {
+          stack.pop();
+        }
+      }, 250);
+
+      setTimeout(() => {
+        console.log(status);
+        
+        switch (status) {
+          case "100":
+            output.messageUser(data);
+            app.actividad = null;
+            duda.significado();
+            break;
+          case "200":
+            output.messageUser(data);
+            output.messageIA("ok");
+            break;
+        }
+      }, 400);
 
       // const aprender = RegExp(
       //   "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
@@ -115,7 +144,7 @@ const app = new Vue({
       //   }
       //   message(mensaje);
       // } else if (
-        // aprender.test(cadena) == true ||
+      // aprender.test(cadena) == true ||
       //   localStorage.getItem("aprender") == "aprender"
       // ) {
       //   localStorage.setItem("aprender", "aprender");
@@ -125,7 +154,7 @@ const app = new Vue({
       //   }
       //   Nlenguaje(cadena, data, "aprender");
       // } else {
-        // Nlenguaje(cadena, data);
+      // Nlenguaje(cadena, data);
       // }
     },
     montajeInicial: function() {
@@ -133,23 +162,16 @@ const app = new Vue({
       if (annyang) msg = "Comandos por voz soportada";
       this.estado = msg;
     },
-    extra: function() { 
+    extra: function() {
       include("home/time");
-      include("home/tab");        
-      include("home/N.clasificar");        
-      include("home/N.memoria");        
+      include("home/tab");
+      include("home/dataStack");
+      include("home/N.clasificar");
+      include("home/N.memoria");
+      include("home/N.duda");
     }
   }
 });
-
-
-
-
-
-
-
-
-
 
 const metodostatico = (cadena, data) => {
   if (app.actividad == "" || app.actividad == null) {
@@ -209,12 +231,6 @@ const metodostatico = (cadena, data) => {
   app.actividad = null;
 };
 
-
-
-
-
-
-
 const hola = () => {
   if (localStorage.getItem("user")) {
     setTimeout(() => {
@@ -239,11 +255,6 @@ const hola = () => {
     }, 500);
   }, 1000);
 };
-
-
-
-
-
 
 const adios = () => {
   msg = "Adiós," + localStorage.getItem("user");
