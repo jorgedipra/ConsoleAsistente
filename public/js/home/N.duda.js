@@ -17,24 +17,23 @@ class duda {
       if (i == 20) {
         clearInterval(h);
       }
-      if (stack.one(ciclos) === undefined) {
-      } else {
+      if(stack.count==palabra.length){
         for (let i in palabra) {
-          if (stack.one(i) != "true") {
+          if (stack.one(i).status != "true") {
             cont++;
             this.word = obj;
-            this.word.json[cont] = { id: cont, palabra: palabra[i] };
+            this.word.json[cont] = { id: cont, palabra: stack.one(i).palabra };
             this.word = obj;
           }
           if(i==ciclos){
             duda.palabraDesconocida(cont);
           }
         } //::END=>for
-        for (let i in palabra) {
+         for (let i in palabra) {
           stack.pop();
         }
         clearInterval(h); //rompe el ciclo
-      } //::END=>if
+      }//::END=>if
     }, 100);
     
     return true;

@@ -1,1 +1,1 @@
-{ "status":"<?=$Landing_palabras["respuesta"]?>" }
+{ "palabra":"<?=$Landing_palabras["palabra"]?>","status":"<?=$Landing_palabras["respuesta"]?>" }

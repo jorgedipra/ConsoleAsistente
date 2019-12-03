@@ -46,8 +46,7 @@ class Memoria {
         try {
           status=JSON.parse(status);
         }catch (e) {}        
-         
-        stack.push(status.status);
+        stack.push(status);
       }else{
         console.error("Error :["+response.status+"]");
       }      

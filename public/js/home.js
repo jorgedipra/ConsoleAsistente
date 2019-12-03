@@ -78,7 +78,7 @@ const app = new Vue({
         rol: "User"
       };
 
-      data = preparar.Nlenguaje(cadena, data);// depura y separa la frase && gusrda palabras desconoccidas
+      data = preparar.Nlenguaje(cadena, data);// depura y separa la frase && guarda palabras desconoccidas
       console.info(data);
 
       

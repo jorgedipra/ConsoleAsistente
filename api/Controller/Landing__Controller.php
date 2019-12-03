@@ -72,10 +72,11 @@ class Landing__Controller extends Controller
             $qb->table('palabras')
                 ->insert(array('palabras' => $data->palabra))
                 ->run();
-				$respuesta = "false";
+            $respuesta = "false";
         endif;
 
         return $view = [
+            'palabra' => $data->palabra,
             'respuesta' => $respuesta,
         ];
     } ##->END funtion palabras
