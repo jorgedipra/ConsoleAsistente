@@ -57,8 +57,7 @@ const app = new Vue({
     actualizarChat: function() {
       User = "Us";
       let cadena;
-      let cont = 0;
-      let status = "200";
+      let status;
 
       //validación para que no entre en blanco
       if (localStorage.getItem("user")) {
@@ -83,36 +82,45 @@ const app = new Vue({
 
       console.info(data);
 
-      setTimeout(() => {
-        for (let i in data.palabras) {
-          if (stack.one(i) != "true") {
-            cont++;
-            status = duda.palabraDesconocida(data.palabras[i],cont);//palabras desconocidas
-          }
-        }       
-      }, 200);
-      setTimeout(() => {
-        for (let i in data.palabras) {
-          stack.pop();
-        }
-      }, 250);
-
-      setTimeout(() => {
-        console.log(status);
+ ////////////////////////hablar
+ 
+        duda.palabra = data.palabras;
+        duda.ciclos = data.palabras.length -1;
+        duda.palabras(duda.palabra,duda.ciclos);
+        output.messageUser(data);
         
-        switch (status) {
-          case "100":
-            output.messageUser(data);
-            app.actividad = null;
-            duda.significado();
-            break;
-          case "200":
-            output.messageUser(data);
-            output.messageIA("ok");
-            break;
-        }
-      }, 400);
+      
+      // }, 200);
 
+      // setTimeout(() => {
+
+      //   for (let i in data.palabras) {
+      //     stack.pop();
+      //   }
+      // }, 250);
+
+
+      // setTimeout(() => {
+      //   status=localStorage.getItem("status");       
+
+      //   console.log(status);
+        
+      //   switch (status) {
+      //     case "100":
+      //       output.messageUser(data);
+      //       app.actividad = null;
+      //       duda.significado(cadena,1);
+      //       break;
+      //     case "200":
+      //       output.messageUser(data);
+      //       output.messageIA("ok");
+      //       break;
+      //       default:
+      //         break;
+      //   }
+      // }, 400);
+ 
+//////////////////////////////////////////////////
       // const aprender = RegExp(
       //   "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
       // );
