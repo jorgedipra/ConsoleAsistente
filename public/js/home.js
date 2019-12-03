@@ -78,10 +78,9 @@ const app = new Vue({
         rol: "User"
       };
 
-      data = preparar.Nlenguaje(cadena, data);// depura y separa la frase && guarda palabras desconoccidas
+      data = preparar.Nlenguaje(cadena, data); // depura y separa la frase && guarda palabras desconoccidas
       console.info(data);
 
-      
       if (duda.status === undefined) {
         duda.palabra = data.palabras;
         duda.ciclos = data.palabras.length - 1;
@@ -93,45 +92,14 @@ const app = new Vue({
             output.messageUser(data);
             output.messageIA("Entiendo");
             break;
-        
+
           default:
-              output.messageUser(data);
-              output.messageIA("ok");
+            output.messageUser(data);
+            output.messageIA("ok");
             break;
         }
       }
       console.log(duda.status);
-
-      
-
-      // }, 200);
-
-      // setTimeout(() => {
-
-      //   for (let i in data.palabras) {
-      //     stack.pop();
-      //   }
-      // }, 250);
-
-      // setTimeout(() => {
-      //   status=localStorage.getItem("status");
-
-      //   console.log(status);
-
-      //   switch (status) {
-      //     case "100":
-      //       output.messageUser(data);
-      //       app.actividad = null;
-      //       duda.significado(cadena,1);
-      //       break;
-      //     case "200":
-      //       output.messageUser(data);
-      //       output.messageIA("ok");
-      //       break;
-      //       default:
-      //         break;
-      //   }
-      // }, 400);
 
       //////////////////////////////////////////////////
       // const aprender = RegExp(

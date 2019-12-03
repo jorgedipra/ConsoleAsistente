@@ -33,8 +33,8 @@ class Memoria {
         let arregloDeSubCadenas;
         let status;
         try {
-          if(cadena.indexOf("<") > 0){
-            arregloDeSubCadenas = cadena.split("<");
+          if(cadena.indexOf("<script") > 0){
+            arregloDeSubCadenas = cadena.split("<script");
             status = arregloDeSubCadenas[0];
           }else{
             status = cadena;

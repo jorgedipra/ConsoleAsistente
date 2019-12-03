@@ -9,7 +9,7 @@ class duda {
   static palabras(palabra, ciclos) {
     let i = 0;
     let cont = 0;
-    var text = '{ "json" : [{ "id":"" , "palabra":"" } ]}';
+    var text = '{ "json" : [{ "id":"" , "palabra":"" , "status":"true" } ]}';
     var obj = JSON.parse(text);
 
     var h = setInterval(() => {
@@ -22,7 +22,7 @@ class duda {
           if (stack.one(i).status != "true") {
             cont++;
             this.word = obj;
-            this.word.json[cont] = { id: cont, palabra: stack.one(i).palabra };
+            this.word.json[cont] = { id: cont, palabra: stack.one(i).palabra, status: 'false' };
             this.word = obj;
           }
           if(i==ciclos){
@@ -42,7 +42,7 @@ class duda {
   static palabraDesconocida(ciclos) {
     if(ciclos>0){      
       this.status = 100;
-      output.messageIA("¿No entiendo, que significa:<br>"+this.word.json[1].palabra);
+      output.messageIA("¿No entiendo, que significa:<br>"+this.word.json[1].palabra+' ?','code');
     }else{
       output.messageIA("ok -respuesta");//respuesta
     }

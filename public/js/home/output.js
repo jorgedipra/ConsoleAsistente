@@ -2,16 +2,43 @@ class output {
   constructor() {}
 
   //salida en chat escrita de la IA
-  static messageIA(msg = "") {
+  static messageIA(msg = "", code) {
     let data2;
     setTimeout(() => {
-      data2 = {
-        user: "Al",
-        message: msg,
-        rol: "Alis",
-        time: Time.horaSimple()
-      };
-      app.actividades.push(data2);
+      
+      if (code == "code") {
+        data2 = {
+          user: "Al",
+          message: msg,
+          rol: "Alis",
+          time: Time.horaSimple(),
+          isclass: 'Color-Ia'
+        };
+        app.actividades.push(data2);
+        //ejecuta codigo html
+        var k = setInterval(() => {
+          try {
+            let cadena = document.getElementsByName("Al");
+            let cont = cadena.length - 1;
+            cadena[cont].style.color = "#840d46";
+            cadena[cont].innerHTML = output.convertHTMLEntity(
+              cadena[cont].innerHTML
+            );
+            cadena[cont].style.color = "#fff";
+            clearInterval(k);
+          } catch (e) {}
+        }, 10);
+      }else{
+        data2 = {
+          user: "Al",
+          message: msg,
+          rol: "Alis",
+          time: Time.horaSimple(),
+          isclass: ''
+        };
+        app.actividades.push(data2);
+      } //::END=>if
+
       output.speech(msg);
       app.actividad = null;
     }, 1000);
@@ -35,6 +62,14 @@ class output {
     speech.pitch = 1;
     window.speechSynthesis.speak(speech);
   };
+
+  static convertHTMLEntity(text) {
+    const span = document.createElement("span");
+    return text.replace(/&[#A-Za-z0-9]+;/gi, (entity, position, text) => {
+      span.innerHTML = entity;
+      return span.innerText;
+    });
+  } //::END=>convertHTMLEntity
 }
 new output();
 
