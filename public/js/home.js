@@ -79,6 +79,7 @@ const app = new Vue({
       };
 
       data = preparar.Nlenguaje(cadena, data); // depura y separa la frase && guarda palabras desconoccidas
+
       console.info(data);
 
       if (duda.status === undefined) {
@@ -86,21 +87,26 @@ const app = new Vue({
         duda.ciclos = data.palabras.length - 1;
         duda.palabras(duda.palabra, duda.ciclos);
         output.messageUser(data);
+        app.actividad = null;
+        stack.count = 0;
       } else {
+        stack.count = 0;
         switch (duda.status) {
           case 100:
             output.messageUser(data);
-            output.messageIA("Entiendo");
+            duda.significado(100, data.limpia);
             break;
-
+          case 200:
+            output.messageUser(data);
+            output.messageIA("ok-200");
+            break;
           default:
             output.messageUser(data);
             output.messageIA("ok");
             break;
         }
       }
-      console.log(duda.status);
-
+      stack.count = 0;
       //////////////////////////////////////////////////
       // const aprender = RegExp(
       //   "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
