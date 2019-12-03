@@ -78,18 +78,32 @@ const app = new Vue({
         rol: "User"
       };
 
-      data = preparar.Nlenguaje(cadena, data);
-
+      data = preparar.Nlenguaje(cadena, data);// depura y separa la frase && gusrda palabras desconoccidas
       console.info(data);
 
- ////////////////////////hablar
- 
-        duda.palabra = data.palabras;
-        duda.ciclos = data.palabras.length -1;
-        duda.palabras(duda.palabra,duda.ciclos);
-        output.messageUser(data);
-        
       
+      if (duda.status === undefined) {
+        duda.palabra = data.palabras;
+        duda.ciclos = data.palabras.length - 1;
+        duda.palabras(duda.palabra, duda.ciclos);
+        output.messageUser(data);
+      } else {
+        switch (duda.status) {
+          case 100:
+            output.messageUser(data);
+            output.messageIA("Entiendo");
+            break;
+        
+          default:
+              output.messageUser(data);
+              output.messageIA("ok");
+            break;
+        }
+      }
+      console.log(duda.status);
+
+      
+
       // }, 200);
 
       // setTimeout(() => {
@@ -99,12 +113,11 @@ const app = new Vue({
       //   }
       // }, 250);
 
-
       // setTimeout(() => {
-      //   status=localStorage.getItem("status");       
+      //   status=localStorage.getItem("status");
 
       //   console.log(status);
-        
+
       //   switch (status) {
       //     case "100":
       //       output.messageUser(data);
@@ -119,8 +132,8 @@ const app = new Vue({
       //         break;
       //   }
       // }, 400);
- 
-//////////////////////////////////////////////////
+
+      //////////////////////////////////////////////////
       // const aprender = RegExp(
       //   "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
       // );

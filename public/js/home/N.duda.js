@@ -44,6 +44,8 @@ class duda {
     if(ciclos>0){      
       this.status = 100;
       output.messageIA("¿No entiendo, que significa:<br>"+this.word.json[1].palabra);
+    }else{
+      output.messageIA("ok -respuesta");//respuesta
     }
   }
 
