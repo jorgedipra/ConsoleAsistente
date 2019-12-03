@@ -57,8 +57,8 @@ class preparar {
     return ret.join("");
   }
 
-  static capital(string){
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  static capital(input){
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
   }
 }
 new preparar();

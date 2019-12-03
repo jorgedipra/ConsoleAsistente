@@ -49,6 +49,9 @@ class duda {
       this.status = 100;
       this.cont = num;
       var r = Math.floor(Math.random() * 3 + 1);
+      this.word.json[num].palabra = preparar.capital(
+        this.word.json[num].palabra
+      );
       switch (r) {
         case 1:
           this.msg =
