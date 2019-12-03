@@ -79,7 +79,7 @@ const app = new Vue({
       };
 
       data = preparar.Nlenguaje(cadena, data); // depura y separa la frase && guarda palabras desconoccidas
-
+      respuestas.cadena=data.limpia;
       console.info(data);
 
       if (duda.status === undefined) {
@@ -97,8 +97,7 @@ const app = new Vue({
             duda.significado(100, data.limpia);
             break;
           case 200:
-            output.messageUser(data);
-            output.messageIA("ok-200");
+            respuestas.nombre(data);
             break;
           default:
             output.messageUser(data);
@@ -164,6 +163,7 @@ const app = new Vue({
       include("home/N.clasificar");
       include("home/N.memoria");
       include("home/N.duda");
+      include("home/N.respuestas");
     }
   }
 });

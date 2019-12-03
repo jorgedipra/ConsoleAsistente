@@ -56,5 +56,9 @@ class preparar {
     }
     return ret.join("");
   }
+
+  static capital(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 }
 new preparar();

@@ -76,7 +76,7 @@ class duda {
         }
       } catch (error) {}
       stack.count = 0;
-      output.messageIA("ok -respuesta"); //respuesta
+      respuestas.opciones(); //respuesta
     }
     return true;
   }
