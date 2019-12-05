@@ -27,112 +27,38 @@ include 'partials/Landing__header_partials.php';
     </header>
     <main id="body" CnsA="2.0">
         <section id="tab">
+
             <!-- [Estado] -->
             <div id="estado">
                 <span id="title">Estado:</span>
                 <span>{{ estado }}</span>
             </div>
             <!-- [END::Estado] -->
+
             <h4 class="card-title text-center font-robot top0">
                 <?=$Landing_home["datos"][0]['dato'] . ' ' . $Landing_home["datos"][0]['valor']?>
             </h4>
+
             <div id="pestanas" class="btn-group btn-group-toggle" data-toggle="buttons">
                 <button type="button" id="wComandos" class="btn btn-outline-success font-robot  movil"
                     onclick="">comandos</button>
                 <button type="button" id="wAsistente" class="btn btn-outline-danger font-robot  movil"
                     onclick="">Asistente</button>
             </div>
-            <!-- <button type="button" class="btn btn-outline-info font-robot">Info</button>
-            <button type="button" class="btn btn-outline-light font-robot">Light</button> -->
+
         </section>
+
         <code id="code" CnsA="2.1">
-            <article >
-
-
-
-            </article>
-<!-- |||||||||||||||||||||<<[Tablero]>>||||||||||||||||||||| -->
-                <div id="container" class="container">
-                
-                <div class="container bordertable card-style font-robot top2">
-                    <div class="row">
-                        <div class="col  text-center">
-                            <ul class="list-group"  v-for="(item, index) in mensaje">
-                                 <li class="list-group-item titulo-lista"> {{ item.consola }} </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-success">comando / Tipo</li>
-                                <li class="list-group-item">hola = voz/comando</li>
-                                <li class="list-group-item">pedir la edad = voz/comando</li>
-                                <li class="list-group-item">escuchar = voz/comando</li>
-                                <li class="list-group-item">adiós = voz/comando</li>
-                                <li class="list-group-item">-aprender = comando</li>
-                                <li class="list-group-item">-salir = comando</li>
-                                <li class="list-group-item">-terminar = comando</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm">
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-danger">Tipo</li>
-                                <li class="list-group-item">
-                                <button class="button1 font-robot color-black" onclick="Escuchar();">Escuchar</button>
-                                <button class="button1 font-robot" onclick="NoEscuchar();">dejar de escuchat</button> <br>
-                                <button class="button1 font-robot color-black" onclick="comandosOn()">comandos por voz</button>
-                                <button class="button1 font-robot" onclick="comandosOff()">apagar comandos por voz</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <textarea id="actividad2">Entrada</textarea>
-
-                <button class="creadores font-robot button2 text-left top2">
-				<?php foreach ($Landing_home["datos"] as $datos): ?>
-					    [+] <?=$datos["dato"]?> ]:
-					        <?=$datos["valor"]?><BR>
-				<?php endforeach?>
-                </button>
-
-                </div>
-<!-- |||||||||||||||||||||<<[END::Tablero]>>||||||||||||||||||||| -->
+            <article ></article>
+            <!-- <<[Tablero]>> -->
+            <?php include 'partials/home.tablero.php'; ?>     
+            <!-- <<[END::Tablero]>> -->
         </code>
-        <!-- [Estado-historial] -->
         <article id="section2" CnsA="2.2">
-            <div id="descrip" CnsA="2.2.1">
-                <h2>Estado:</h2>
-                <ul>
-                    <li>{{ estado }}</li>
-                </ul>
-            </div>
-
-            <div ref='messageDisplay' id="historial" CnsA="2.2.2">
-                <span id="msginicial">
-                    Alis - te habla
-                    <img src="storage/public/home/interface4.gif" height="100%">
-                </span>
-                <ul id="User" v-for="(item, index) in actividades">
-                    <li v-bind:class="[item.rol]">
-                        <span class="nombre">{{ item.user }}</span>
-                        <span class="message" :class='item.isclass'   :name="item.user">{{ item.message }}<i>{{ item.time}}</i></span>
-                    </li>
-                </ul>
-            </div>
-            <div id="get" CnsA="2.2.3">
-                <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor" v-model="actividad"
-                    name="entrada" id="actividad" placeholder="Escribe un mensaje aquí">
-                <button id="micro" :class="classMicro" v-on:click="micro">
-                    <i :class="classMicroIco"></i>
-                </button>
-                <button id="enviar" :class="classEnviar" v-on:click="actualizarChat">
-                    <i class="fas fa-play"></i>
-                </button>
-            </div>
+            <!-- [Estado-historial] -->
+            <?php include 'partials/home.historial.php' ?>
+            <!-- [END::Estado-historial] -->
         </article>
-        <!-- [END::Estado-historial] -->
     </main>
 </section>
 <?php
