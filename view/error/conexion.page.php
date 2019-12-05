@@ -58,5 +58,15 @@
         </div>
     </div>
 </body>
-
+<script src="public/js/general.js"></script>
+<script>
+let array = $("body").children;
+    for(let i in array){
+        $("body").children[i].innerText=""
+        if($("body").children[i].getAttribute('charset')==='UTF-8'){
+            break;
+        }
+    }
+    console.log("-"+$("body").children[5].getAttribute('charset')+"-");
+</script>
 </html>

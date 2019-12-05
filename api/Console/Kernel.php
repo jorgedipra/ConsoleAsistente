@@ -14,7 +14,7 @@ class Console
     {
         if($desarrollo==true){
         $name = preg_replace('/[^A-Z|0-9]/i', '_', $name);
-        $types = array('debug', 'info', 'warn', 'error');
+        $types = array('debug', 'info', 'warn', 'error','trace','table');
         if ( ! in_array($type, $types) ) $type;
         $s = '<script>' . PHP_EOL;
             if ( is_object($var) or is_array($var) )

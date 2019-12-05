@@ -5,7 +5,7 @@ include 'partials/header_partials.php';
 #@END::header
 
 #@END::header
-echo Console::log('_variable', ['Landing_home' => $Landing_home["datos"][1]['valor']], 'log', $debug);
+echo Console::log('_variable', ['Landing_home' => $Landing_home["datos"][1]['valor']], 'table', $debug);
 
 #@header-html
 include 'partials/Landing__header_partials.php';
