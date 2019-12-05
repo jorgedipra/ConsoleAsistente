@@ -16,55 +16,62 @@ function $(selector) {
 
 function consola(type, cadena = "prueba", argumento) {
   var colors = {
-    green:      "color: #19d264;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif",
-    blue:       "color: #6699CC;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif",
-    orange:     "color: #ff8000;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif"
+    green:
+      "color: #19d264;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif",
+    blue:
+      "color: #6699CC;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif",
+    orange:
+      "color: #ff8000;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif"
   };
-  if (type) {
-    switch (type) {
-      case "log":
-        console.log("%c" + cadena, colors.green);
-        break;
-      case "info":
-        console.info("%c" + cadena, colors.blue);
-        break;
-      case "error":
-        if (argumento === undefined) {
-          console.error(cadena);
-        } else {
-          console.error(cadena + ":" + argumento);
-        }
-        break;
-      case "cont":
-      case "contar":
-      case "count":
-        console.count(cadena);
-        break;
-      case "clear":
-        console.clear();
-        break;
-      case "grupo":
-      case "group":
-        if (argumento === undefined) {
-          console.groupCollapsed(cadena);
-        } else {
-          console.groupCollapsed();
-        }
-        break;
-      case "end":
-        console.groupEnd();
-        break;
-      case "tabla":
-      case "table":
-        console.table(cadena);
-        break;
+  try {
+    if (type) {
+      switch (type) {
+        case "log":
+          console.log("%c" + cadena, colors.green);
+          break;
+        case "info":
+          console.info("%c" + cadena, colors.blue);
+          break;
+        case "error":
+          if (argumento === undefined) {
+            console.error(cadena);
+          } else {
+            console.error(cadena + ":" + argumento);
+          }
+          break;
+        case "cont":
+        case "contar":
+        case "count":
+          console.count(cadena);
+          break;
+        case "clear":
+          console.clear();
+          break;
+        case "grupo":
+        case "group":
+          if (argumento === undefined) {
+            console.groupCollapsed(cadena);
+          } else {
+            console.groupCollapsed();
+          }
+          break;
+        case "end":
+          console.groupEnd();
+          break;
+        case "tabla":
+        case "table":
+          console.table(cadena);
+          break;
 
-      default:
-        console.log(type);
-        break;
+        default:
+          console.log(type);
+          break;
+      }
+    } else {
+      return console.trace("consola");
     }
-  } else {
-    return console.trace("consola");
+  } catch (error) {
+    return console.error(error);
   }
 }
 
