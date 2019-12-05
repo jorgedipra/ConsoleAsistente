@@ -87,7 +87,8 @@ class duda {
   static significado(status, cadena) {
     this.word.json[this.cont].status = "true";
     this.cont++;
-    output.messageIA("Entonces, " + cadena);
+    cadena = preparar.capital(cadena);
+    output.messageIA("Entonces; " + cadena);
     output.messageIA("Entiendo, pero aun no tengo respuesta");
     try {
       for (let i in duda.palabra) {
