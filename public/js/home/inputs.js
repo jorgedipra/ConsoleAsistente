@@ -1,9 +1,11 @@
 var recognizer = null;
 
 /**
- *  www 
-  PENDING : revisar la version de movil la de escritorio responde bien 
-
+ *  
+  PENDING : 
+ # 1 revisar la version de movil la de escritorio responde bien 
+ # 2 pasar a clases
+ # 3 revisar copmandos de voz
  */
 function Escuchar() {
   output.contar=0;
@@ -59,10 +61,9 @@ function Escuchar() {
         //envia enter
         var i = 0;
             NoEscuchar();
-            clearInterval(h);
             setTimeout(() => {
               comandosOn();
-            }, 500);
+            }, 2000);
 
       }//::END=>if
     };
@@ -100,7 +101,8 @@ function comandosOff() {
 }
 
 function comandosOn() {
-  if (annyang) {
+  if (annyang) { 
+  
     // Let's define a command.
     var commands = {
       hola: function() {
@@ -137,12 +139,12 @@ function comandosOn() {
 }
 var cache = "";
 function enviar() {
-  cadena = document.getElementById("actividad").value;
+  cadena = $("#actividad").value;
   if (cache == cadena) return false;
   if (cadena == "" || cadena == null) return false;
   cache = cadena;
-  document.getElementById("enviar").click();
+  $("#enviar").click();
   app.actividad = "";
   app.actividad = null;
-  document.getElementById("actividad").value = "";
+  $("#actividad").value = "";
 }
