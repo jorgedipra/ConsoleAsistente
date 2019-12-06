@@ -1,5 +1,7 @@
 class output {
-  constructor() {}
+  constructor() {
+    this.contar=0;
+  }
 
   //salida en chat escrita de la IA
   static messageIA(msg = "", code) {

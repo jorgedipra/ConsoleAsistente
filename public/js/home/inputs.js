@@ -1,6 +1,12 @@
 var recognizer = null;
 
-function Escuchar() {  
+/**
+ *  www 
+  PENDING : revisar la version de movil la de escritorio responde bien 
+
+ */
+function Escuchar() {
+  output.contar=0;
   comandosOff();
   //speechRecognization interface inicializando servicios
   window.speechRecognition =
@@ -24,35 +30,48 @@ function Escuchar() {
     };
 
     //disparado cada vez que el usuario deja de hablar.
-    recognizer.onresult = function(event) {
+    recognizer.onresult = function(event) { 
+      let tem = "";
+      let fin = false;
+      output.contar++;
       for (
         var count = event.resultIndex;
         count < event.results.length;
         count++
       ) {
-        document.getElementById("actividad2").innerHTML +=
-          event.results[count][0].transcript;
-        document.getElementById("actividad").value =
-          event.results[count][0].transcript;
-      }
-      // espera 3 segundos y envia enter
-      var i = 0;
-      clearInterval(h);
-      var h = setInterval(() => {
-        i++;
-        if (i == 4) {
-          NoEscuchar();
-          clearInterval(h);
-          setTimeout(() => {
-            comandosOn();
-          }, 500);
+        if (event.results[count].isFinal) {
+          tem = event.results[count][0].transcript;
+          fin = event.results[count].isFinal;
+        } else {
+          tem = "Escuchando...";
         }
-      }, 1000);
+      }
+      setTimeout(function(param1){
+        if(param1==output.contar){
+          if (recognizer != null)
+             recognizer.stop();
+        }
+      }, 2500,output.contar);
+
+      $("#actividad").value = tem;
+
+      if (fin) {
+        //envia enter
+        var i = 0;
+            NoEscuchar();
+            clearInterval(h);
+            setTimeout(() => {
+              comandosOn();
+            }, 500);
+
+      }//::END=>if
     };
     //Se dispara cuando el reconocimiento se detiene manual o automáticamente.
     recognizer.onend = function() {
       recognizer = null;
-      enviar();
+      if($("#actividad").value!='Escuchando...'){
+        enviar();
+      }
       // hablar("No Estoy escuchando");
       app.estado = "No estoy escuchando";
       app.classMicroIco = "fas fa-microphone-slash"; //cambio de icono
@@ -87,7 +106,8 @@ function comandosOn() {
       hola: function() {
         alert("hola");
       },
-      escuchar: function() {
+      escuchar: function() { 
+      
         Escuchar();
       },
       alice: function() {
