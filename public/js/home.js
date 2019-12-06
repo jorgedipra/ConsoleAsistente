@@ -30,7 +30,7 @@ const app = new Vue({
   },
   methods: {
     ComanVoz: function(estado) {
-      //comomando por voz
+      //::=>comomando por voz
       if (estado == 1) {
         this.classComanON = "ComanON";
         this.classComanOFF = "ComanOFF";
@@ -43,7 +43,7 @@ const app = new Vue({
       Escuchar();
     },
     keymonitor: function() {
-      //microfono se alterna con enviar por teclado segun lo elija el usuario
+      //::START=>setTimeout[Microfono se alterna con enviar por teclado segun lo elija el usuario]
       setTimeout(() => {
         if (this.actividad == "" || this.actividad == null) {
           this.classMicro = "micro-in";
@@ -53,19 +53,20 @@ const app = new Vue({
           this.classEnviar = "enviar-in";
         }
       }, 100);
+      //::END=>setTimeout
     },
     actualizarChat: function() {
       User = "Us";
       let cadena;
 
-      //validación para que no entre en blanco
+      //::=>validación para que no entre en blanco
       if (localStorage.getItem("user")) {
         User = localStorage.getItem("user");
         User = User.substr(-20, 2).toUpperCase();
       }
 
+      //::=>se asigana a "cadena" lo que escribio el User
       cadena = this.actividad;
-
       if (this.actividad == "" || this.actividad == null) {
         cadena = $("#actividad").value;
         if (cadena == "" || cadena == null) return false;
@@ -77,23 +78,33 @@ const app = new Vue({
         rol: "User"
       };
 
+      //::START=>Consola
       data = preparar.Nlenguaje(cadena, data); // depura y separa la frase && guarda palabras desconoccidas
       respuestas.cadena = data.limpia;
-      consola('grupo','data')
-      consola('tabla',data)
-      consola('end')
-
+      consola("grupo", "data");
+      consola("tabla", data);
+      consola("end");
+      //::END=>Consola
 
       if (duda.status === undefined) {
+        //::=>Palabras "Desconocidas" se guardan, se piede definición, si es mas de una palabra; 
+        //    guarda en pila y espera a ser definida. 
+        //    Y si no hay palabras desconocidad, envia "respuestas.opciones()"
         duda.palabra = data.palabras;
         duda.ciclos = data.palabras.length - 1;
         duda.palabras(duda.palabra, duda.ciclos);
         output.messageUser(data);
         app.actividad = null;
-        stack.count = 0;
+
       } else {
-        stack.count = 0;
+
+        stack.count = 0;//Contador de Stack se reinicia a 0 por no contener palabras "Desconocidas"
         switch (duda.status) {
+          /**
+           * 100:El User entra significado de palabra
+           * 200:El User entra su nombre, el sistema lo guarda en un localStorage
+           * default: muestra el mensaje y una respuesta "ok"
+           */
           case 100:
             output.messageUser(data);
             duda.significado(100, data.limpia);
@@ -105,9 +116,12 @@ const app = new Vue({
             output.messageUser(data);
             output.messageIA("ok");
             break;
-        }
-      }
-      stack.count = 0;
+        }//::END=>switch
+        
+      }//::END=>if-Status
+
+      stack.count = 0;//Contador de Stack se reinicia a 0
+      
       //////////////////////////////////////////////////
       // const aprender = RegExp(
       //   "(-aprender|-APRENDER|que te han preguntado|que te preguntaron)"
@@ -162,6 +176,7 @@ const app = new Vue({
       include("home/time");
       include("home/tab");
       include("home/dataStack");
+      include("home/notification");
       include("home/N.clasificar");
       include("home/N.memoria");
       include("home/N.duda");
@@ -267,26 +282,3 @@ const adios = () => {
     }, 1000);
   }, 1000);
 };
-
-function prueba_notificacion() {
-  if (Notification) {
-    if (Notification.permission !== "granted") {
-      Notification.requestPermission();
-    }
-    var title = "Xitrus";
-    var extra = {
-      icon: "http://xitrus.es/imgs/logo_claro.png",
-      body: "Notificación de prueba en Xitrus"
-    };
-    var noti = new Notification(title, extra);
-    noti.onclick = {
-      // Al hacer click
-    };
-    noti.onclose = {
-      // Al cerrar
-    };
-    setTimeout(function() {
-      noti.close();
-    }, 10000);
-  }
-}

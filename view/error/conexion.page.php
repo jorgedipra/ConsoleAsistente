@@ -67,6 +67,5 @@ let array = $("body").children;
             break;
         }
     }
-    console.log("-"+$("body").children[5].getAttribute('charset')+"-");
 </script>
 </html>

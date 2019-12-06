@@ -22,6 +22,10 @@
  *   @ one   :  retorna elemento selecionado
  *   @ print :  imprime por consola
  */
+
+
+
+ 
 class Stack {
     constructor() {
       this.stack = {};
@@ -64,6 +68,9 @@ class Stack {
     }
   }
   const stack = new Stack();
+
+
+
 /**
   @example #NOTE
  * 

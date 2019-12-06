@@ -15,6 +15,7 @@ function $(selector) {
 }
 
 function consola(type, cadena = "prueba", argumento) {
+  //console.log("%cEspaña","background: red; color: yellow"); 
   var colors = {
     green:
       "color: #19d264;font-size: 16px;font-family: Roboto, Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif",
