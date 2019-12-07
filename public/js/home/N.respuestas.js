@@ -14,10 +14,11 @@ class respuestas {
     if (this.cadena in command) {
       respuestas.comandos(this.cadena);
     } else {
-      output.messageIA("ok -respuesta");
+      respuestas.respuestasAlmacenada(this.cadena);
     }
     return true;
   }
+
   static comandos(cadena) {
     switch (cadena) {
       case "HOLA":
@@ -30,6 +31,17 @@ class respuestas {
 
     return true;
   }
+
+  static respuestasAlmacenada(cadena,respuesta){
+
+      if(respuesta){
+        output.messageIA("ok "+respuesta);
+      }else{
+        output.messageIA("ok -respuesta "+cadena);
+      }
+      
+  }//::END=>respuestasAlmacenada
+
   static hola() {
     if (localStorage.getItem("user")) {
         output.messageIA("Hola " + localStorage.getItem("user") + ", en que te puedo ayudar?");
@@ -50,5 +62,7 @@ class respuestas {
     duda.status = undefined;
     return true;
   }
+
+
 }
 new respuestas();

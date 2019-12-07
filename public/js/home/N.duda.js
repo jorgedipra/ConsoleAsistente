@@ -89,7 +89,9 @@ class duda {
     this.cont++;
     cadena = preparar.capital(cadena);
     output.messageIA("Entonces; " + cadena);
-    output.messageIA("Entiendo, pero aun no tengo respuesta");
+    let respuesta = "Entiendo, pero aun no tengo respuesta";
+    respuestas.respuestasAlmacenada(cadena, respuesta);
+    
     try {
       for (let i in duda.palabra) {
         stack.pop();
