@@ -2,15 +2,7 @@
 
     <div class="container bordertable card-style font-robot top2">
 
-        <div class="row">
-            <div class="col  text-center">
-                <ul class="list-group" v-for="(item, index) in mensaje">
-                    <li class="list-group-item titulo-lista"> {{ item.consola }} </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
+       <div class="row">
 
             <div class="col-sm">
                 <ul class="list-group">
@@ -27,7 +19,7 @@
 
             <div class="col-sm">
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-danger">Tipo</li>
+                    <li class="list-group-item list-group-item-danger">Directos</li>
                     <li class="list-group-item">
                         <button class="button1 font-robot color-black" onclick="Escuchar();">Escuchar</button>
                         <button class="button1 font-robot" onclick="NoEscuchar();">dejar de escuchat</button> <br>
@@ -40,14 +32,4 @@
         </div>
         
     </div>
-
-    <textarea id="actividad2">Entrada</textarea>
-
-    <button class="creadores font-robot button2 text-left top2">
-        <?php foreach ($Landing_home["datos"] as $datos): ?>
-        [+] <?=$datos["dato"]?> ]:
-        <?=$datos["valor"]?><BR>
-        <?php endforeach?>
-    </button>
-
 </div>

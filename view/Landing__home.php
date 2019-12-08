@@ -35,8 +35,8 @@ include 'partials/Landing__header_partials.php';
             </div>
             <!-- [END::Estado] -->
 
-            <h4 class="card-title text-center font-robot top0">
-                <?=$Landing_home["datos"][0]['dato'] . ' ' . $Landing_home["datos"][0]['valor']?>
+            <h4 class="card-title text-center font-robot top0" v-for="(item, index) in mensaje">
+                {{ item.consola }}
             </h4>
 
             <div id="pestanas" class="btn-group btn-group-toggle" data-toggle="buttons">
