@@ -79,6 +79,7 @@ class duda {
         }
       } catch (error) {}
       stack.count = 0;
+      respuestas.count=0;
       respuestas.opciones(); //respuesta
     }
     return true;
@@ -91,7 +92,7 @@ class duda {
     output.messageIA("Entonces; " + cadena);
     let respuesta = "Entiendo, pero aun no tengo respuesta";
     respuestas.respuestasAlmacenada(cadena, respuesta);
-    
+
     try {
       for (let i in duda.palabra) {
         stack.pop();
