@@ -55,7 +55,7 @@ const app = new Vue({
       }, 100);
       //::END=>setTimeout
     },
-    actualizarChat: function() {
+    actualizarChat: function() { 
       User = "Us";
       let cadena;
 
@@ -78,17 +78,18 @@ const app = new Vue({
         rol: "User"
       };
 
-      //::START=>Consola
-      /*
+    
       data = preparar.Nlenguaje(cadena, data); // depura y separa la frase && guarda palabras desconoccidas
       respuestas.cadena = data.limpia;
+      //::START=>Consola 
+      /*
       consola("grupo", "data");
       consola("tabla", data);
       consola("end");
       */
-      //::END=>Consola
+      //::END=>Consola 
       
-      if (duda.status === undefined) { consola("log",'status');
+      if (duda.status === undefined) { 
         //::=>Palabras "Desconocidas" se guardan, se piede definición, si es mas de una palabra; 
         //    guarda en pila y espera a ser definida. 
         //    Y si no hay palabras desconocidad, envia "respuestas.opciones()"

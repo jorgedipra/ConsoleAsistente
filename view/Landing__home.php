@@ -49,7 +49,7 @@ include 'partials/Landing__header_partials.php';
         </section>
 
         <code id="code" CnsA="2.1">
-            <article ></article>
+            <article id="temp"></article>
             <!-- <<[Tablero]>> -->
             <?php include 'partials/home.tablero.php'; ?>     
             <!-- <<[END::Tablero]>> -->

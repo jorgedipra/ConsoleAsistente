@@ -5,6 +5,7 @@ class comandos {
   }
   static on() {
     comandos.command = {
+        "VER COMANDOS": "cm-all",
         HOLA: "hola",
         ADIÓS: "exit",
         ADIOS: "exit",
