@@ -85,8 +85,8 @@ const app = new Vue({
       consola("tabla", data);
       consola("end");
       //::END=>Consola
-
-      if (duda.status === undefined) {
+      
+      if (duda.status === undefined) { consola("log",'status');
         //::=>Palabras "Desconocidas" se guardan, se piede definición, si es mas de una palabra; 
         //    guarda en pila y espera a ser definida. 
         //    Y si no hay palabras desconocidad, envia "respuestas.opciones()"
@@ -95,7 +95,7 @@ const app = new Vue({
         duda.palabras(duda.palabra, duda.ciclos);
         output.messageUser(data);
         app.actividad = null;
-
+        duda.original=data.limpia;
       } else {
 
         stack.count = 0;//Contador de Stack se reinicia a 0 por no contener palabras "Desconocidas"
@@ -107,6 +107,7 @@ const app = new Vue({
            */
           case 100:
             output.messageUser(data);
+            consola(duda.status);
             duda.significado(100, data.limpia);
             break;
           case 200:

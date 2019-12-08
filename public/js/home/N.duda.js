@@ -6,6 +6,7 @@ class duda {
     this.status;
     this.msg;
     this.cont = 0;
+    this.original;
   }
 
   static palabras(palabra, ciclos) {
@@ -90,8 +91,8 @@ class duda {
     this.cont++;
     cadena = preparar.capital(cadena);
     output.messageIA("Entonces; " + cadena);
-    let respuesta = "Entiendo, pero aun no tengo respuesta";
-    respuestas.respuestasAlmacenada(cadena, respuesta);
+    let respuesta = "Entiendo, pero aun no un tengo respuesta";
+    respuestas.respuestasAlmacenada(duda.original, respuesta);
 
     try {
       for (let i in duda.palabra) {
