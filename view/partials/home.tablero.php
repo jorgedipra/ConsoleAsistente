@@ -2,7 +2,7 @@
 
     <div class="container bordertable card-style font-robot top2">
 
-       <div class="row">
+       <div id="tablero" class="row" > 
 
             <div class="col-sm">
                 <ul class="list-group">
@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </div>
-
+                
         </div>
         
     </div>

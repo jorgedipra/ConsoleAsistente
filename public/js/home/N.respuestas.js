@@ -3,6 +3,7 @@ class respuestas {
     this.cadena;
     this.user;
     this.count = 0;
+    this.count2 = 0;
     this.status;
   }
   static opciones() {
@@ -45,14 +46,55 @@ class respuestas {
   } //END=>Opciones
 
   static comandos(cadena) {
-    switch (cadena) {
-      case "HOLA":
-        respuestas.hola();
-        break;
-      default:
-        console.log("comando");
-        break;
+    try {
+      if (!funcionesComandos.on()) include("home/N.funcionesComandos");
+    } catch (error) {
+      include("home/N.funcionesComandos");
     }
+
+    let promesa = new Promise((resolver, reject) => {
+      let NComn = setInterval(() => {
+        try {
+          funcionesComandos.on();
+          resolver(200);
+          clearInterval(NComn);
+        } catch (error) {
+          reject("error");
+        }
+      }, 100);
+    });
+
+    promesa
+      .then(response => {
+        switch (cadena) {
+          case "HOLA":
+            const span = document.createElement("span");
+            span.id = "fn_hola";
+            span.setAttribute(
+              "onclick",
+              "funcionesComandos." + comandos.command[cadena] + "()"
+            );
+            $("#temp").appendChild(span);
+            $("#fn_" + comandos.command[cadena]).click();
+            break;
+          case "VER COMANDOS":
+            funcionesComandos.vercomandos();
+            break;
+          default:
+            console.log("comando:" + cadena);
+            break;
+        }
+
+        return true;
+      })
+      .catch(error => {
+        consola("error", error);
+        respuestas.count2++;
+        if (respuestas.count2 == 20) {
+          return false;
+        }
+        respuestas.opciones();
+      });
 
     return true;
   }
@@ -83,9 +125,7 @@ class respuestas {
       .then(response => {
         if (response == 100) {
           if (respuesta) {
-            output.messageIA(
-              "" + respuesta
-            );
+            output.messageIA("" + respuesta);
           } else {
             output.messageIA(
               "lo siento, no tengo respuesta para: " + data.message
@@ -97,13 +137,6 @@ class respuestas {
       .catch(error => {
         consola("error", error);
       });
-
-    // if (respuesta) {
-    //output.messageIA("ok" + respuesta);
-    //
-    // } else {
-    //   output.messageIA("ok -respuesta " + cadena);
-    // }
   } //::END=>respuestasAlmacenada
 
   static pregunta(cadena, original) {
@@ -145,18 +178,6 @@ class respuestas {
   } //::END=>pregunta
 
   ////////////////////////////////////
-
-  static hola() {
-    if (localStorage.getItem("user")) {
-      output.messageIA(
-        "Hola " + localStorage.getItem("user") + ", en que te puedo ayudar?"
-      );
-    } else {
-      output.messageIA("Hola, como te llamas?");
-      duda.status = 200;
-    }
-    return true;
-  }
 
   static nombre(data) {
     output.messageUser(data);
