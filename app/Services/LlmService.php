@@ -27,23 +27,45 @@ class LlmService
      */
     private function cargarConfiguracion()
     {
-        global $Conexion_ID;
-
-        $sql = "SELECT * FROM config_llm WHERE activo = 1 LIMIT 1";
-        $result = mysqli_query($Conexion_ID, $sql);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            return mysqli_fetch_assoc($result);
-        }
-
         // Valores por defecto
-        return [
+        $defaults = [
             'provider' => 'ollama',
             'model' => 'llama3',
             'endpoint' => 'http://localhost:11434',
             'api_key' => '',
             'config_json' => '{"temperature": 0.7, "max_tokens": 500}'
         ];
+
+        // Intentar conectar a la base de datos
+        if (!isset($GLOBALS['Conexion_ID']) || $GLOBALS['Conexion_ID'] === null || $GLOBALS['Conexion_ID'] === 0) {
+            // Intentar crear conexión
+            if (class_exists('Conex')) {
+                try {
+                    $conex = new Conex();
+                    $GLOBALS['Conexion_ID'] = $conex->conectar();
+                } catch (Exception $e) {
+                    return $defaults;
+                }
+            } else {
+                return $defaults;
+            }
+        }
+
+        $Conexion_ID = $GLOBALS['Conexion_ID'];
+
+        // Verificar si la conexión es válida
+        if (!$Conexion_ID || $Conexion_ID === 0) {
+            return $defaults;
+        }
+
+        $sql = "SELECT * FROM config_llm WHERE activo = 1 LIMIT 1";
+        $result = @mysqli_query($Conexion_ID, $sql);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        }
+
+        return $defaults;
     }
 
     /**
@@ -109,13 +131,18 @@ class LlmService
         $apiKey = $this->config['api_key'] ?? '';
         $extraConfig = json_decode($this->config['config_json'] ?? '{}', true);
 
-        return match($this->provider) {
-            'ollama' => new OllamaService($this->model, $endpoint, $extraConfig),
-            'anthropic' => new ClaudeService($this->model, $apiKey, $extraConfig),
-            'openai' => new OpenAiService($this->model, $apiKey, $extraConfig),
-            'custom' => new CustomService($this->model, $endpoint, $apiKey, $extraConfig),
-            default => new OllamaService($this->model, $endpoint, $extraConfig)
-        };
+        switch($this->provider) {
+            case 'ollama':
+                return new OllamaService($this->model, $endpoint, $extraConfig);
+            case 'anthropic':
+                return new ClaudeService($this->model, $apiKey, $extraConfig);
+            case 'openai':
+                return new OpenAiService($this->model, $apiKey, $extraConfig);
+            case 'custom':
+                return new CustomService($this->model, $endpoint, $apiKey, $extraConfig);
+            default:
+                return new OllamaService($this->model, $endpoint, $extraConfig);
+        }
     }
 
     /**

@@ -185,6 +185,7 @@ function checkHealth() {
 
     axios.get('/api/llm/health')
         .then(response => {
+            console.log('Health response:', response);
             const data = response.data;
             if (data.disponible) {
                 statusEl.innerHTML = '<span class="status-ok">✅ ' + data.mensaje + '</span>';
@@ -193,7 +194,8 @@ function checkHealth() {
             }
         })
         .catch(err => {
-            statusEl.innerHTML = '<span class="status-error">❌ Error al verificar</span>';
+            console.error('Health error:', err);
+            statusEl.innerHTML = '<span class="status-error">❌ ' + (err.message || 'Error al verificar') + '</span>';
         });
 }
 
@@ -205,6 +207,12 @@ function testConnection() {
     resultEl.className = 'result-box';
     resultEl.innerHTML = '⏳ Probando...';
 
+    console.log('Test connection params:', {
+        provider: document.getElementById('provider-select').value,
+        model: document.getElementById('model-select').value,
+        endpoint: document.getElementById('endpoint-input').value
+    });
+
     axios.post('/api/llm/config', {
         provider: document.getElementById('provider-select').value,
         model: document.getElementById('model-select').value,
@@ -215,10 +223,16 @@ function testConnection() {
             max_tokens: 500
         })
     })
-    .then(() => checkHealth())
+    .then(response => {
+        console.log('Test response:', response);
+        resultEl.className = 'result-box result-success';
+        resultEl.innerHTML = '✅ Conexión exitosa';
+        checkHealth();
+    })
     .catch(err => {
+        console.error('Test error:', err);
         resultEl.className = 'result-box result-error';
-        resultEl.innerHTML = '❌ Error';
+        resultEl.innerHTML = '❌ Error: ' + (err.response?.data?.error || err.message);
     });
 }
 

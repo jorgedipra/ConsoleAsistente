@@ -107,11 +107,33 @@ class ApiController
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $provider = $data['provider'] ?? 'ollama';
-        $model = $data['model'] ?? 'llama3';
-        $apiKey = $data['api_key'] ?? '';
-        $endpoint = $data['endpoint'] ?? 'http://localhost:11434';
-        $configJson = $data['config_json'] ?? '{"temperature": 0.7, "max_tokens": 500}';
+        $provider = mysqli_real_escape_string($this->Conexion_ID, $data['provider'] ?? 'ollama');
+        $model = mysqli_real_escape_string($this->Conexion_ID, $data['model'] ?? 'llama3');
+        $apiKey = mysqli_real_escape_string($this->Conexion_ID, $data['api_key'] ?? '');
+        $endpoint = mysqli_real_escape_string($this->Conexion_ID, $data['endpoint'] ?? 'http://localhost:11434');
+        $configJson = mysqli_real_escape_string($this->Conexion_ID, $data['config_json'] ?? '{"temperature": 0.7, "max_tokens": 500}');
+
+        // Verificar conexión
+        if (!$this->Conexion_ID || $this->Conexion_ID === 0) {
+            return $this->json(['error' => 'Sin conexión a base de datos'], 500);
+        }
+
+        // Verificar si la tabla existe
+        $checkTable = mysqli_query($this->Conexion_ID, "SHOW TABLES LIKE 'config_llm'");
+        if (!$checkTable || mysqli_num_rows($checkTable) === 0) {
+            // Crear tabla si no existe
+            $createTable = "CREATE TABLE IF NOT EXISTS config_llm (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                provider VARCHAR(50) NOT NULL,
+                model VARCHAR(100) NOT NULL,
+                api_key TEXT,
+                endpoint VARCHAR(255) NOT NULL,
+                activo TINYINT(1) DEFAULT 0,
+                config_json TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )";
+            mysqli_query($this->Conexion_ID, $createTable);
+        }
 
         // Desactivar todas las configuraciones
         mysqli_query($this->Conexion_ID, "UPDATE config_llm SET activo = 0");
@@ -127,7 +149,7 @@ class ApiController
             ]);
         }
 
-        return $this->json(['error' => 'Error al guardar configuración'], 500);
+        return $this->json(['error' => 'Error al guardar: ' . mysqli_error($this->Conexion_ID)], 500);
     }
 
     /**
@@ -147,7 +169,7 @@ class ApiController
             return $this->json(['config' => $config]);
         }
 
-        return $this->json(['config' => null], 404);
+        return $this->json(['config' => null]);
     }
 
     /**
