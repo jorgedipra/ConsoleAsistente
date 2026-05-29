@@ -1,9 +1,8 @@
 # ConsoleAsistente 🚀
-
 Asistente de consola conversacional con soporte para comandos de voz y LLMs (Ollama, Claude, OpenAI).
-
 <p align="center">
-  <img width="500" height="281" alt="image" src="https://github.com/user-attachments/assets/9d28c1af-ccd1-483a-a185-4a968eb6aed3" />
+  <img width="1873" height="956" alt="image" src="https://github.com/user-attachments/assets/14954d64-acf9-4780-a0a2-163fe31ca0aa" />
+
 </p>
 
 ## ✨ Características
