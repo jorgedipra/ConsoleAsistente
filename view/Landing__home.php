@@ -25,6 +25,9 @@ include 'partials/Landing__header_partials.php';
             <button id="comandoOFF" :class="classComanOFF" onclick="comandosOn()" v-on:click="ComanVoz(1)">
                 <span>OFF</span>
             </button>
+            <button id="btn-config-header" class="btn-config-header" onclick="abrirConfigModal()">
+                <span><i class="fas fa-cog"></i> Configuración</span>
+            </button>
         </div>
     </header>
 
@@ -90,13 +93,7 @@ include 'partials/Landing__header_partials.php';
                 </div>
             </div>
 
-            <!-- Botón Configuración -->
-            <div id="config-caja">
-                <button id="btn-config" class="button1" onclick="abrirConfigModal()">
-                    <i class="fas fa-cog"></i> Configuración
-                </button>
-            </div>
-
+            
         </section>
 
     </main>

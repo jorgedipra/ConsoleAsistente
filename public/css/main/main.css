@@ -502,3 +502,43 @@ small.form-text {
     width: 95%;
   }
 }
+
+/* ========================
+   BOTÓN CONFIG EN HEADER
+   ======================== */
+
+#btn-config-header {
+  background: var(--color-bg-header);
+  border: solid 2px var(--color-cyan);
+  color: var(--color-cyan);
+  cursor: pointer;
+  width: 150px;
+  height: 30px;
+  padding-bottom: 10px;
+  position: absolute;
+  left: 140px;
+  top: 20px;
+  -webkit-transform: skewX(-30deg);
+  transform: skewX(-30deg);
+  font-family: var(--font-title);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-config-header:hover {
+  background: var(--color-cyan);
+  color: var(--color-bg);
+  text-shadow: 0 0 10px var(--color-bg);
+}
+
+#btn-config-header span {
+  display: inline-block;
+  -webkit-transform: skewX(30deg);
+  transform: skewX(30deg);
+}
+
+#btn-config-header i {
+  margin-right: 5px;
+}

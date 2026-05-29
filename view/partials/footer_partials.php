@@ -20,28 +20,34 @@ const providersModels = {
 
 // Abrir modal
 function abrirConfigModal() {
-    document.getElementById('config-modal').style.display = 'block';
-    loadConfig();
-    checkHealth();
+    const modal = document.getElementById('config-modal');
+    if (modal) {
+        modal.style.display = 'block';
+        loadConfig();
+        checkHealth();
 
-    // Si ya está seleccionado Ollama, cargar sus modelos
-    setTimeout(() => {
-        const provider = document.getElementById('provider-select')?.value;
-        if (provider === 'ollama') {
-            cargarModelosOllama();
-        }
-    }, 100);
+        // Si ya está seleccionado Ollama, cargar sus modelos
+        setTimeout(() => {
+            const provider = document.getElementById('provider-select')?.value;
+            if (provider === 'ollama') {
+                cargarModelosOllama();
+            }
+        }, 100);
+    }
 }
 
 // Cerrar modal
 function cerrarConfigModal() {
-    document.getElementById('config-modal').style.display = 'none';
+    const modal = document.getElementById('config-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
 }
 
 // Cerrar modal al hacer clic fuera
 window.onclick = function(event) {
     const modal = document.getElementById('config-modal');
-    if (event.target === modal) {
+    if (modal && event.target === modal) {
         cerrarConfigModal();
     }
 }
