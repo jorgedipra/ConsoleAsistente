@@ -46,6 +46,47 @@ class duda {
   } //::END=>palabras
 
   static palabraDesconocida(ciclos, num) {
+    console.log('=== DEBUG palabraDesconocida ===');
+    console.log('ciclos:', ciclos);
+    console.log('num:', num);
+    console.log('duda.original:', duda.original);
+
+    // Si hay palabras desconocidas, consultar directamente al LLM
+    // sin pedir definición de cada palabra
+    if (ciclos > 0 && duda.original) {
+      console.log('Consultando LLM directamente...');
+
+      fetch('/api/llm/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje: duda.original, historial: [] })
+      })
+      .then(res => res.json())
+      .then(llmData => {
+        console.log('Respuesta LLM:', llmData);
+        if (llmData.respuesta) {
+          // Limpiar HTML de la respuesta
+          const limpia = llmData.respuesta
+            .replace(/<br\s*\/?>/gi, '\n')
+            .replace(/<[^>]+>/g, '')
+            .trim();
+          output.messageIA(limpia);
+        } else {
+          output.messageIA("Lo siento, no pude obtener una respuesta");
+        }
+      })
+      .catch(err => {
+        console.error('Error consultando LLM:', err);
+        output.messageIA("Error al conectar con el asistente");
+      });
+
+      // Limpiar estado y salir
+      this.status = undefined;
+      stack.count = 0;
+      return;
+    }
+
+    // Si no hay palabras desconocidas, código original (no debería llegar aquí)
     if (ciclos > 0) {
       this.status = 100;
       this.cont = num;
@@ -72,6 +113,7 @@ class duda {
           break;
       } //::END=>switch
 
+      console.log('Mostrando mensaje de palabra desconocida');
       output.messageIA(this.msg, "code");
     } else {
       try {

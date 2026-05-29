@@ -95,10 +95,16 @@ const app = new Vue({
         //    Y si no hay palabras desconocidad, envia "respuestas.opciones()"
         duda.palabra = data.palabras;
         duda.ciclos = data.palabras.length - 1;
+
+        // Guardar mensaje original ANTES de cualquier procesamiento
+        duda.original = data.message;
+        console.log('=== DEBUG actualizarChat ===');
+        console.log('data.message:', data.message);
+        console.log('duda.original:', duda.original);
+
         duda.palabras(duda.palabra, duda.ciclos);
         output.messageUser(data);
         app.actividad = null;
-        duda.original=data.message; // Guardar mensaje original, no el procesado
       } else {
 
         stack.count = 0;//Contador de Stack se reinicia a 0 por no contener palabras "Desconocidas"

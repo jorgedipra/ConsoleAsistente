@@ -123,12 +123,19 @@ class respuestas {
     });
     promesa
       .then(response => {
+        console.log('=== DEBUG respuestasAlmacenada ===');
+        console.log('response:', response);
+        console.log('duda.original:', duda.original);
+        console.log('data.message:', data.message);
+
         if (response == 100) {
           if (respuesta) {
             output.messageIA("" + respuesta);
           } else {
             // Consultar al LLM en lugar de mostrar error
             const mensajeOriginal = duda.original || data.message;
+            console.log('Consultando LLM con:', mensajeOriginal);
+
             fetch('/api/llm/chat', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -136,6 +143,7 @@ class respuestas {
             })
             .then(res => res.json())
             .then(llmData => {
+              console.log('Respuesta LLM:', llmData);
               if (llmData.respuesta) {
                 // Limpiar HTML de la respuesta
                 const limpia = llmData.respuesta
