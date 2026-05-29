@@ -1,6 +1,6 @@
 <!-- Modal de Configuración (se carga desde el footer) -->
-<div id="config-modal" class="modal">
-    <div class="modal-content">
+<div id="config-modal" class="modal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(3px);">
+    <div class="modal-content" style="background: #212121; padding: 0; border: 1px solid #00bebe; border-radius: 8px; box-shadow: 0 0 20px #00dcdc; width: 50%; margin: 10% auto; position: relative;">
         <div class="modal-header">
             <h2>⚙️ Configuración del Asistente</h2>
             <span class="modal-close" onclick="cerrarConfigModal()">&times;</span>

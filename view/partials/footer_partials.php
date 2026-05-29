@@ -7,7 +7,7 @@
 <script src="public/js/<?=$match["name"]?>/output.js"></script>
 
 <!-- Modal de Configuración -->
-<?php include 'partials/config_modal.php'; ?>
+<?php include 'config_modal.php'; ?>
 
 <!-- Modal Config Scripts -->
 <script>
@@ -20,8 +20,10 @@ const providersModels = {
 
 // Abrir modal
 function abrirConfigModal() {
+    console.log('abrirConfigModal llamado');
     const modal = document.getElementById('config-modal');
     if (modal) {
+        console.log('Modal encontrado, mostrándolo');
         modal.style.display = 'block';
         loadConfig();
         checkHealth();
@@ -33,6 +35,8 @@ function abrirConfigModal() {
                 cargarModelosOllama();
             }
         }, 100);
+    } else {
+        console.error('Modal #config-modal NO encontrado en el DOM');
     }
 }
 
