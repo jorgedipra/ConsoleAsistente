@@ -1,2 +1,4 @@
 *.exe
 package-lock.json
+claude_minimax.bat
+.claude.json

@@ -1,0 +1,144 @@
+/**
+ * Typography CSS - Tipografías del ConsoleAsistente
+ * Orbitron para títulos, Roboto para cuerpo
+ */
+
+/* ========================
+   IMPORTACIÓN DE FUENTES
+   ======================== */
+
+/* Ya incluidas en header_partials.php:
+   - Orbitron (Google Fonts)
+   - Roboto (Google Fonts)
+*/
+
+/* ========================
+   TÍTULOS Y HEADERS
+   ======================== */
+
+h1, h2, h3, h4, h5, h6,
+.title,
+.header-title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--color-text-light);
+  letter-spacing: 1px;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1rem; }
+
+/* ========================
+   TEXTO DEL BODY
+   ======================== */
+
+body,
+.body-text,
+p,
+span,
+div {
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+/* ========================
+   ELEMENTOS ESPECIALES
+   ======================== */
+
+/* Hora y fecha en header */
+#hora {
+  font-family: var(--font-title);
+  font-size: 14px;
+  color: var(--color-cyan);
+}
+
+/* Estado del asistente */
+#estado span {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+/* Consola/mensajes */
+.consola {
+  font-family: 'Courier New', monospace;
+  color: var(--color-text-light);
+}
+
+/* ========================
+   BOTONES
+   ======================== */
+
+button,
+.btn,
+input[type="submit"] {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+/* Botones de comandos */
+#wComandos,
+#wAsistente {
+  font-family: var(--font-title);
+  font-size: 14px;
+}
+
+/* ========================
+   INPUTS
+   ======================== */
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  color: var(--color-text-light);
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-cyan);
+  outline: none;
+  box-shadow: 0 0 5px var(--color-cyan-glow);
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ========================
+   LINK/HREF
+   ======================== */
+
+a {
+  font-family: var(--font-body);
+  color: var(--color-cyan);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-cyan-light);
+  text-decoration: underline;
+}
+
+/* ========================
+   LISTAS
+   ======================== */
+
+ul, ol {
+  font-family: var(--font-body);
+}
+
+.list-group-item {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}

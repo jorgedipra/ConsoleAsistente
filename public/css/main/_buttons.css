@@ -1,0 +1,147 @@
+/**
+ * Buttons CSS - Estilos de botones trapezoidales
+ * Preserva el estilo original del ConsoleAsistente
+ */
+
+/* ========================
+   BOTONES TRAPEZOIDALES
+   ======================== */
+
+/* Botón con clip-path trapezoidal */
+.button1 {
+  -webkit-clip-path: polygon(0 20%, 20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+  clip-path: polygon(0 20%, 20% 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+  background: var(--color-bg);
+  color: var(--color-cyan);
+  border: 1px solid var(--color-cyan);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: var(--font-title);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button1:hover {
+  background: var(--color-cyan);
+  color: var(--color-bg);
+  box-shadow: 0 0 10px var(--color-cyan-glow);
+}
+
+/* Botón secundario */
+.button2 {
+  border: 1px solid var(--color-cyan);
+  background: var(--color-bg);
+  color: var(--color-cyan);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-body);
+  box-shadow: 0 0 5px var(--color-cyan-glow), 0 0 5px var(--color-cyan-glow) inset;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button2:hover {
+  background: var(--color-cyan);
+  color: var(--color-bg);
+}
+
+/* ========================
+   BOTONES ON/OFF (Comandos)
+   ======================== */
+
+#comandoOFF,
+#comandoON {
+  transform: skewX(-30deg);
+  font-family: var(--font-title);
+  font-size: 15px;
+  padding: 0 30px;
+  height: 30px;
+  border-style: solid none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#comandoON {
+  background: var(--color-on-bg);
+  border-color: var(--color-on-border);
+  color: var(--color-on-text);
+}
+
+#comandoON:hover {
+  background: var(--color-green);
+  text-shadow: 0 0 10px var(--color-text-light);
+}
+
+#comandoOFF {
+  background: var(--color-off-bg);
+  border-color: var(--color-off-border);
+  color: var(--color-text-light);
+}
+
+#comandoOFF:hover {
+  background: var(--color-pink);
+  text-shadow: 0 0 10px var(--color-text-light);
+}
+
+/* Flecha derecha para botón ON */
+#comandoON::before {
+  content: '▶';
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-green);
+}
+
+/* Flecha izquierda para botón OFF */
+#comandoOFF::before {
+  content: '◀';
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-pink);
+}
+
+/* ========================
+   MICROFONO
+   ======================== */
+
+.micro-on {
+  color: var(--color-green) !important;
+  animation: pulse 1s infinite;
+}
+
+.micro-in {
+  color: var(--color-text-muted);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ========================
+   BOTONES ENVIO
+   ======================== */
+
+.enviar-on {
+  background: var(--color-cyan);
+  color: var(--color-bg);
+}
+
+.enviar-in {
+  background: var(--color-text-muted);
+  color: var(--color-bg);
+}
+
+/* ========================
+   CLASES UTILITARIAS
+   ======================== */
+
+.ComanON {
+  opacity: 1;
+}
+
+.ComanOFF {
+  opacity: 0.5;
+}

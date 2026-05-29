@@ -10,8 +10,10 @@ echo Console::log('_variable', ['Landing_home' => $Landing_home["datos"][1]['val
 #@header-html
 include 'partials/Landing__header_partials.php';
 ?>
+
 <section id="app">
-    <header id="header" CnsA="1.0">
+    <!-- HEADER -->
+    <header id="header">
         <div id="hora" class="color-wh text-left">
             {{ hora }} <br> {{ fecha }}
         </div>
@@ -25,47 +27,86 @@ include 'partials/Landing__header_partials.php';
             </button>
         </div>
     </header>
-    <main id="body" CnsA="2.0">
-        <section id="tab">
 
-            <!-- [Estado] -->
-            <div id="estado">
+    <!-- BODY - Dos columnas -->
+    <main id="body">
+
+        <!-- PANEL IZQUIERDO (60%) -->
+        <section id="panel-izq">
+
+            <!-- Estado del Asistente -->
+            <div id="estado-caja">
                 <span id="title">Estado:</span>
-                <span>{{ estado }}</span>
+                <span class="estado-texto">{{ estado }}</span>
             </div>
-            <!-- [END::Estado] -->
 
-            <h4 class="card-title text-center font-robot top0" v-for="(item, index) in mensaje">
-                {{ item.consola }}
-            </h4>
+            <!-- Título -->
+            <div id="titulo-caja">
+                <h4 class="card-title text-center font-robot" v-for="(item, index) in mensaje">
+                    {{ item.consola }}
+                </h4>
+            </div>
 
-            <div id="pestanas" class="btn-group btn-group-toggle" data-toggle="buttons">
-                <button type="button" id="wComandos" class="btn btn-outline-success font-robot  movil"
-                    onclick="">comandos</button>
-                <button type="button" id="wAsistente" class="btn btn-outline-danger font-robot  movil"
-                    onclick="">Asistente</button>
+            <!-- Tablero de Comandos -->
+            <div id="tabla-comandos">
+                <code id="code">
+                    <article id="temp"></article>
+                    <?php include 'partials/home.tablero.php'; ?>
+                </code>
             </div>
 
         </section>
 
-        <code id="code" CnsA="2.1">
-            <article id="temp"></article>
-            <!-- <<[Tablero]>> -->
-            <?php include 'partials/home.tablero.php'; ?>     
-            <!-- <<[END::Tablero]>> -->
-        </code>
-        <article id="section2" CnsA="2.2">
-            <!-- [Estado-historial] -->
-            <?php include 'partials/home.historial.php' ?>
-            <!-- [END::Estado-historial] -->
-        </article>
+        <!-- PANEL DERECHO (40%) -->
+        <section id="panel-der">
+
+            <!-- Historial de Chat -->
+            <div id="historial-caja">
+                <div ref='messageDisplay' id="historial">
+                    <span id="msginicial">
+                        Alis - te habla
+                        <img src="storage/public/home/interface4.gif" height="100%">
+                    </span>
+                    <ul id="User" v-for="(item, index) in actividades">
+                        <li v-bind:class="[item.rol]">
+                            <span class="nombre">{{ item.user }}</span>
+                            <span class="message" :class='item.isclass'>{{ item.message }}<i>{{ item.time}}</i></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Input de Chat -->
+            <div id="input-caja">
+                <div id="get">
+                    <input type="text" v-on:keyup.enter="actualizarChat" v-on:keyup="keymonitor"
+                           v-model="actividad" name="entrada" id="actividad" placeholder="Escribe un mensaje aquí...">
+                    <button id="micro" :class="classMicro" v-on:click="micro">
+                        <i :class="classMicroIco"></i>
+                    </button>
+                    <button id="enviar" :class="classEnviar" v-on:click="actualizarChat">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Botón Configuración -->
+            <div id="config-caja">
+                <button id="btn-config" class="button1" onclick="abrirConfigModal()">
+                    <i class="fas fa-cog"></i> Configuración
+                </button>
+            </div>
+
+        </section>
+
     </main>
 </section>
+
 <?php
 #@footer-html
 include 'partials/Landing__footer_partials.php';
 #@END::footer
-#
+
 #footer/Scripts
 include 'partials/footer_partials.php';
 #@END::footer

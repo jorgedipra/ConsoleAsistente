@@ -5454,7 +5454,8 @@ button.close {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 100%;
+  width: 50%;
+  margin: 10% auto;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;

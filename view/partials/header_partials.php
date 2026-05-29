@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="public/css/<?=$match["name"]?>.css?v=0.2">
+	<link rel="stylesheet" href="public/css/main/main.css">
 	<link rel="stylesheet" href="public/files/bootstrap-4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/css/font/awesome5/css/fontawesome-all.min.css">
 	

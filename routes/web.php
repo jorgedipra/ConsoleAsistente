@@ -1,23 +1,51 @@
 <?php
+/**
+ * Web Routes - ConsoleAsistente
+ * Mantiene compatibilidad con la estructura existente
+ */
 $router = new AltoRouter();
-$DIR 	= new DIR_();
-//si se activa el modo edicion [Se agrega las clases al colocar estado true]
-$editar=false;
-//[con Console::log imprime las variables con la conla]
-$debug=true;
-// rura base se deja "" si esta en la raiz
+$DIR = new DIR_();
+
+// si se activa el modo edicion
+$editar = false;
+
+// con Console::log imprime las variables con la consola
+$debug = true;
+
+// ruta base
 $router->setBasePath('');
-//clases que se quieran crear, por cada clase seria un conjunto de funciones diferentes
-$Classes=[
-			'1'=>'Landing'
-		];
 
-#			  @metodo		@ruta  							@target        	  @name		
-$router->map('GET|POST',	$DIR->url("/"),   				$Classes['1'],    'home');
-$router->map('POST',		$DIR->url("/pregunta"),   		$Classes['1'],    'pregunta');
-$router->map('POST',		$DIR->url("/palabras"),   		$Classes['1'],    'palabras');
-$router->map('GET|POST',		$DIR->url("/respuesta"),   		$Classes['1'],    'respuesta');
-$router->map('GET',			$DIR->url("/404"), 			  	$Classes['1'],    '_404');
+// Clases disponibles
+$Classes = [
+    '1' => 'Landing'
+];
 
-// match current requestc
+// Cargar el nuevo HomeController
+require_once 'app/Http/Controllers/HomeController.php';
+require_once 'app/Http/Controllers/ApiController.php';
+
+// ========================
+// RUTAS WEB
+// ========================
+
+// Home
+$router->map('GET|POST', $DIR->url("/"), 'HomeController', 'home');
+$router->map('POST', $DIR->url("/pregunta"), 'HomeController', 'pregunta');
+$router->map('POST', $DIR->url("/palabras"), 'HomeController', 'palabras');
+$router->map('GET|POST', $DIR->url("/respuesta"), 'HomeController', 'respuesta');
+$router->map('GET', $DIR->url("/404"), 'HomeController', '_404');
+
+// Configuración LLM
+$router->map('GET', $DIR->url("/config"), 'HomeController', 'config');
+
+// ========================
+// RUTAS API LLM
+// ========================
+
+// API routes (incluir solo si la ruta comienza con /api)
+if (strpos($_SERVER['REQUEST_URI'], '/api') === 0) {
+    require_once 'routes/api.php';
+}
+
+// match current request
 $match = $router->match();

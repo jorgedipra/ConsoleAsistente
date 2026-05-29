@@ -1,0 +1,87 @@
+/**
+ * CSS Variables - Identidad visual del ConsoleAsistente
+ * Mantiene los colores originales del proyecto
+ */
+:root {
+  /* ========================
+     COLORES PRINCIPALES
+     ======================== */
+
+  /* Indigo - Primario */
+  --color-primary: #3f51b5;
+  --color-primary-dark: #303f9f;
+  --color-primary-light: #c5cae9;
+
+  /* Cyan - Acento del asistente */
+  --color-cyan: #00bebe;
+  --color-cyan-light: #03a9f4;
+  --color-cyan-glow: #00dcdc;
+
+  /* Verde - Mensajes del usuario */
+  --color-green: #19d264;
+  --color-green-dark: #2c9039;
+
+  /* Rosa/Magenta - Mensajes de IA/desconocido */
+  --color-pink: #f70b75;
+  --color-pink-dark: #840d46;
+
+  /* ========================
+     FONDOS
+     ======================== */
+
+  --color-bg: #212121;          /* Fondo principal */
+  --color-bg-header: #181f31;   /* Header */
+  --color-bg-historial: #101018; /* Área historial */
+  --color-bg-card: #2a2a2a;     /* Cards */
+  --color-bg-input: #1a1a1a;   /* Inputs */
+
+  /* ========================
+     TEXTOS
+     ======================== */
+
+  --color-text: #949494;        /* Texto principal */
+  --color-text-light: #ffffff;  /* Texto sobre fondo oscuro */
+  --color-text-muted: #666666;  /* Texto secundario */
+
+  /* ========================
+     ESTADOS DE BOTONES
+     ======================== */
+
+  /* ON State */
+  --color-on-bg: rgba(44, 144, 57, 0.5);
+  --color-on-border: #2c9039;
+  --color-on-text: #dcf5ff;
+
+  /* OFF State */
+  --color-off-bg: rgba(247, 11, 117, 0.5);
+  --color-off-border: #f70b75;
+
+  /* ========================
+     BORDES Y SOMBRAS
+     ======================== */
+
+  --color-border: #333333;
+  --color-border-light: #444444;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  /* ========================
+     TIPOGRAFÍAS
+     ======================== */
+
+  --font-title: 'Orbitron', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+
+  /* ========================
+     TAMAÑOS
+     ======================== */
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
