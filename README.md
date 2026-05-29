@@ -2,7 +2,7 @@
 Asistente de consola conversacional con soporte para comandos de voz y LLMs (Ollama, Claude, OpenAI).
 <p align="center">
   <img width="1873" height="956" alt="image" src="https://github.com/user-attachments/assets/14954d64-acf9-4780-a0a2-163fe31ca0aa" />
-
+  <img width="1176" height="650" alt="image" src="https://github.com/user-attachments/assets/86f13243-eaee-4220-8e3d-a95adb827075" />
 </p>
 
 ## ✨ Características
