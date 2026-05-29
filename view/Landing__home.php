@@ -73,7 +73,11 @@ include 'partials/Landing__header_partials.php';
                     <ul id="User" v-for="(item, index) in actividades">
                         <li v-bind:class="[item.rol]">
                             <span class="nombre">{{ item.user }}</span>
-                            <span class="message" :class='item.isclass'>{{ item.message }}<i>{{ item.time}}</i></span>
+                            <span class="message" :class='item.isclass'>
+                                <span v-if="item.html" v-html="item.html"></span>
+                                <span v-else>{{ item.message }}</span>
+                                <i>{{ item.time}}</i>
+                            </span>
                         </li>
                     </ul>
                 </div>

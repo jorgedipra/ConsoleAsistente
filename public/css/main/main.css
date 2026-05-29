@@ -195,13 +195,54 @@ body {
   padding: 5px;
 }
 
+/* Lista de mensajes en historial */
+#historial #User li {
+  display: block;
+  margin-bottom: 15px;
+}
+
 /* Mensajes */
 .Alis .message {
   background: rgba(247, 11, 117, 0.5);
   box-shadow: var(--color-pink) 0px 0px 5px, var(--color-pink) 0px 0px 5px inset;
-  padding: 10px;
+  padding: 10px 50px;
   border-radius: 0;
   clip-path: polygon(0 25%, 10% 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.Alis .message h1,
+.Alis .message h2,
+.Alis .message h3 {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  color: var(--color-text-light);
+}
+
+.Alis .message code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.Alis .message pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.Alis .message ul,
+.Alis .message ol {
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.Alis .message li {
+  margin-bottom: 4px;
+}
   color: #fff;
   font-family: var(--font-body);
   font-size: 14px;
@@ -211,9 +252,11 @@ body {
 .User .message {
   background: rgba(44, 144, 57, 0.5);
   box-shadow: var(--color-green-dark) 0px 0px 5px, var(--color-green-dark) 0px 0px 5px inset;
-  padding: 10px;
+  padding: 10px 50px;
   border-radius: 0;
   clip-path: polygon(0 25%, 10% 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
+  white-space: pre-wrap;
+  word-wrap: break-word;
   color: #fff;
   font-family: var(--font-body);
   font-size: 14px;

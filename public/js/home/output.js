@@ -3,15 +3,27 @@ class output {
     this.contar=0;
   }
 
+  // Renderizar markdown a HTML
+  static renderMarkdown(text) {
+    if (typeof marked !== 'undefined') {
+      return marked.parse(text);
+    }
+    return text;
+  }
+
   //salida en chat escrita de la IA
   static messageIA(msg = "", code) {
     let data2;
     setTimeout(() => {
-      
+
+      // Renderizar markdown a HTML
+      const htmlContent = output.renderMarkdown(msg);
+
       if (code == "code") {
         data2 = {
           user: "Al",
           message: msg,
+          html: htmlContent,
           rol: "Alis",
           time: Time.horaSimple(),
           isclass: 'Color-Ia'
@@ -23,10 +35,7 @@ class output {
             let cadena = document.getElementsByName("Al");
             let cont = cadena.length - 1;
             cadena[cont].style.color = "#840d46";
-            cadena[cont].innerHTML = output.convertHTMLEntity(
-              cadena[cont].innerHTML
-            );
-            cadena[cont].style.color = "#fff";
+            cadena[cont].innerHTML = htmlContent;
             clearInterval(k);
           } catch (e) {}
         }, 10);
@@ -34,6 +43,7 @@ class output {
         data2 = {
           user: "Al",
           message: msg,
+          html: htmlContent,
           rol: "Alis",
           time: Time.horaSimple(),
           isclass: ''
@@ -41,7 +51,10 @@ class output {
         app.actividades.push(data2);
       } //::END=>if
 
-      output.speech(msg);
+      // Solo hablar si no tiene mucho contenido
+      if (msg.length < 200) {
+        output.speech(msg);
+      }
       app.actividad = null;
     }, 1000);
   } //::END=>messageIA
