@@ -89,16 +89,16 @@ const app = new Vue({
       */
       //::END=>Consola 
       
-      if (duda.status === undefined) { 
-        //::=>Palabras "Desconocidas" se guardan, se piede definición, si es mas de una palabra; 
-        //    guarda en pila y espera a ser definida. 
+      if (duda.status === undefined) {
+        //::=>Palabras "Desconocidas" se guardan, se piede definición, si es mas de una palabra;
+        //    guarda en pila y espera a ser definida.
         //    Y si no hay palabras desconocidad, envia "respuestas.opciones()"
         duda.palabra = data.palabras;
         duda.ciclos = data.palabras.length - 1;
         duda.palabras(duda.palabra, duda.ciclos);
         output.messageUser(data);
         app.actividad = null;
-        duda.original=data.limpia;
+        duda.original=data.message; // Guardar mensaje original, no el procesado
       } else {
 
         stack.count = 0;//Contador de Stack se reinicia a 0 por no contener palabras "Desconocidas"

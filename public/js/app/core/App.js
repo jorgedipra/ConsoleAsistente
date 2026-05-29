@@ -74,52 +74,109 @@ const App = {
 
         // Actualizar chat (procesar input del usuario)
         actualizarChat() {
-          const cadena = App.data.actividad || $('#actividad')?.value;
+          // Capturar el valor directamente del input DOM
+          const inputEl = document.getElementById('actividad');
+          const cadena = inputEl ? inputEl.value.trim() : '';
 
-          if (!cadena || cadena.trim() === '') {
+          console.log('actualizarChat - input value:', cadena);
+
+          if (!cadena) {
             return false;
           }
+
+          // Guardar mensaje original
+          const mensajeOriginal = cadena;
 
           // Preparar datos
           const User = localStorage.getItem('user')?.slice(-2)?.toUpperCase() || 'Us';
           const data = {
             user: User,
-            message: cadena,
-            rol: 'User'
+            message: mensajeOriginal,
+            rol: 'User',
+            limpia: mensajeOriginal,
+            original: mensajeOriginal
           };
 
-          // Procesar con NlpProcessor
-          const procesado = NlpProcessor.procesar(cadena);
-          data.limpia = procesado.limpia;
-          data.palabras = procesado.palabras;
-          data.original = cadena;
-
-          // Mostrar mensaje del usuario
+          // Mostrar mensaje del usuario inmediatamente
           output.messageUser(data);
 
           // Limpiar input
-          App.data.actividad = null;
+          if (inputEl) inputEl.value = '';
+          App.data.actividad = '';
+          this.actividad = '';
 
-          // Verificar palabras desconocidas
-          UnknownWordHandler.verificar(data).then(result => {
-            if (result.desconocida) {
-              duda.palabra = data.palabras;
-              duda.original = data.limpia;
+          // Enviar directamente al LLM
+          console.log('Enviando al LLM:', mensajeOriginal);
+          this.enviarALLM(mensajeOriginal);
+        },
+
+        // Enviar mensaje al LLM
+        async enviarALLM(mensaje) {
+          try {
+            console.log('=== ENVIANDO AL LLM ===');
+            console.log('Mensaje original:', mensaje);
+            console.log('========================');
+
+            const payload = {
+              mensaje: mensaje,
+              historial: []
+            };
+            console.log('Payload:', payload);
+
+            const response = await fetch('/api/llm/chat', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            console.log('Response del LLM:', data);
+
+            if (data.respuesta) {
+              // Limpiar HTML de la respuesta
+              const respuestaLimpia = data.respuesta
+                .replace(/<br\s*\/?>/gi, '\n')
+                .replace(/<[^>]+>/g, '')
+                .trim();
+              output.messageIA(respuestaLimpia);
+            } else if (data.error) {
+              console.error('Error del servidor:', data.error);
+              output.messageIA('Error: ' + data.error);
             } else {
-              // Buscar respuesta
-              App.buscarRespuesta(data);
+              output.messageIA('No pude obtener una respuesta');
             }
-          });
+          } catch (error) {
+            console.error('Error al consultar LLM:', error);
+            output.messageIA('Lo siento, no pude procesar tu solicitud');
+          }
         },
 
         // Buscar respuesta en base de datos
         async buscarRespuesta(data) {
-          const respuesta = await ResponseFinder.buscar(data.limpia);
+          try {
+            const respuesta = await ResponseFinder.buscar(data.limpia);
 
-          if (respuesta && respuesta.existe) {
-            output.messageIA(respuesta.mensaje);
-          } else {
-            output.messageIA('Lo siento, no tengo respuesta para eso');
+            if (respuesta && respuesta.existe) {
+              // Respuesta encontrada en base de datos local
+              output.messageIA(respuesta.mensaje);
+            } else {
+              // No hay respuesta local, consultar al LLM
+              const respuestaLlm = await axios.post('/api/llm/chat', {
+                mensaje: data.original || data.limpia,
+                historial: []
+              });
+
+              if (respuestaLlm.data.respuesta) {
+                output.messageIA(respuestaLlm.data.respuesta);
+              } else {
+                output.messageIA('No pude obtener una respuesta');
+              }
+            }
+          } catch (error) {
+            console.error('Error en buscarRespuesta:', error);
+            output.messageIA('Lo siento, ocurrió un error al procesar tu solicitud');
           }
         },
 

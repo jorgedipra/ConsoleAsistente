@@ -127,9 +127,30 @@ class respuestas {
           if (respuesta) {
             output.messageIA("" + respuesta);
           } else {
-            output.messageIA(
-              "lo siento, no tengo respuesta para: " + data.message
-            );
+            // Consultar al LLM en lugar de mostrar error
+            const mensajeOriginal = duda.original || data.message;
+            fetch('/api/llm/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ mensaje: mensajeOriginal, historial: [] })
+            })
+            .then(res => res.json())
+            .then(llmData => {
+              if (llmData.respuesta) {
+                // Limpiar HTML de la respuesta
+                const limpia = llmData.respuesta
+                  .replace(/<br\s*\/?>/gi, '\n')
+                  .replace(/<[^>]+>/g, '')
+                  .trim();
+                output.messageIA(limpia);
+              } else {
+                output.messageIA("Lo siento, no pude obtener una respuesta");
+              }
+            })
+            .catch(err => {
+              consola("error", "Error consultando LLM: " + err);
+              output.messageIA("Error al conectar con el asistente");
+            });
           }
         }
         consola("log", response);
@@ -159,22 +180,36 @@ class respuestas {
           json = JSON.parse(json);
         } catch (e) {}
 
-        var r = Math.floor(Math.random() * parseInt(json["Nrespuestas"]) + 1);
-        let j = 0;
         let status = "false";
-        for (var i in json) {
-          if (r == j) {
-            // se responde con una respuesta de la BD
-            status = "true";
-            output.messageIA(json[i]); //se envia el mensaje respuesta al historial
+        let nRespuestas = parseInt(json["Nrespuestas"]) || 0;
+
+        if (nRespuestas > 0) {
+          var r = Math.floor(Math.random() * nRespuestas + 1);
+          let j = 0;
+          for (var i in json) {
+            if (r == j) {
+              // se responde con una respuesta de la BD
+              status = "true";
+              output.messageIA(json[i]); //se envia el mensaje respuesta al historial
+            }
+            j++;
           }
-          j++;
         }
+        // Si Nrespuestas es 0 o no hay respuestas, status permanece "false"
         respuestas.status = status;
       })
       .catch(function(error) {
         consola("error", error);
+        // En caso de error, también establecer status para que el flujo continúe
+        respuestas.status = "false";
       });
+
+    // Timeout de seguridad: si no se resuelve en 5 segundos, asumir que no hay respuesta
+    setTimeout(() => {
+      if (respuestas.status === undefined || respuestas.status === null) {
+        respuestas.status = "false";
+      }
+    }, 5000);
   } //::END=>pregunta
 
   ////////////////////////////////////
